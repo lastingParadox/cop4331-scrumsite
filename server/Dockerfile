@@ -8,8 +8,6 @@ RUN npm install --silent
 
 COPY . .
 
-RUN npx prisma generate
-
-EXPOSE 5000
+EXPOSE 5100
 
 CMD ["npm","start"]

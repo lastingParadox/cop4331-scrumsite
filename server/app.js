@@ -1,18 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import index from './routes/index.js';
-
-// Local Development
-// import path from 'path'
-// import { fileURLToPath } from 'url';
-// import * as dotenv from 'dotenv';
-// if (!process.env.MYSQL_DATABASE) {
-//     const __filename = fileURLToPath(import.meta.url);
-//     const __dirname = path.dirname(__filename);
-
-//     dotenv.config({ path: path.join(__dirname, '..', '.env')});
-// }
-//
+import mongoose from 'mongoose';
+import setEnv from './bin/setEnv.js';
 
 const app = express();
 
@@ -27,3 +17,7 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}.`);
 });
+
+setEnv();
+
+await mongoose.connect(process.env.MONGO_URI);

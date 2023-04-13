@@ -14,10 +14,11 @@ let userSchema = new Schema( {
         trim: true,
         lowercase: true,
         unique: true,
-        validate: [ validateEmail, "Please fille a valid email address" ],
+        validate: [ validateEmail, "Please fill a valid email address" ],
     },
     password: { type: String, required: true },
-
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
 });
 
 userSchema.pre('save', (next) => {

@@ -20,4 +20,4 @@ app.listen(port, () => {
 
 setEnv();
 
-await mongoose.connect(process.env.MONGO_URI);
+await mongoose.connect(process.env.MONGO_URL);

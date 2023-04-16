@@ -53,6 +53,19 @@ userSchema.pre('save', async function (next) {
     next();
 });
 
+userSchema.pre('findOneAndDelete', async function(next) {
+    const doc = await this.model.findOne(this.getQuery());
+    await Workspace.updateMany({ members: doc._id }, {
+        $pull: {
+            members: {
+                $in: doc._id,
+            },
+        }
+    });
+
+    next();
+});
+
 userSchema.methods.comparePassword = async function (candidatePassword) {
     return bcrypt.compare(candidatePassword, this.password);
 };

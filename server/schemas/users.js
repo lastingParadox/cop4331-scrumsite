@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
+import Workspace from './workspaces.js';
 const { Schema } = mongoose;
 
 let validateEmail = function(email) {
@@ -24,20 +25,35 @@ let userSchema = new Schema( {
     ],
 });
 
-userSchema.pre('save', (next) => {
-    let user = this;
+userSchema.pre('save', async function (next) {
+    // Workspace addition on new User
+    const user = this;
+    if (user.isNew && user.workspaces.length === 0) {
+        const privateWorkspace = new Workspace({
+            title: `${user.firstName}'s Workspace`,
+            lists: ["To-Do", "In Progress", "Completed"],
+            members: [ user._id ],
+        });
 
-    if (!user.isModified('password')) return next();
+        await privateWorkspace.save();
 
-    bcrypt.hash(user.password, 10, (err, hash) => {
-        if (err) return next(err);
-        
-        user.password = hash;
-        next();
-    });
+        user.workspaces.push(privateWorkspace._id);
+    }
+
+    // Password hash
+    if (!user.isModified('password')) {
+        console.log("not")
+        return next();
+    }
+
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+
+    user.password = hashedPassword;
+
+    next();
 });
 
-userSchema.methods.comparePassword = async (candidatePassword) => {
+userSchema.methods.comparePassword = async function (candidatePassword) {
     return bcrypt.compare(candidatePassword, this.password);
 };
 

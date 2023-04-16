@@ -1,7 +1,6 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../schemas/users.js';
-import Workspace from '../schemas/workspaces.js';
 
 const router = express.Router();
 
@@ -20,21 +19,11 @@ router.post('/register', async (req, res) => {
         workspaces: [],
     });
 
-    const privateWorkspace = new Workspace({
-        title: `${firstName}'s Workspace`,
-        lists: ['To-Do, In Progress, Completed'],
-        members: [ newUser._id ],
-    })
-
-    newUser.append(privateWorkspace._id);
-
     try {
-        await privateWorkspace.save();
         await newUser.save();
         return res(200).json({ success: `User with email ${email} successfully created.`, newUser });
     } catch (err) {
-        console.log(err);
-        return res(500).json({ error: 'Server error' });
+        return res(500).json({ error: err });
     }
 });
 

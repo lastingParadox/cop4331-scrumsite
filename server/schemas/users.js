@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 import Workspace from './workspaces.js';
+import List from './lists.js';
 const { Schema } = mongoose;
 
 let validateEmail = function(email) {
@@ -29,9 +30,18 @@ userSchema.pre('save', async function (next) {
     // Workspace addition on new User
     const user = this;
     if (user.isNew && user.workspaces.length === 0) {
+
+        const list1 = new List({ title: "To-Do", });
+        const list2 = new List({ title: "In Progress" });
+        const list3 = new List({ title: "Completed" });
+
+        await list1.save();
+        await list2.save();
+        await list3.save();
+
         const privateWorkspace = new Workspace({
             title: `${user.firstName}'s Workspace`,
-            lists: ["To-Do", "In Progress", "Completed"],
+            lists: [ list1._id, list2._id, list3._id ],
             members: [ user._id ],
         });
 

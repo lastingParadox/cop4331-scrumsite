@@ -9,7 +9,9 @@ const notEmpty = (array) => {
 
 let workspaceSchema = new Schema( {
     title: { type: String, required: true },
-    lists: [ String ],
+    lists: [
+        { type: Schema.Types.ObjectId, ref: 'List', required: true }
+    ],
     members: {
         type: [
             { type: Schema.Types.ObjectId, ref: 'User', required: true },

@@ -49,7 +49,7 @@ router.get('/:id', getWorkspace, (req, res) => {
  *  Required: ID Argument, where ID is the workspace's object id. (workspace.id)
  *  Note: ID IS NOT AN INTEGER. IT'S A STRING.
  */
-    res.json(res.workspace);
+    res.json(req.workspace);
 });
 
 // Update a workspace
@@ -65,19 +65,19 @@ router.patch('/:id', getWorkspace, async (req, res) => {
  *  Note: ID IS NOT AN INTEGER. IT'S A STRING.
  */
     if (req.body.title != null) {
-        res.workspace.title = req.body.title;
+        req.workspace.title = req.body.title;
     }
 
     if (req.body.lists != null) {
-        res.workspace.lists = req.body.lists;
+        req.workspace.lists = req.body.lists;
     }
 
     if (req.body.members != null) {
-        res.workspace.members = req.body.members;
+        req.workspace.members = req.body.members;
     }
 
     try {
-        const updatedWorkspace = await res.workspace.save();
+        const updatedWorkspace = await req.workspace.save();
         res.json(updatedWorkspace);
     } catch (err) {
         res.status(400).json({ message: err.message });
@@ -92,14 +92,12 @@ router.delete('/:id', getWorkspace, async (req, res) => {
  *  Note: ID IS NOT AN INTEGER. IT'S A STRING.
  */
     try {
-        await res.workspaces.remove();
-        res.json({ message: 'Workspace deleted' });
+        const deleteWorkspace = await Workspace.findByIdAndDelete(req.workspace.id);
+        res.json({ message: 'Workspace deleted', workspace: deleteWorkspace });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
-
-
 
 // Middleware function to get a single workspace by ID
 async function getWorkspace(req, res, next) {
@@ -115,7 +113,7 @@ async function getWorkspace(req, res, next) {
         return res.status(500).json({ message: err.message });
     }
 
-    res.workspace = workspace;
+    req.workspace = workspace;
     next();
 }
 

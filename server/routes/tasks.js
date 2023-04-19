@@ -26,7 +26,7 @@ router.get('/:id', getTask, (req, res) => {
  *  Note: ID IS NOT AN INTEGER. IT'S A STRING.
  */
 
-    res.json(res.task);
+    res.json(req.task);
 });
 
 // Create one task
@@ -79,35 +79,35 @@ router.patch('/:id', getTask, async (req, res) => {
  *  Note: ID IS NOT AN INTEGER. IT'S A STRING.
  */
     if (req.body.title != null) {
-        res.task.title = req.body.title;
+        req.task.title = req.body.title;
     }
 
     if (req.body.list != null) {
-        res.task.list = req.body.list;
+        req.task.list = req.body.list;
     }
 
     if (req.body.workspace != null) {
-        res.task.workspace = req.body.workspace;
+        req.task.workspace = req.body.workspace;
     }
 
     if (req.body.author != null) {
-        res.task.author = req.body.author;
+        req.task.author = req.body.author;
     }
 
     if (req.body.description != null) {
-        res.task.description = req.body.description;
+        req.task.description = req.body.description;
     }
 
     if (req.body.dueDate != null) {
-        res.task.dueDate = req.body.dueDate;
+        req.task.dueDate = req.body.dueDate;
     }
 
     if (req.body.assignees != null) {
-        res.task.assignees = req.body.assignees;
+        req.task.assignees = req.body.assignees;
     }
 
     try {
-        const updatedTask = await res.task.save();
+        const updatedTask = await req.task.save();
         res.json(updatedTask);
     } catch (err) {
         res.status(400).json({ message: err.message });
@@ -122,8 +122,8 @@ router.delete('/:id', getTask, async (req, res) => {
  *  Note: ID IS NOT AN INTEGER. IT'S A STRING.
  */
     try {
-        await res.tasks.remove();
-        res.json({ message: 'Task deleted' });
+        const deleteTask = await Task.findByIdAndDelete(req.task.id);
+        res.json({ message: 'Task deleted', task: deleteTask });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -136,7 +136,7 @@ async function getTask(req, res, next) {
         if (task == null) {
             return res.status(404).json({ message: 'Cannot find task' });
         }
-        res.task = task;
+        req.task = task;
         next();
     } catch (err) {
         return res.status(500).json({ message: err.message });

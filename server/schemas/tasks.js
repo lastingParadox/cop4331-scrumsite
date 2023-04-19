@@ -26,7 +26,7 @@ taskSchema.pre('findOneAndDelete', async function(next) {
 });
 
 taskSchema.pre('save', async function (next) {
-    if (!isNew) next();
+    if (!this.isNew) next();
     try {
         const list = await List.findById(this.list);
         if (!list) {

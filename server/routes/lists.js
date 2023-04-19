@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 
 // Get one list
 router.get('/:id', getList, (req, res) => {
-    res.json(res.list);
+    res.json(req.list);
 });
 
 // Create one list
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
 // Update one list
 router.patch('/:id', getList, async (req, res) => {
     if (req.body.title != null) {
-        res.list.title = req.body.title;
+        req.list.title = req.body.title;
     }
 
     try {
@@ -50,8 +50,8 @@ router.patch('/:id', getList, async (req, res) => {
 // Delete one list
 router.delete('/:id', getList, async (req, res) => {
     try {
-        await res.list.remove();
-        res.json({ message: 'Deleted List' });
+        const deleteList = await List.findByIdAndDelete(req.list.id);
+        res.json({ message: 'Deleted List', list: deleteList });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -64,7 +64,7 @@ async function getList(req, res, next) {
         if (list == null) {
             return res.status(404).json({ message: 'Cannot find list' });
         }
-        res.list = list;
+        req.list = list;
         next();
     } catch (err) {
         return res.status(500).json({ message: err.message });

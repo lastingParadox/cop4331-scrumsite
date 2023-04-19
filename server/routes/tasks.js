@@ -3,7 +3,7 @@ const router = express.Router();
 import Task from '../models/task.js';
 
 // Get all tasks
-router.get('/tasks', async (req, res) => {
+router.get('/', async (req, res) => {
 /*
  *  GET: Retrieves all tasks
  *  Note: Not particularly useful from a user perspective. See /auth/tasks for a route
@@ -19,7 +19,7 @@ router.get('/tasks', async (req, res) => {
 });
 
 // Get one task
-router.get('/tasks/:id', getTask, (req, res) => {
+router.get('/:id', getTask, (req, res) => {
 /*
  *  GET: Retrieves a task with the ID provided.
  *  Required: ID Argument, where ID is the task's object id. (task.id)
@@ -30,7 +30,7 @@ router.get('/tasks/:id', getTask, (req, res) => {
 });
 
 // Create one task
-router.post('/tasks', async (req, res) => {
+router.post('/', async (req, res) => {
 /*
  *  POST: Creates a task
  *  Body: {
@@ -63,7 +63,7 @@ router.post('/tasks', async (req, res) => {
     });
 
 // Update one task
-router.patch('/tasks/:id', getTask, async (req, res) => {
+router.patch('/:id', getTask, async (req, res) => {
 /*
  *  POST: Creates a task
  *  Body: {
@@ -115,7 +115,7 @@ router.patch('/tasks/:id', getTask, async (req, res) => {
 });
 
 // Delete one task
-router.delete('/tasks/:id', getTask, async (req, res) => {
+router.delete('/:id', getTask, async (req, res) => {
 /*
  *  DELETE: Deletes a task with the ID provided.
  *  Required: ID Argument, where ID is the task's object id. (task.id)

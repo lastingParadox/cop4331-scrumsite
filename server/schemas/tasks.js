@@ -5,8 +5,7 @@ import List from './lists.js'
 let taskSchema = new Schema( {
     title: { type: String, required: true },
     list: { type: Schema.Types.ObjectId, ref: 'List', required: true },
-    workspace: { type: Schema.Types.ObjectId, ref: 'Workspace', required: true },
-    author: { type: SchemaType.Types.ObjectId, ref: 'User', required: true },
+    author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     description: String,
     dueDate: Date,
     assignees: [
@@ -27,7 +26,7 @@ taskSchema.pre('findOneAndDelete', async function(next) {
 });
 
 taskSchema.pre('save', async function (next) {
-    if (!isNew) next();
+    if (!this.isNew) next();
     try {
         const list = await List.findById(this.list);
         if (!list) {

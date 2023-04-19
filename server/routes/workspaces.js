@@ -92,7 +92,7 @@ router.delete('/:id', getWorkspace, async (req, res) => {
  *  Note: ID IS NOT AN INTEGER. IT'S A STRING.
  */
     try {
-        await res.workspace.remove();
+        await res.workspaces.remove();
         res.json({ message: 'Workspace deleted' });
     } catch (err) {
         res.status(500).json({ message: err.message });

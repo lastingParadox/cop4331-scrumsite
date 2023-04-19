@@ -31,9 +31,9 @@ userSchema.pre('save', async function (next) {
     const user = this;
     if (user.isNew && user.workspaces.length === 0) {
 
-        const list1 = { title: "To-Do", };
-        const list2 = { title: "In Progress" };
-        const list3 = { title: "Completed" };
+        const list1 = new List({ title: "To-Do", });
+        const list2 = new List({ title: "In Progress" });
+        const list3 = new List({ title: "Completed" });
 
         await list1.save();
         await list2.save();

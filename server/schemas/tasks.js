@@ -5,7 +5,7 @@ import List from './lists.js'
 let taskSchema = new Schema( {
     title: { type: String, required: true },
     list: { type: Schema.Types.ObjectId, ref: 'List', required: true },
-    author: { type: SchemaType.Types.ObjectId, ref: 'User', required: true },
+    author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     description: String,
     dueDate: Date,
     assignees: [

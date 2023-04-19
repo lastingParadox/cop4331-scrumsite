@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router();
-import Workspace from '../schemas/workspaces';
+import Workspace from '../schemas/workspaces.js';
 
 // Get all workspaces
 router.get('/', async (req, res) => {

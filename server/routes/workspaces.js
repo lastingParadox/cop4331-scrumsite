@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
  *  POST: Creates a Workspace
  *  Body: {
  *          "title": "Example Title",
- *          "lists": ["Example List 1", "Example List 2"],
+ *          "lists": [listId1, listId2],
  *          "members": [ userObjectId1, userObjectId2 ]
  *  }
  *  Required: Title, Members (at least one user object id in array)
@@ -58,7 +58,7 @@ router.patch('/:id', getWorkspace, async (req, res) => {
  *  PATCH: Updates a workspace with the ID provided.
  *  Body: {
  *          "title": "Example Title",
- *          "lists": ["Example List 1", "Example List 2"],
+ *          "lists": [listId1, listId2],
  *          "members": [ userObjectId1, userObjectId2 ]
  *  }
  *  Required: ID Argument, where ID is the workspace's object id. (workspace.id)

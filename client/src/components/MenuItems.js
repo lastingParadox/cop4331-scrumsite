@@ -25,7 +25,7 @@ export const MenuItems = [
 	},
 	{
 		title: 'Register',
-		url: '/register',
+		url: '/',
 		className: 'nav-links-mobile',
 	},
 ];

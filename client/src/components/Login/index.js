@@ -16,6 +16,19 @@ export default function Login() {
   const [signIn, setSignIn] = useState(false);
   const size = useWindowSize();
 
+  useEffect (() => {
+      fetch("localhost:3000/api/authentication/login", {
+        method: "POST",
+        headers: {
+            'Content-type': "application/json"
+        },
+        body: JSON.stringify([username,password])
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    }, [])
+
+
   function toggleColor() {
     if (color === "white") {
       setColor("black");
@@ -219,7 +232,7 @@ export default function Login() {
                 className="switch-button"
                 onClick={() => setSignIn(!signIn)}
               >
-                {signIn ? "Register" : "Login"}
+                {signIn ? "Login" : "Register"}
               </button>
             </div>
             {login}

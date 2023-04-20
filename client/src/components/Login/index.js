@@ -11,22 +11,92 @@ export default function Login() {
   const [lastName, setLastName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [usernameValid,setUsernameValid] = useState(true);
+  const [passwordValid,setPasswordValid] = useState(true);
+  const [firstNameValid,setFirstNameValid] = useState(true);
+  const [lastNameValid,setLastNameValid] = useState(true);
+  const [confirmPasswordValid,setConfirmPasswordValid] = useState(true);
+
+  const loginValidArray = [usernameValid,passwordValid];
+  const registerValidArray = [usernameValid,passwordValid,firstNameValid,lastNameValid,confirmPasswordValid];
+  
   const [color, setColor] = useState("white");
   const [checked, setChecked] = useState(false);
   const [signIn, setSignIn] = useState(false);
   const size = useWindowSize();
 
+
+  const loginData = {email:username, password:password};
+  const registerData = {email:username, password:password, firstName:firstName, lastName:lastName}
+
   useEffect (() => {
-      fetch("localhost:3000/api/authentication/login", {
-        method: "POST",
-        headers: {
-            'Content-type': "application/json"
-        },
-        body: JSON.stringify([username,password])
-      })
+      fetch("http://localhost:5000/api")
       .then(res => res.json())
       .then(data => console.log(data))
     }, [])
+
+
+
+
+    const handleLogin = (e) => {
+
+      e.preventDefault();
+      setUsernameValid(username);
+      setPasswordValid(password);
+
+      usernameValid ? console.log("PrintOUT") : console.log("YOU suck");
+
+        fetch("http://localhost:5000/api/authentication/login", {
+          method: 'POST',
+          headers: {
+            'Content-Type':'application/json'
+          },
+          body: JSON.stringify(loginData)
+        }
+        )
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          console.log(data['success'])
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      
+    };
+
+    const handleRegister = (e) => {
+      e.preventDefault();
+
+      setUsernameValid(username);
+      setPasswordValid(password);
+      setFirstNameValid(firstName);
+      setLastNameValid(lastName);
+      setConfirmPasswordValid(confirmPassword === password);
+
+      
+        fetch("http://localhost:5000/api/authentication/register", {
+          method: 'POST',
+          headers: {
+            'Content-Type':'application/json'
+          },
+          body: JSON.stringify(registerData)
+        }
+        )
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          console.log(data['success'])
+        })
+        .catch(error => {
+          console.error(error);
+        });
+
+      
+
+    };
 
 
   function toggleColor() {
@@ -40,6 +110,7 @@ export default function Login() {
   const switchColor = (nextChecked) => {
     setChecked(nextChecked);
     toggleColor();
+    console.log(JSON.stringify(loginData));
   };
 
   useEffect(() => {
@@ -62,13 +133,15 @@ export default function Login() {
           className={
             color === "white" ? "login-boxes-light" : "login-boxes-dark"
           }
+          value = {username}
           type="text"
           placeholder="Enter Username"
           name="username"
           maxlength="110"
-          required
           onChange={(e) => setUsername(e.target.value)}
         ></input>
+        <div className={!usernameValid ? "line" : ""}></div>
+        <div className={`show-error${!usernameValid ? "True" : "False"}`}>Email must be filled out</div>
         <label
           className={color === "white" ? "text-light" : "text-dark"}
           for="password"
@@ -79,14 +152,16 @@ export default function Login() {
           className={
             color === "white" ? "login-boxes-light" : "login-boxes-dark"
           }
+          value = {password}
           type="password"
           placeholder="Enter Password"
           name="password"
           maxlength="110"
-          required
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button className="login-button" type="submit">
+                <div className={!passwordValid ? "line" : ""}></div>
+        <div className={`show-error${!passwordValid ? "True" : "False"}`}>Password must be filled out</div>
+        <button className="login-button" type="submit" onClick={handleLogin}>
           Sign in
         </button>
       </form>
@@ -109,12 +184,14 @@ export default function Login() {
           className={
             color === "white" ? "login-boxes-light" : "login-boxes-dark"
           }
+          value = {username}
           type="text"
           placeholder="Enter Email"
           maxlength="110"
-          required
           onChange={(e) => setUsername(e.target.value)}
         ></input>
+        <div className={!usernameValid ? "line" : ""}></div>
+        <div className={`show-error${!usernameValid ? "True" : "False"}`}>Email must be filled out</div>
         <label
           className={color === "white" ? "text-light" : "text-dark"}
           for="username"
@@ -125,12 +202,14 @@ export default function Login() {
           className={
             color === "white" ? "login-boxes-light" : "login-boxes-dark"
           }
+          value = {firstName}
           type="text"
           placeholder="Enter First Name"
           maxlength="110"
-          required
           onChange={(e) => setFirstName(e.target.value)}
         ></input>
+        <div className={!firstNameValid ? "line" : ""}></div>
+        <div className={`show-error${!firstNameValid ? "True" : "False"}`}>First Name must be filled out</div>
         <label
           className={color === "white" ? "text-light" : "text-dark"}
           for="username"
@@ -141,12 +220,14 @@ export default function Login() {
           className={
             color === "white" ? "login-boxes-light" : "login-boxes-dark"
           }
+          value = {lastName}
           type="text"
-          placeholder="Enter Username"
+          placeholder="Enter Last Name"
           maxlength="110"
-          required
           onChange={(e) => setLastName(e.target.value)}
         ></input>
+        <div className={!lastNameValid ? "line" : ""}></div>
+        <div className={`show-error${!lastNameValid ? "True" : "False"}`}>Last Name must be filled out</div>
         <label
           className={color === "white" ? "text-light" : "text-dark"}
           for="password"
@@ -157,12 +238,14 @@ export default function Login() {
           className={
             color === "white" ? "login-boxes-light" : "login-boxes-dark"
           }
+          value = {password}
           type="password"
           placeholder="Enter Password"
           maxlength="110"
-          required
           onChange={(e) => setPassword(e.target.value)}
         ></input>
+        <div className={!passwordValid ? "line" : ""}></div>
+        <div className={`show-error${!passwordValid ? "True" : "False"}`}>Password must be filled out</div>
         <label
           className={color === "white" ? "text-light" : "text-dark"}
           for="password"
@@ -176,10 +259,11 @@ export default function Login() {
           type="password"
           placeholder="Enter Password Again"
           maxlength="110"
-          required
           onChange={(e) => setConfirmPassword(e.target.value)}
         ></input>
-        <button className="login-button" type="submit">
+        <div className={!confirmPasswordValid ? "line" : ""}></div>
+        <div className={`show-error${!confirmPasswordValid ? "True" : "False"}`}>Passwords must match</div>
+        <button className="login-button" type="submit" onClick={handleRegister}>
           Register
         </button>
       </form>
@@ -213,6 +297,17 @@ export default function Login() {
     </>
   );
 
+
+  function resetAndSwap()
+  {
+    setSignIn(!signIn);
+    setUsernameValid(true);
+    setPasswordValid(true);
+    setFirstNameValid(true);
+    setLastNameValid(true);
+    setConfirmPasswordValid(true);
+  }
+
   return (
     <>
       {size.width > 1040 ? (
@@ -230,7 +325,7 @@ export default function Login() {
               </label>
               <button
                 className="switch-button"
-                onClick={() => setSignIn(!signIn)}
+                onClick={() => resetAndSwap()}
               >
                 {signIn ? "Login" : "Register"}
               </button>
@@ -249,7 +344,7 @@ export default function Login() {
             <Switch
               checked={signIn}
               onChange={() => {
-                setSignIn(!signIn);
+                resetAndSwap();
               }}
               onColor="#248CFD"
               onHandleColor="#4fa3fc"

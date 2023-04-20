@@ -1,10 +1,24 @@
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import Navbar from './components/Navbar';
 
-export default function App() {
-	return (
-		<div className='App'>
-			<Navbar />
-		</div>
-	);
+import HomePage from './pages/HomePage.js'
+
+class App extends Component {
+    state = {
+        data: null
+    };
+
+    render() {
+        return (
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" index element={<HomePage/>} />
+                </Routes>
+            </BrowserRouter>
+        )
+    }
 }
+
+export default App;

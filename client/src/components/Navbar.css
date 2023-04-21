@@ -1,4 +1,5 @@
 .NavbarItems {
+	background-color: #fff;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -52,7 +53,8 @@
 	display: none;
 }
 
-button {
+.button {
+	text-decoration: none;
 	padding: 0.5rem 1rem;
 	white-space: nowrap;
 	border-radius: 0.3rem;
@@ -65,7 +67,7 @@ button {
 	transition: 0.2s ease-in-out;
 }
 
-button:hover {
+.button:hover {
 	background-color: #151516;
 	color: #fff;
 }
@@ -114,10 +116,9 @@ button:hover {
 
 	.nav-links:hover {
 		background: #151516;
-		transition: none;
 	}
 
-	button {
+	.button {
 		display: none;
 	}
 

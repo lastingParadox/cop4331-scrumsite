@@ -24,8 +24,8 @@ export const MenuItems = [
 		icon: 'fa-solid fa-address-book',
 	},
 	{
-		title: 'Register',
-		url: '/register',
+		title: 'Login',
+		url: '/',
 		className: 'nav-links-mobile',
 	},
 ];

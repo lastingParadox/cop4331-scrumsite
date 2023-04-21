@@ -3,7 +3,6 @@ import cors from 'cors';
 import index from './routes/index.js';
 import mongoose from 'mongoose';
 import setEnv from './bin/setEnv.js';
-import populateUser from './bin/populateUsers.js';
 
 const app = express();
 
@@ -22,8 +21,3 @@ app.listen(port, () => {
 setEnv();
 
 await mongoose.connect(process.env.MONGO_URL);
-
-// Uncomment the line below to generate a test user and workspace upon connecting to the database.
-// You will need to change the email as the email field is unique per user.
-// Do note this is just a test script and will not be used in production.
-// await populateUser("example@example.com", "password", "First", "Last");

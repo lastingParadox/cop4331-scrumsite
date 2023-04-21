@@ -3,10 +3,11 @@ import './styles.css';
 
 import { React, Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from './routes/Home';
-import About from './routes/About';
-import Service from './routes/Service';
-import Contact from './routes/Contact';
+
+import Home from './pages/Home';
+import About from './pages/About';
+import Service from './pages/Service';
+import Contact from './pages/Contact';
 
 class App extends Component {
 	state = {

@@ -1,23 +1,23 @@
 import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
-import ServiceImage from '../assets/service.jpg';
+import AboutImage from '../assets/about.jpg';
 import Footer from "../components/Footer";
-import View from "../components/View";
+import AboutUs from "../components/AboutUs";
 
-function Service() {
+function About() {
 	return (
 		<>
 			<Navbar />
 			<Hero
 				className='hero-mid'
-				heroImage={ServiceImage}
-				title='Service'
+				heroImage={AboutImage}
+				title='About'
 				buttonClass='hide'
 			/>
-			<View />
+			<AboutUs />
 			<Footer />
 		</>
 	);
 }
 
-export default Service;
+export default About;

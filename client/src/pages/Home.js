@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-import HeroImage from '../assets/hero.jpg';
+import HomeImage from '../assets/home.jpg';
 import Productivity from '../components/Productivity';
 import View from '../components/View';
 import Footer from '../components/Footer';
@@ -11,7 +11,7 @@ function Home() {
 			<Navbar />
 			<Hero
 				className='hero'
-				heroImage={HeroImage}
+				heroImage={HomeImage}
 				title='Transform Your Workflow'
 				text='Do Things Differently.'
 				buttonText='Get Started'

@@ -104,7 +104,7 @@ async function getWorkspace(req, res, next) {
     let workspace;
 
     try {
-        workspace = await Workspace.findById(req.params.id);
+        workspace = await Workspace.findById(req.params.id).populate({ path: 'lists', populate: { path: 'tasks', populate: { path: 'author' } } });
 
         if (workspace == null) {
         return res.status(404).json({ message: 'Cannot find workspace' });

@@ -60,7 +60,7 @@ router.delete('/:id', getList, async (req, res) => {
 // Middleware function to get list by ID
 async function getList(req, res, next) {
     try {
-        const list = await List.findById(req.params.id);
+        const list = await List.findById(req.params.id).populate('tasks');
         if (list == null) {
             return res.status(404).json({ message: 'Cannot find list' });
         }

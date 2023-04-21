@@ -2,7 +2,7 @@ import React, { useState, useEffect, Component } from "react";
 import "./Login.css";
 import Switch from "react-switch";
 
-import useWindowSize from "../windowSize";
+import useWindowSize from "../windowSize/WindowSize";
 
 export default function Login() {
   const [password, setPassword] = useState("");

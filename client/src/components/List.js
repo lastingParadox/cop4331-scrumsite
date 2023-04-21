@@ -1,7 +1,7 @@
 import React from 'react';
 import Task from './Task';
 import Card from 'react-bootstrap/Card';
-import './list.css';
+import './List.css';
 
 function List(props) {
 	const tasks = props.tasks.map((task) => (

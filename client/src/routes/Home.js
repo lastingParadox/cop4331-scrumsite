@@ -1,6 +1,9 @@
-import Hero from '../components/Hero';
 import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
 import HeroImage from '../assets/hero.jpg';
+import Productivity from '../components/Productivity';
+import View from '../components/View';
+import Footer from '../components/Footer';
 
 function Home() {
 	return (
@@ -15,6 +18,9 @@ function Home() {
 				url='/'
 				buttonClass='show'
 			/>
+			<Productivity />
+			<View />
+			<Footer />
 		</>
 	);
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import List from '../components/List.js';
-import './HomePage.css'
+import './HomePage-Example.css'
 
 function HomePage() {
     const tasks1 = [{

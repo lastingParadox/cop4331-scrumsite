@@ -39,7 +39,7 @@ function Sidebar(props) {
         <div className="sidebar">
             <h3>Workspaces</h3>
             {workspaceComponents}
-            <Button variant="primary" onClick={handleModalOpen}>Create Workspace</Button>
+            <button onClick={handleModalOpen}>Create Workspace</button>
             <Modal show={showModal} onHide={handleModalClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Create Workspace</Modal.Title>

@@ -1,7 +1,27 @@
 .dash {
+    width: fit-content;
+    height: 100vh;
     display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    transition: 850ms;
+    background-image: linear-gradient(to bottom right, white,green);
+    padding-right: 100%;
+    padding-left: 0%;
 }
 
-.workspace {
+
+.dash-text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 10%;
+    list-style: none;
+    height: 60px;
+}
+
+.workspaces {
     width: 100%;
+    padding: 50%;
 }

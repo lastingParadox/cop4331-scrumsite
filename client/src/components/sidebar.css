@@ -1,6 +1,36 @@
 .sidebar {
     min-width: 20vw;
     max-width: 20vw;
-    background-color: black;
-    color: white;
+    background-color: rgba(0, 0, 0, 0.671);
+    color: rgb(255, 255, 255);
+}
+
+h3 {
+    color:rgb(94, 250, 94);
+}
+
+h4 {
+    color:white;
+    padding: 3px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 6px;
+    border-color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+button {
+    background-color:rgb(78, 206, 78);
+    border:none;
+    color:white;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+button:hover {
+    background-color: rgb(48, 124, 48);
 }

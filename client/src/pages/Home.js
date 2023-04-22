@@ -5,6 +5,9 @@ import Productivity from '../components/Productivity';
 import View from '../components/View';
 import Footer from '../components/Footer';
 import AboutUs from '../components/AboutUs.js';
+import Credits from '../components/Credits.js';
+import ServiceView from '../components/ServiceView.js';
+
 import ScrollToTop from '../components/ScrollToTop.js';
 
 import {
@@ -37,15 +40,24 @@ function Home() {
 					</>
 					}
 				/>
-				<Route path="credits" element={
-					<>
-					</>
-					}
-				/>
 				<Route path="about" element={
 					<>
 						<div style={{width: "100%", height: "100px"}}/>
-						<AboutUs/>
+						<AboutUs />
+					</>
+					}
+				/>
+				<Route path="service" element={
+					<>
+						<div style={{width: "100%", height: "100px"}}/>
+						<ServiceView />
+					</>
+					}
+				/>
+				<Route path="contact" element={
+					<>
+						<div style={{width: "100%", height: "100px"}}/>
+						<Credits />
 					</>
 					}
 				/>

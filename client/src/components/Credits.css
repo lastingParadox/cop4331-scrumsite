@@ -1,0 +1,38 @@
+.credits-card {
+	position: relative;
+    background-color: #ffff;
+    border-radius: 13px;
+    padding: 15px 5px 15px 15px;
+    width: 400px;
+    max-width: 400px;
+	box-shadow: 0 5px 15px 0 rgb(0, 0, 0, 0.25);
+}
+
+.credits-name {
+    font-size: 25px;
+}
+
+.credits-container {
+    position: relative;
+	margin: 25px auto;
+	flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 75%;
+}
+
+.credits-title {
+    position: relative;
+	margin: 25px auto;
+	flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    font-size: 4rem;
+    font-weight: bold;
+    text-decoration: underline;
+}

@@ -6,21 +6,26 @@ import Workspace from '../components/Workspace.js';
 function Dashboard() {
     const [workspaceList, setWorkspaceList] = useState([]);
     const [workspace, setWorkspace] = useState(null);
-    console.log(workspaceList);
 
-    const onWorkspaceSelect = (ws) => {
+    function onWorkspaceSelect(ws) {
         console.log(ws)
         setWorkspace(ws);
     }
 
-    const removeWorkspace = (workspaceId) => {
-        const updatedList = workspaceList.filter(workspace => workspace.id !== workspaceId);
+    function removeWorkspace(oldWorkspace) {
+        const updatedList = workspaceList.filter(workspace => workspace.id !== oldWorkspace._id);
+        console.log(updatedList)
         setWorkspaceList(updatedList);
         setWorkspace(null);
     }
 
-    const updateWorkspaceTitle = (newName) => {
+    function updateWorkspaceTitle(newName) {
         setWorkspace(prevState => ({ ...prevState, title: newName }));
+    }
+
+    function onWorkspaceCreate(newWorkspace) {
+        const dataWorkspace = { id: newWorkspace._id, title: newWorkspace.title };
+        setWorkspaceList([...workspaceList, dataWorkspace]);
     }
 
     useEffect(() => {
@@ -36,7 +41,7 @@ function Dashboard() {
     return (
         <div className='dash'>
             {workspaceList.length > 0 ? (
-                <Sidebar workspaces={workspaceList} onWorkspaceSelect={onWorkspaceSelect} />
+                <Sidebar workspaces={workspaceList} onWorkspaceSelect={onWorkspaceSelect} onWorkspaceCreate={onWorkspaceCreate} />
             ) : (
                 <p>Loading...</p>
             )}

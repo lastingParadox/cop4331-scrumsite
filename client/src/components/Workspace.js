@@ -62,12 +62,14 @@ function Workspace(props) {
     function handleDeleteWorkspace() {
         // send a DELETE request to the server to delete the workspace with the current workspace id
         fetch(`/api/workspaces/${id}`, { method: 'DELETE' })
-        .then(response => {
+        .then(async response => {
             if (!response.ok) {
                 throw new Error('Failed to delete workspace');
             }
             // invoke the callback function passed in through props to update the parent page
-            deleteWorkspace(id);
+            const json = await response.json();
+            console.log(json.workspace)
+            deleteWorkspace(json.workspace);
         })
         .catch(error => {
             console.error(error);

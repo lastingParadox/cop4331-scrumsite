@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import {
+    BrowserRouter,
+    Route,
+    Routes,
+    Navigate
+} from 'react-router-dom';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
@@ -22,7 +29,8 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" index element={<HomePage/>} />
+                    <Route path="/" element={<Navigate to="/home" />} />
+                    <Route path="/home/*" index element={<Home/>} />
                     <Route path="/dashboard" index element={<Dashboard/>} />
                     <Route path="/example" index element={<ExamplePage/>} />
                     <Route path="/bruh/:id" index element={<WorkspacePage/>} />

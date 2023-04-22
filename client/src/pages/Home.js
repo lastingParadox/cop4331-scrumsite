@@ -5,14 +5,22 @@ import Productivity from '../components/Productivity';
 import View from '../components/View';
 import Footer from '../components/Footer';
 import AboutUs from '../components/AboutUs.js';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import ScrollToTop from '../components/ScrollToTop.js';
+
+import {
+	Route,
+	Routes,
+	Navigate,
+} from 'react-router-dom';
 
 function Home() {
 	return (
 		<>
 			<Navbar />
+			<ScrollToTop />
 			<Routes>
                 <Route path="" element={<Navigate to="get-started" />} />
+
 				<Route path="get-started" element={
 					<>
 						<Hero
@@ -26,7 +34,6 @@ function Home() {
 						/>
 						<Productivity />
 						<View />
-						<Footer />
 					</>
 					}
 				/>
@@ -43,6 +50,7 @@ function Home() {
 					}
 				/>
 			</Routes>
+			<Footer />
 		</>
 	);
 }

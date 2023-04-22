@@ -19,6 +19,7 @@
 	color: #222;
 	font-size: 2rem;
 	cursor: pointer;
+	margin: auto 0px;
 }
 
 .nav-menu {
@@ -27,6 +28,7 @@
 	grid-gap: 10px;
 	list-style: none;
 	align-items: center;
+	margin: auto 0px;
 }
 
 .nav-links {

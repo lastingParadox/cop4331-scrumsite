@@ -22,6 +22,10 @@
     margin-right: 10px;
 }
 
+h4:hover {
+    opacity: 0.7;
+  }
+
 .sidebar button {
     background-color: rgb(78, 206, 78);
     border: none;

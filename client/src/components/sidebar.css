@@ -5,11 +5,11 @@
     color: rgb(255, 255, 255);
 }
 
-h3 {
+.sidebar h3 {
     color:rgb(94, 250, 94);
 }
 
-h4 {
+.sidebar h4 {
     color:white;
     padding: 3px;
     border-style: solid;
@@ -20,7 +20,7 @@ h4 {
     margin-right: 10px;
 }
 
-button {
+.sidebar button {
     background-color:rgb(78, 206, 78);
     border:none;
     color:white;
@@ -31,6 +31,6 @@ button {
     transition-duration: 0.2s;
 }
 
-button:hover {
+.sidebar button:hover {
     background-color: rgb(48, 124, 48);
 }

@@ -5,11 +5,11 @@ import "./list.css";
 import { useEffect } from 'react';
 
 function List(props) {
-    const { list, updateList, deleteList, workspaceId ,lists} = props;
+    const { list, updateList, deleteList, workspaceId, lists} = props;
     const { title } = list;
     const [tasks,setTasks]=useState(list.tasks);
     const [listName, setListName] = useState(title);
-    const [taskName,setTaskName] =useState('');
+    const [taskName,setTaskName] = useState('');
 
     // Callback function to add a new task
     
@@ -19,7 +19,7 @@ function List(props) {
             title: taskName,
             list: list._id, 
             workspace: workspaceId, 
-            author:"643f6115abbf1b5d55acae11", 
+            author:"643f6115abbf1b5d55acae11",
         };
     
         fetch('/api/tasks', {
@@ -43,7 +43,7 @@ function List(props) {
 
     useEffect(() => {
         
-      }, [tasks]);
+    }, [tasks]);
 
      // Callback function to update a task
     function updateTask(updatedTask, oldTask) {
@@ -98,7 +98,7 @@ function deleteTask(taskToDelete) {
         const updatedList = { ...list, title: listName };
         console.log(updatedList);
         updateList(updatedList);
-      }
+    }
 
     // Callback function to delete a list
     function handleDelete() {

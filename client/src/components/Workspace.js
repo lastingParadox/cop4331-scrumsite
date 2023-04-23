@@ -14,33 +14,33 @@ function Workspace(props) {
 
     // Callback function to add a new list
     const addList = async (listName) => {
-      try {
-        const res = await fetch('/api/lists', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ title: listName }),
-        });
-        const data = await res.json();
-    
-        // Update the lists state variable
-        setLists(prevLists => [...prevLists, data]);
+        try {
+            const res = await fetch('/api/lists', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title: listName }),
+            });
+            const data = await res.json();
         
-        // Create a new variable using the updated value of lists
-        const updatedLists = [...lists, data._id];
-    
-        // Make a PATCH request to update the lists array in the database
-        await fetch(`/api/workspaces/${id}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ lists: updatedLists }),
-        });
-      } catch (error) {
-        console.log(error);
-      }
+            // Update the lists state variable
+            setLists(prevLists => [...prevLists, data]);
+            
+            // Create a new variable using the updated value of lists
+            const updatedLists = [...lists, data._id];
+        
+            // Make a PATCH request to update the lists array in the database
+            await fetch(`/api/workspaces/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ lists: updatedLists }),
+            });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     // Callback function to delete a list
@@ -74,8 +74,6 @@ function Workspace(props) {
 
     // Callback function to handle changes to a list name
     const handleListUpdate = async (updatedList) => {
-      console.log(updatedList._id);
-      console.log(updatedList.title);
       try {
         // Make a PATCH request to update the list on the server
         if (!updatedList.title || typeof updatedList.title !== 'string') {
@@ -106,10 +104,6 @@ function Workspace(props) {
         console.error(err);
       }
     };
-    
-    useEffect(() => {
-      console.log(lists);
-    }, [lists]);
 
     function handleDeleteWorkspace() {
       // send a DELETE request to the server to delete the workspace with the current workspace id
@@ -120,7 +114,6 @@ function Workspace(props) {
           }
           // invoke the callback function passed in through props to update the parent page
           const json = await response.json();
-          console.log(json.workspace)
           deleteWorkspace(json.workspace);
       })
       .catch(error => {
@@ -135,7 +128,7 @@ function Workspace(props) {
     )) : <p>No lists yet.</p>;
 
     return (
-        <div>
+        <div className="workspace">
             <input type="text" value={title} onChange={handleTitleChange} />
             <button1 onClick={handleTitleSubmit}>Submit</button1>
             {showAddListCard ? (

@@ -92,7 +92,8 @@ router.delete('/:id', getWorkspace, async (req, res) => {
  *  Note: ID IS NOT AN INTEGER. IT'S A STRING.
  */
     try {
-        const deleteWorkspace = await Workspace.findByIdAndDelete(req.workspace.id);
+        const deleteWorkspace = await Workspace.findByIdAndDelete(req.workspace.id)
+            .populate({ path: 'lists', populate: { path: 'tasks', populate: { path: 'author assignees' } } });
         res.json({ message: 'Workspace deleted', workspace: deleteWorkspace });
     } catch (err) {
         res.status(500).json({ message: err.message });

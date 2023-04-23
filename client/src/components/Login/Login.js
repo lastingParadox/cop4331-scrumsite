@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Component } from "react";
 import "./Login.css";
 import Switch from "react-switch";
+import { Navigate, Route,useNavigate  } from "react-router-dom";
 
 import useWindowSize from "../windowSize/WindowSize";
 
@@ -29,6 +30,8 @@ export default function Login() {
   const loginData = {email:username, password:password};
   const registerData = {email:username, password:password, firstName:firstName, lastName:lastName}
 
+  const navigate = useNavigate();
+
   useEffect (() => {
       fetch("http://localhost:5000/api")
       .then(res => res.json())
@@ -44,8 +47,8 @@ export default function Login() {
       setUsernameValid(username);
       setPasswordValid(password);
 
-      usernameValid ? console.log("PrintOUT") : console.log("YOU suck");
-
+      if (username && password)
+      {
         fetch("http://localhost:5000/api/authentication/login", {
           method: 'POST',
           headers: {
@@ -55,6 +58,9 @@ export default function Login() {
         }
         )
         .then(response => {
+          if (response.ok){
+            navigate("/dashboard");
+          }
           return response.json()
         })
         .then(data => {
@@ -63,6 +69,9 @@ export default function Login() {
         .catch(error => {
           console.error(error);
         });
+
+      }
+
       
     };
 
@@ -75,7 +84,8 @@ export default function Login() {
       setLastNameValid(lastName);
       setConfirmPasswordValid(confirmPassword === password);
 
-      
+      if (username && firstName && lastName && confirmPassword && (password == confirmPassword))
+      {
         fetch("http://localhost:5000/api/authentication/register", {
           method: 'POST',
           headers: {
@@ -85,14 +95,15 @@ export default function Login() {
         }
         )
         .then(response => {
-          return response.json()
-        })
-        .then(data => {
-          console.log(data['success'])
+          if (response.ok){
+            navigate("/dashboard");
+          }
         })
         .catch(error => {
           console.error(error);
         });
+
+      }
 
       
 

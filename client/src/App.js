@@ -19,6 +19,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Service from './pages/Service';
 import Contact from './pages/Contact';
+import Login from './components/Login/Login'
 
 class App extends Component {
 	state = {
@@ -34,6 +35,7 @@ class App extends Component {
                     <Route path="/dashboard" index element={<Dashboard/>} />
                     <Route path="/example" index element={<ExamplePage/>} />
                     <Route path="/bruh/:id" index element={<WorkspacePage/>} />
+                    <Route path= "/login" index element = {<Login/>} />
                 </Routes>
             </BrowserRouter>
         )

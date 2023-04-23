@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
  */
 
     try {
-        const tasks = await Task.find();
+        const tasks = await Task.find().populate('author assignees');
         res.json(tasks);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -56,6 +56,7 @@ router.post('/', async (req, res) => {
 
     try {
         const newTask = await task.save();
+        await newTask.populate('author assignees');
         res.status(201).json(newTask);
     } catch (err) {
         res.status(400).json({ message: err.message });
@@ -108,6 +109,7 @@ router.patch('/:id', getTask, async (req, res) => {
 
     try {
         const updatedTask = await req.task.save();
+        await updatedTask.populate('author assignees');
         res.json(updatedTask);
     } catch (err) {
         res.status(400).json({ message: err.message });
@@ -132,7 +134,7 @@ router.delete('/:id', getTask, async (req, res) => {
 // Middleware function to get a single task by ID
 async function getTask(req, res, next) {
     try {
-        const task = await Task.findById(req.params.id);
+        const task = await Task.findById(req.params.id).populate('author assignees');
         if (task == null) {
             return res.status(404).json({ message: 'Cannot find task' });
         }

@@ -6,7 +6,7 @@ const router = express.Router();
 // Get all lists
 router.get('/', async (req, res) => {
     try {
-        const lists = await List.find();
+        const lists = await List.find().populate({ path: tasks, populate: { path: 'author assignees' } });
         res.json(lists);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -27,6 +27,7 @@ router.post('/', async (req, res) => {
 
     try {
         const newList = await list.save();
+        await newList.populate({ path: tasks, populate: { path: 'author assignees' } })
         res.status(201).json(newList);
     } catch (err) {
         res.status(400).json({ message: err.message });
@@ -41,6 +42,7 @@ router.patch('/:id', getList, async (req, res) => {
 
     try {
         const updatedList = await req.list.save();
+        await updatedList.populate({ path: tasks, populate: { path: 'author assignees' } });
         res.json(updatedList);
     } catch (err) {
         res.status(400).json({ message: err.message });
@@ -60,7 +62,7 @@ router.delete('/:id', getList, async (req, res) => {
 // Middleware function to get list by ID
 async function getList(req, res, next) {
     try {
-        const list = await List.findById(req.params.id).populate('tasks');
+        const list = await List.findById(req.params.id).populate({ path: 'tasks', populate: { path: 'author assignees' }});
         if (list == null) {
             return res.status(404).json({ message: 'Cannot find list' });
         }

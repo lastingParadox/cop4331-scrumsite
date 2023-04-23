@@ -38,7 +38,6 @@ workspaceSchema.pre('save', async function (next) {
     }
 });
 
-
 workspaceSchema.pre('findOneAndDelete', async function(next) {
     const doc = await this.model.findOne(this.getQuery());
     await User.updateMany({ workspaces: doc._id }, {

@@ -1,0 +1,66 @@
+input {
+    width: 500px;
+    background-color: white;
+    padding: 10px 15px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+p1 {
+    color: red;
+}
+
+button1 {
+    position: relative;
+    left: 510px;
+    top: -36px;
+    background-color:rgb(78, 206, 78);
+    border: 2px solid black;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+button1:hover{
+    background-color: rgb(48, 124, 48);
+}
+
+button2 {
+    position: relative;
+    left: 525px;
+    top: -36px;
+    background-color:rgb(78, 206, 78);
+    border: 2px solid black;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+button2:hover{
+    background-color: rgb(48, 124, 48);
+}
+
+button3 {
+    position: relative;
+    left: 540px;
+    top: -36px;
+    width: 100px;
+    background-color: lightcoral;
+    border: 2px solid black;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+button3:hover{
+    background-color: darkred;
+}

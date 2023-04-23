@@ -66,15 +66,15 @@ function List(props) {
 
     return (
 
-        <Card style={{ width: '18rem', border: '3px solid green' }}>
+        <Card style={{ width: '20rem', border: '3px solid gray' }}>
             <Card.Body>
                 <Card.Title>{listName}</Card.Title>
                 <Form>
                     <Form.Control type="text" placeholder="Enter Title" value={listName} onChange={handleNameChange}/>
-                    <Button onClick={handleDelete}>Delete List</Button>
+                    <buttonDel onClick={handleDelete}>Delete List</buttonDel>
                 </Form>
                 {tasksItems}
-                <Button onClick={addTask}>Add Task</Button>
+                <buttonAdd onClick={addTask}>Add Task</buttonAdd>
             </Card.Body>
         </Card>
         

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import List from './List';
+import './Workspace.css';
 
 function Workspace(props) {
     const { updateWorkspaceTitle, deleteWorkspace } = props;
@@ -85,9 +86,9 @@ function Workspace(props) {
     return (
         <div>
             <input type="text" value={title} onChange={handleTitleChange} />
-            <Button onClick={handleTitleSubmit}>Submit</Button>
-            <Button onClick={addList}>Add List</Button>
-            <Button variant="danger" onClick={handleDeleteWorkspace}>Delete Workspace</Button>
+            <button1 onClick={handleTitleSubmit}>Submit</button1>
+            <button2 onClick={addList}>Add List</button2>
+            <button3  onClick={handleDeleteWorkspace}>Delete Workspace</button3>
             {listItems}
         </div>
     );

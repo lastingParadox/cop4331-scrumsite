@@ -124,7 +124,7 @@ router.delete('/:id', getTask, async (req, res) => {
  *  Note: ID IS NOT AN INTEGER. IT'S A STRING.
  */
     try {
-        const deleteTask = await Task.findByIdAndDelete(req.task.id);
+        const deleteTask = await Task.findByIdAndDelete(req.task.id).populate('author assignees');
         res.json({ message: 'Task deleted', task: deleteTask });
     } catch (err) {
         res.status(500).json({ message: err.message });

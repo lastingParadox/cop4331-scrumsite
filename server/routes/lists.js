@@ -52,7 +52,7 @@ router.patch('/:id', getList, async (req, res) => {
 // Delete one list
 router.delete('/:id', getList, async (req, res) => {
     try {
-        const deleteList = await List.findByIdAndDelete(req.list.id);
+        const deleteList = await List.findByIdAndDelete(req.list.id).populate({ path: 'tasks', populate: { path: 'author assignees' }});
         res.json({ message: 'Deleted List', list: deleteList });
     } catch (err) {
         res.status(500).json({ message: err.message });

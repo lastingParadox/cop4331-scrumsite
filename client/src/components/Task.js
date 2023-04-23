@@ -1,14 +1,12 @@
-
-import React, { useState } from 'react';
-import { Button, Modal, Card, Form } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-bootstrap-typeahead/css/Typeahead.css';
-import Drop from './Dropdown';
-import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+import React, { useState } from "react";
+import { Button, Modal, Card, Form } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "react-bootstrap-typeahead/css/Typeahead.css";
+import Drop from "./Dropdown";
+import { AsyncTypeahead } from "react-bootstrap-typeahead";
 
 function Task(props) {
-    const { id, title, description, author, dueDate, assignees, updateTask, deleteTask,lists } = props;
-    console.log(author)
+    const { id, title, description, author, dueDate, assignees, updateTask, deleteTask } = props;
     const [showModal, setShowModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -18,7 +16,7 @@ function Task(props) {
     const [updatedDueDate, setUpdatedDueDate] = useState(dueDate);
     const [updatedAssignees, setUpdatedAssignees] = useState(assignees);
     const [selectedList, setSelectedList] = useState("");
-    
+
     const [isLoading, setIsLoading] = useState(false);
     const [options, setOptions] = useState([]);
 
@@ -30,10 +28,9 @@ function Task(props) {
             description: updatedDescription,
             author: updatedAuthor,
             dueDate: updatedDueDate,
-            assignees: updatedAssignees
+            assignees: updatedAssignees,
         };
         updateTask(updatedTask, id);
-
     };
 
     const handleModalClose = () => {
@@ -61,13 +58,11 @@ function Task(props) {
             description: updatedDescription,
             author: updatedAuthor,
             dueDate: updatedDueDate,
-            assignees: updatedAssignees
+            assignees: updatedAssignees,
         };
 
-        console.log(updatedTask.author)
-        
         updateTask(updatedTask, id); // Call the updateTask callback function
-        
+
         handleModalClose();
     };
 
@@ -85,7 +80,7 @@ function Task(props) {
                 setOptions(res);
                 setIsLoading(false);
             });
-    }
+    };
 
     const filterBy = () => true;
 
@@ -102,10 +97,18 @@ function Task(props) {
                     <Modal.Title>{updatedTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p><strong>Description:</strong> {updatedDescription}</p>
-                    <p><strong>Author:</strong> {updatedAuthor.firstName} {updatedAuthor.lastName}</p>
-                    <p><strong>Due Date:</strong> {updatedDueDate}</p>
-                    <p><strong>Assignees:</strong> {updatedAssignees}</p>
+                    <p>
+                        <strong>Description:</strong> {updatedDescription}
+                    </p>
+                    <p>
+                        <strong>Author:</strong> {`${author.firstName} ${author.lastName}`}
+                    </p>
+                    <p>
+                        <strong>Due Date:</strong> {updatedDueDate ? new Date(updatedDueDate).toString() : null}
+                    </p>
+                    <p>
+                        <strong>Assignees:</strong> {updatedAssignees}
+                    </p>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleModalClose}>
@@ -117,7 +120,6 @@ function Task(props) {
                     <Button variant="secondary" onClick={handleDeleteModalOpen}>
                         Delete
                     </Button>
-                    <Drop lists={lists} onSelect={handleSelect} title="Lists"/>
                 </Modal.Footer>
             </Modal>
 
@@ -128,14 +130,22 @@ function Task(props) {
                 <Modal.Body>
                     <Form.Group>
                         <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" value={updatedTitle} onChange={e => setUpdatedTitle(e.target.value)} />
+                        <Form.Control
+                            type="text"
+                            value={updatedTitle}
+                            onChange={(e) => setUpdatedTitle(e.target.value)}
+                        />
                     </Form.Group>
 
                     <Form.Group>
                         <Form.Label>Description</Form.Label>
-                        <Form.Control type="text" value={updatedDescription} onChange={e => setUpdatedDescription(e.target.value)} />
+                        <Form.Control
+                            type="text"
+                            value={updatedDescription}
+                            onChange={(e) => setUpdatedDescription(e.target.value)}
+                        />
                     </Form.Group>
-                    
+
                     <Form.Group>
                         <Form.Label>Author</Form.Label>
                         <AsyncTypeahead
@@ -147,7 +157,7 @@ function Task(props) {
                             onSearch={handleSearch}
                             options={options}
                             placeholder="Search for a user..."
-                            onChange={e => {
+                            onChange={(e) => {
                                 setUpdatedAuthor(e[0]._id);
                             }}
                             renderMenuItemChildren={(option) => (
@@ -163,7 +173,11 @@ function Task(props) {
 
                     <Form.Group>
                         <Form.Label>Due Date</Form.Label>
-                        <Form.Control type="date" value={updatedDueDate} onChange={e => setUpdatedDueDate(e.target.value)} />
+                        <Form.Control
+                            type="date"
+                            value={updatedDueDate}
+                            onChange={(e) => setUpdatedDueDate(e.target.value)}
+                        />
                     </Form.Group>
 
                     <Form.Group>
@@ -178,8 +192,8 @@ function Task(props) {
                             onSearch={handleSearch}
                             options={options}
                             placeholder="Search for a user..."
-                            onChange={e => {
-                                setUpdatedAssignees(e.map((user => user._id)));
+                            onChange={(e) => {
+                                setUpdatedAssignees(e.map((user) => user._id));
                             }}
                             renderMenuItemChildren={(option) => (
                                 <div>

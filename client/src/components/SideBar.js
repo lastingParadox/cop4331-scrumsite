@@ -13,6 +13,7 @@ function Sidebar(props) {
     const handleWorkspaceClick = async (id) => {
         const response = await fetch(`/api/workspaces/${id}`);
         const workspace = await response.json();
+        console.log(workspace);
         props.onWorkspaceSelect(workspace);
     };
 
@@ -41,9 +42,13 @@ function Sidebar(props) {
 
     return (
         <div className="sidebar">
-            <center><h3>Workspaces</h3></center>
+            <center>
+                <h3>Workspaces</h3>
+            </center>
             {workspaceComponents}
-            <center><button onClick={handleModalOpen}>Create Workspace</button></center>
+            <center>
+                <button onClick={handleModalOpen}>Create Workspace</button>
+            </center>
             <Modal show={showModal} onHide={handleModalClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Create Workspace</Modal.Title>

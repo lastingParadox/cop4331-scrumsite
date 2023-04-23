@@ -11,57 +11,28 @@ function Dashboard() {
     const [workspace, setWorkspace] = useState(null);
 
     function logout() {
-        localStorage.removeItem('token');
+        localStorage.removeItem("token");
         navigate("/login");
     }
 
     function onWorkspaceSelect(ws) {
-        console.log(ws);
         setWorkspace(ws);
     }
 
     async function removeWorkspace(oldWorkspace) {
-        try {
-            const response = await fetch(`/api/workspaces/${oldWorkspace._id}`, {
-                method: 'DELETE'
-            });
-            if (response.status >= 200 && response.status < 300) {
-                const updatedList = workspaceList.filter(workspace => workspace.id !== oldWorkspace._id);
-                setWorkspaceList(updatedList);
-                setWorkspace(null);
-                console.log("Workspace deleted successfully");
-            } else {
-                throw new Error('Failed to delete workspace');
-            }
-        } catch (error) {
-            console.error(error);
-        }
+        const updatedList = workspaceList.filter((workspace) => workspace.id !== oldWorkspace._id);
+        setWorkspaceList(updatedList);
     }
 
-    function updateWorkspaceTitle(newName, oldNameID) {
-        
-        const updatedList = workspaceList.map(workspace => {
-          if (workspace.id === oldNameID) {
-            
-            fetch(`api/workspaces/${oldNameID}`, {
-              method: 'PATCH',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ title: newName })
-            })
-              .then(response => response.json())
-              .then(response => setWorkspace({ ...workspace, title: response.title }))
-              .catch(error => console.error(error));
-      
-            
-            return { ...workspace, title: newName };
-          }
-          return workspace;
+    function updateWorkspaceTitle(updatedWorkspace) {
+        const updatedList = workspaceList.map((workspace) => {
+            if (workspace.id === updatedWorkspace.id) return { id: updatedWorkspace.id, title: updatedWorkspace.title }
+            else return workspace;
         });
-      
+
+        setWorkspace({ ...workspace, title: updatedWorkspace.title, lists: updatedWorkspace.lists});
         setWorkspaceList(updatedList);
-      }
+    }
 
     function onWorkspaceCreate(newWorkspace) {
         const dataWorkspace = { id: newWorkspace._id, title: newWorkspace.title };
@@ -85,7 +56,9 @@ function Dashboard() {
             <div className="dashnav">
                 <div className="logoutBox">
                     <p>Hello, user!</p>
-                    <Button className="logout" variant="warning" onClick={logout}>Logout</Button>
+                    <Button className="logout" variant="warning" onClick={logout}>
+                        Logout
+                    </Button>
                 </div>
             </div>
             <div className="dash">

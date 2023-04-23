@@ -1,4 +1,4 @@
-import Workspace from '../schemas/workspaces.js'
+import Workspace from "../schemas/workspaces.js";
 
 async function deleteBatch() {
     await Workspace.deleteMany({ title: "New Workspace" });

@@ -1,11 +1,11 @@
 import jwt from "jsonwebtoken";
-import express from 'express'
+import express from "express";
 import User from "../../schemas/users.js";
 import Workspace from "../../schemas/workspaces.js";
 
 const router = express.Router();
 
-router.get('/users/:id/workspaces', authenticateJWT, async (req, res) => {
+router.get("/users/:id/workspaces", authenticateJWT, async (req, res) => {
     try {
         const workspaces = await Workspace.find({ members: req.user._id });
         return res.json(workspaces);
@@ -27,14 +27,14 @@ async function authenticateJWT(req, res, next) {
                 req.user = user;
                 next();
             } else {
-                res.status(401).json({ error: 'Invalid token: user not found' });
+                res.status(401).json({ error: "Invalid token: user not found" });
             }
         } catch (error) {
-            console.log(error)
-            res.status(401).json({ error: 'Invalid token' });
+            console.log(error);
+            res.status(401).json({ error: "Invalid token" });
         }
     } else {
-        res.status(401).json({ error: 'Authorization header required'});
+        res.status(401).json({ error: "Authorization header required" });
     }
 }
 

@@ -1,5 +1,5 @@
-import User from '../schemas/users.js';
-import Workspace from '../schemas/workspaces.js'
+import User from "../schemas/users.js";
+import Workspace from "../schemas/workspaces.js";
 
 async function populateUser(email, password, firstName, lastName) {
     let user1 = new User({
@@ -9,7 +9,7 @@ async function populateUser(email, password, firstName, lastName) {
         lastName,
         workspaces: [],
     });
-    
+
     try {
         await user1.save();
         console.log("Created new user and workspace!");

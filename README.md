@@ -10,7 +10,7 @@ Head into `./server` and `./client` and run the following command in each direct
 npm install
 ```
 
-*If you are setting up with Docker, the `node_modules` folder in each directory will expedite the time it takes for Express and React to start.*
+_If you are setting up with Docker, the `node_modules` folder in each directory will expedite the time it takes for Express and React to start._
 
 ## Setup Processes
 
@@ -25,8 +25,8 @@ docker compose up -d
 
 You should see two containers running through Docker Desktop under the name "cop4331-scrumsite"
 
-* server - Corresponds to the Node Express backend of the project
-* client - Corresponds to the React frontend of the project
+-   server - Corresponds to the Node Express backend of the project
+-   client - Corresponds to the React frontend of the project
 
 Containers interact with each other not through localhost, but rather the names of the containers.
 

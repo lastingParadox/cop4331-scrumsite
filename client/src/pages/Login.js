@@ -58,10 +58,9 @@ export default function Login() {
                 .then(async (response) => {
                     if (response.ok) {
                         const json = await response.json();
-                        localStorage.setItem('token', json.token);
+                        localStorage.setItem("token", json.token);
                         navigate("/dashboard");
-                    }
-                    else {
+                    } else {
                         return response.json();
                     }
                 })
@@ -91,7 +90,7 @@ export default function Login() {
                 .then(async (response) => {
                     if (response.ok) {
                         const json = await response.json();
-                        localStorage.setItem('token', json.token);
+                        localStorage.setItem("token", json.token);
                         navigate("/dashboard");
                     }
                 })

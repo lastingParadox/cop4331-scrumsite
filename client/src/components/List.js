@@ -75,10 +75,12 @@ function List(props) {
                         value={listName}
                         onChange={handleNameChange}
                     />
-                    <buttonDel onClick={handleDelete}>Delete List</buttonDel>
                 </Form>
                 {tasksItems}
-                <buttonAdd onClick={addTask}>Add Task</buttonAdd>
+                <div class="center">
+                    <buttonAdd onClick={addTask}>Add Task</buttonAdd>
+                    <buttonDel onClick={handleDelete}>Delete List</buttonDel>
+                </div>
             </Card.Body>
         </Card>
     );

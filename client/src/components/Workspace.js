@@ -85,9 +85,9 @@ function Workspace(props) {
     return (
         <div>
             <input type="text" value={title} onChange={handleTitleChange} />
-            <button1 onClick={handleTitleSubmit}>Submit</button1>
-            <button2 onClick={addList}>Add List</button2>
-            <button3 onClick={handleDeleteWorkspace}>Delete Workspace</button3>
+            <buttonSub onClick={handleTitleSubmit}>Submit</buttonSub>
+            <buttonAddL onClick={addList}>Add List</buttonAddL>
+            <buttonDelW onClick={handleDeleteWorkspace}>Delete Workspace</buttonDelW>
             <div className="workspace-lists">
             {listItems}
             </div>

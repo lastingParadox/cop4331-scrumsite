@@ -11,12 +11,11 @@ p1 {
     color: red;
 }
 
-button1 {
+buttonSub {
     position: relative;
-
     background-color: rgb(78, 206, 78);
     border: 2px solid black;
-    color: white;
+    color: black;
     padding: 10px 20px;
     text-align: center;
     border-radius: 3px;
@@ -25,15 +24,16 @@ button1 {
     margin-left: 10px;
 }
 
-button1:hover {
+buttonSub:hover {
     background-color: rgb(48, 124, 48);
+    color: white;
 }
 
-button2 {
+buttonAddL {
     position: relative;
     background-color: rgb(78, 206, 78);
     border: 2px solid black;
-    color: white;
+    color: black;
     padding: 10px 20px;
     text-align: center;
     border-radius: 3px;
@@ -42,16 +42,17 @@ button2 {
     margin-left: 10px;
 }
 
-button2:hover {
+buttonAddL:hover {
     background-color: rgb(48, 124, 48);
+    color: white;
 }
 
-button3 {
+buttonDelW {
     position: relative;
     width: 100px;
     background-color: lightcoral;
     border: 2px solid black;
-    color: white;
+    color: black;
     padding: 10px 20px;
     text-align: center;
     border-radius: 3px;
@@ -60,8 +61,9 @@ button3 {
     margin-left: 10px;
 }
 
-button3:hover {
+buttonDelW:hover {
     background-color: darkred;
+    color: white;
 }
 
 .workspace-lists {

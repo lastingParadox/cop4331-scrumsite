@@ -27,11 +27,25 @@ let userSchema = new Schema( {
 });
 
 userSchema.pre('save', async function (next) {
+    this.wasNew = this.isNew;
+    const user = this;
+
+    // Password hash
+    if (!user.isModified('password')) {
+        return next();
+    }
+    
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    user.password = hashedPassword;
+    next();
+})
+
+userSchema.post('save', async function () {
     // Workspace addition on new User
     const user = this;
-    if (user.isNew && user.workspaces.length === 0) {
+    if (user.wasNew && user.workspaces.length === 0) {
 
-        const list1 = new List({ title: "To-Do", });
+        const list1 = new List({ title: "To-Do" });
         const list2 = new List({ title: "In Progress" });
         const list3 = new List({ title: "Completed" });
 
@@ -49,18 +63,6 @@ userSchema.pre('save', async function (next) {
 
         user.workspaces.push(privateWorkspace._id);
     }
-
-    // Password hash
-    if (!user.isModified('password')) {
-        console.log("not")
-        return next();
-    }
-
-    const hashedPassword = await bcrypt.hash(user.password, 10);
-
-    user.password = hashedPassword;
-
-    next();
 });
 
 userSchema.pre('findOneAndDelete', async function(next) {

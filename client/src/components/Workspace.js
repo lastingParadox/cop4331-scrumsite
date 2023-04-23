@@ -3,7 +3,6 @@ import { Button } from "react-bootstrap";
 import List from "./List";
 import "./Workspace.css";
 import ListNameCard from "./ListNameCard";
-import { useEffect } from "react";
 
 function Workspace(props) {
     const { updateWorkspaceTitle, deleteWorkspace } = props;
@@ -142,7 +141,9 @@ function Workspace(props) {
             <Button variant="danger" onClick={handleDeleteWorkspace}>
                 Delete Workspace
             </Button>
-            {listItems}
+            <div className="workspace-lists">
+                {listItems}
+            </div>
         </div>
     );
 }

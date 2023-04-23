@@ -9,63 +9,72 @@ input {
     padding: 10px 15px;
     border: 2px solid black;
     border-radius: 5px;
+    margin-left: 10px;
 }
 
 p1 {
     color: red;
 }
 
-button1 {
+buttonSub {
     position: relative;
-    left: 510px;
-    top: -36px;
     background-color: rgb(78, 206, 78);
     border: 2px solid black;
-    color: white;
+    color: black;
     padding: 10px 20px;
     text-align: center;
     border-radius: 3px;
     cursor: pointer;
     transition-duration: 0.2s;
+    margin-left: 10px;
 }
 
-button1:hover {
+buttonSub:hover {
     background-color: rgb(48, 124, 48);
+    color: white;
 }
 
-button2 {
+buttonAddL {
     position: relative;
-    left: 525px;
-    top: -36px;
     background-color: rgb(78, 206, 78);
     border: 2px solid black;
-    color: white;
+    color: black;
     padding: 10px 20px;
     text-align: center;
     border-radius: 3px;
     cursor: pointer;
     transition-duration: 0.2s;
+    margin-left: 10px;
 }
 
-button2:hover {
+buttonAddL:hover {
     background-color: rgb(48, 124, 48);
+    color: white;
 }
 
-button3 {
+buttonDelW {
     position: relative;
-    left: 540px;
-    top: -36px;
     width: 100px;
     background-color: lightcoral;
     border: 2px solid black;
-    color: white;
+    color: black;
     padding: 10px 20px;
     text-align: center;
     border-radius: 3px;
     cursor: pointer;
     transition-duration: 0.2s;
+    margin-left: 10px;
 }
 
-button3:hover {
+buttonDelW:hover {
     background-color: darkred;
+    color: white;
+}
+
+.workspace-lists {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px;
+    gap: 10px;
 }

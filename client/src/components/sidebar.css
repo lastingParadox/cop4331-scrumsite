@@ -29,7 +29,7 @@ h4:hover {
 .sidebar button {
     background-color: rgb(78, 206, 78);
     border: none;
-    color: white;
+    color: black;
     padding: 10px 20px;
     text-align: center;
     border-radius: 3px;
@@ -39,4 +39,5 @@ h4:hover {
 
 .sidebar button:hover {
     background-color: rgb(48, 124, 48);
+    color: white;
 }

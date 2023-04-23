@@ -3,14 +3,17 @@
     border: 20px solid rgb(4, 221, 33);
     border-radius: 8px;
 }
+.center {
+    margin: auto;
+    margin-top: 10px;
+}
 
 buttonAdd {
     position: relative;
-    left: 5px;
-    top: -4px;
+    left: -2.5px;
     background-color: rgb(78, 206, 78);
     border: 2px solid black;
-    color: white;
+    color: black;
     padding: 10px 20px;
     text-align: center;
     border-radius: 3px;
@@ -20,15 +23,15 @@ buttonAdd {
 
 buttonAdd:hover {
     background-color: rgb(48, 124, 48);
+    color: white;
 }
 
 buttonDel {
     position: relative;
-    left: 140px;
-    top: 20px;
+    left: 2.5px;
     background-color: lightcoral;
     border: 2px solid black;
-    color: white;
+    color: black;
     padding: 10px 20px;
     text-align: center;
     border-radius: 3px;
@@ -38,4 +41,5 @@ buttonDel {
 
 buttonDel:hover {
     background-color: darkred;
+    white-space: white;
 }

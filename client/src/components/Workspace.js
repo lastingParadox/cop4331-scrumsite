@@ -88,7 +88,9 @@ function Workspace(props) {
             <button1 onClick={handleTitleSubmit}>Submit</button1>
             <button2 onClick={addList}>Add List</button2>
             <button3 onClick={handleDeleteWorkspace}>Delete Workspace</button3>
+            <div className="workspace-lists">
             {listItems}
+            </div>
         </div>
     );
 }

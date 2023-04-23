@@ -4,6 +4,7 @@ input {
     padding: 10px 15px;
     border: 2px solid black;
     border-radius: 5px;
+    margin-left: 10px;
 }
 
 p1 {
@@ -12,8 +13,7 @@ p1 {
 
 button1 {
     position: relative;
-    left: 510px;
-    top: -36px;
+
     background-color: rgb(78, 206, 78);
     border: 2px solid black;
     color: white;
@@ -22,6 +22,7 @@ button1 {
     border-radius: 3px;
     cursor: pointer;
     transition-duration: 0.2s;
+    margin-left: 10px;
 }
 
 button1:hover {
@@ -30,8 +31,6 @@ button1:hover {
 
 button2 {
     position: relative;
-    left: 525px;
-    top: -36px;
     background-color: rgb(78, 206, 78);
     border: 2px solid black;
     color: white;
@@ -40,6 +39,7 @@ button2 {
     border-radius: 3px;
     cursor: pointer;
     transition-duration: 0.2s;
+    margin-left: 10px;
 }
 
 button2:hover {
@@ -48,8 +48,6 @@ button2:hover {
 
 button3 {
     position: relative;
-    left: 540px;
-    top: -36px;
     width: 100px;
     background-color: lightcoral;
     border: 2px solid black;
@@ -59,8 +57,18 @@ button3 {
     border-radius: 3px;
     cursor: pointer;
     transition-duration: 0.2s;
+    margin-left: 10px;
 }
 
 button3:hover {
     background-color: darkred;
+}
+
+.workspace-lists {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px;
+    gap: 10px;
 }

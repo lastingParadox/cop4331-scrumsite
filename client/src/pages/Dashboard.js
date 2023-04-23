@@ -20,16 +20,48 @@ function Dashboard() {
         setWorkspace(ws);
     }
 
-    function removeWorkspace(oldWorkspace) {
-        const updatedList = workspaceList.filter((workspace) => workspace.id !== oldWorkspace._id);
-        console.log(updatedList);
-        setWorkspaceList(updatedList);
-        setWorkspace(null);
+    async function removeWorkspace(oldWorkspace) {
+        try {
+            const response = await fetch(`/api/workspaces/${oldWorkspace._id}`, {
+                method: 'DELETE'
+            });
+            if (response.status >= 200 && response.status < 300) {
+                const updatedList = workspaceList.filter(workspace => workspace.id !== oldWorkspace._id);
+                setWorkspaceList(updatedList);
+                setWorkspace(null);
+                console.log("Workspace deleted successfully");
+            } else {
+                throw new Error('Failed to delete workspace');
+            }
+        } catch (error) {
+            console.error(error);
+        }
     }
 
-    function updateWorkspaceTitle(newName) {
-        setWorkspace((prevState) => ({ ...prevState, title: newName }));
-    }
+    function updateWorkspaceTitle(newName, oldNameID) {
+        
+        const updatedList = workspaceList.map(workspace => {
+          if (workspace.id === oldNameID) {
+            
+            fetch(`api/workspaces/${oldNameID}`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ title: newName })
+            })
+              .then(response => response.json())
+              .then(response => setWorkspace({ ...workspace, title: response.title }))
+              .catch(error => console.error(error));
+      
+            
+            return { ...workspace, title: newName };
+          }
+          return workspace;
+        });
+      
+        setWorkspaceList(updatedList);
+      }
 
     function onWorkspaceCreate(newWorkspace) {
         const dataWorkspace = { id: newWorkspace._id, title: newWorkspace.title };

@@ -40,7 +40,7 @@ router.patch('/:id', getList, async (req, res) => {
     }
 
     try {
-        const updatedList = await res.list.save();
+        const updatedList = await req.list.save();
         res.json(updatedList);
     } catch (err) {
         res.status(400).json({ message: err.message });

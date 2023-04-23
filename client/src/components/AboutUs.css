@@ -1,18 +1,18 @@
 .about-container {
-	margin: 4rem 6rem;
-	text-align: start;
+    margin: 4rem 6rem;
+    text-align: start;
 }
 
 .about-container h1 {
-	padding-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
 .about-container p {
-	padding-bottom: 2rem;
+    padding-bottom: 2rem;
 }
 
 @media screen and (max-width: 975px) {
-	.about-container {
-		margin: 4rem 2rem;
-	}
+    .about-container {
+        margin: 4rem 2rem;
+    }
 }

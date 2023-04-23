@@ -8,7 +8,7 @@ buttonAdd {
     position: relative;
     left: 5px;
     top: -4px;
-    background-color:rgb(78, 206, 78);
+    background-color: rgb(78, 206, 78);
     border: 2px solid black;
     color: white;
     padding: 10px 20px;
@@ -18,7 +18,7 @@ buttonAdd {
     transition-duration: 0.2s;
 }
 
-buttonAdd:hover{
+buttonAdd:hover {
     background-color: rgb(48, 124, 48);
 }
 
@@ -26,7 +26,7 @@ buttonDel {
     position: relative;
     left: 140px;
     top: 20px;
-    background-color:lightcoral;
+    background-color: lightcoral;
     border: 2px solid black;
     color: white;
     padding: 10px 20px;
@@ -36,6 +36,6 @@ buttonDel {
     transition-duration: 0.2s;
 }
 
-buttonDel:hover{
+buttonDel:hover {
     background-color: darkred;
 }

@@ -141,7 +141,7 @@ function List(props) {
                         onChange={(e) => setListName(e.target.value)}
                     />
 
-                    <Button type="submit">Update List Name</Button>
+                    <Button className="m-2" type="submit">Update List Name</Button>
                 </Form>
 
                 {tasksItems}
@@ -152,9 +152,11 @@ function List(props) {
                         value={taskName}
                         onChange={(e) => setTaskName(e.target.value)}
                     />
-                    <Button type="submit">Add Task</Button>
+                    <div class="center">
+                        <Button className="me-3" type="submit">Add Task</Button>
+                        <Button variant="danger"onClick={handleDelete}>Delete List</Button>
+                    </div>
                 </Form>
-                <Button onClick={handleDelete}>Delete List</Button>
             </Card.Body>
         </Card>
     );

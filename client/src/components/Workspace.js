@@ -130,15 +130,15 @@ function Workspace(props) {
     return (
         <div className="workspace">
             <input type="text" value={title} onChange={handleTitleChange} />
-            <Button variant="success" onClick={handleTitleSubmit}>
+            <Button className="ms-1" variant="success" onClick={handleTitleSubmit}>
                 Submit
             </Button>
             {showAddListCard ? (
                 <ListNameCard onSubmit={addList} onCancel={() => setShowAddListCard(false)} />
             ) : (
-                <Button onClick={() => setShowAddListCard(true)}>Add List</Button>
+                <Button className="ms-1" onClick={() => setShowAddListCard(true)}>Add List</Button>
             )}
-            <Button variant="danger" onClick={handleDeleteWorkspace}>
+            <Button className="ms-1" variant="danger" onClick={handleDeleteWorkspace}>
                 Delete Workspace
             </Button>
             <div className="workspace-lists">

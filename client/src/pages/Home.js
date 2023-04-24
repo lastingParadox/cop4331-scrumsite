@@ -66,6 +66,15 @@ function Home() {
                         </>
                     }
                 />
+                <Route
+                    path="login"
+                    element={
+                        <>
+                            <div style={{ width: "100%", height: "100px" }} />
+                            <Login />
+                        </>
+                    }
+                />
             </Routes>
             <Footer />
         </>

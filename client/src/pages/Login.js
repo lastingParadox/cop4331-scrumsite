@@ -301,6 +301,7 @@ export default function Login() {
                         {login}
                         {register}
                     </div>
+                    <div style={{ width: "100%", height: "100px" }} />
                 </>
             ) : (
                 <div className="login-container">

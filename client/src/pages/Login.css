@@ -63,7 +63,7 @@ body {
 }
 
 .login-footer {
-    position: absolute;
+    position: relative;
     bottom: 30px;
     width: 100%;
 }
@@ -86,7 +86,7 @@ body {
     background-color: #000;
     height: 100%;
     width: 50%;
-    z-index: 9999;
+    z-index: 8888;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -103,7 +103,7 @@ body {
     background-color: #fff;
     height: 100%;
     width: 50%;
-    z-index: 9999;
+    z-index: 8888;
     display: flex;
     flex-direction: column;
     align-items: center;

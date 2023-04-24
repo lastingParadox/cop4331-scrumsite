@@ -32,10 +32,6 @@ class Navbar extends Component {
                                 </li>
                             );
                         })}
-
-                        <a href="/login" className="button">
-                            Login
-                        </a>
                     </ul>
                 </nav>
             </>

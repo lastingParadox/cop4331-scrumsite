@@ -39,6 +39,7 @@
     padding: 0.7rem 1rem;
     white-space: nowrap;
     transition: all 0.2s ease-in-out;
+    text-align: center;
 }
 
 .nav-links i {
@@ -49,10 +50,6 @@
     background-color: #151516;
     color: #fff;
     border-radius: 4px;
-}
-
-.nav-links-mobile {
-    display: none;
 }
 
 .button {
@@ -118,10 +115,6 @@
 
     .nav-links:hover {
         background: #151516;
-    }
-
-    .button {
-        display: none;
     }
 
     .nav-links-mobile {

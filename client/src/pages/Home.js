@@ -31,7 +31,7 @@ function Home() {
                                 title="Transform Your Workflow"
                                 text="Do Things Differently."
                                 buttonText="Get Started"
-                                url="/"
+                                url="login"
                                 buttonClass="show"
                             />
                             <Productivity />

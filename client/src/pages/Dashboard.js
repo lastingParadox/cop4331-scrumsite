@@ -12,7 +12,7 @@ function Dashboard() {
 
     function logout() {
         localStorage.removeItem("token");
-        navigate("/login");
+        navigate("/home");
     }
 
     function onWorkspaceSelect(ws) {

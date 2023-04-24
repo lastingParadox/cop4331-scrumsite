@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Task from "./Task";
-import { Card, Button, Form } from "react-bootstrap";
+import { Card, Button, Form, Accordion} from "react-bootstrap";
 import "./list.css";
+import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
+import AccordionBody from "react-bootstrap/esm/AccordionBody";
 
 function List(props) {
     const { id, title, updateList, deleteList, workspaceId } = props;
@@ -136,27 +138,34 @@ function List(props) {
                 <Form onSubmit={handleNameChange}>
                     <Form.Control
                         type="text"
+                        border-color="danger"
                         placeholder="Enter Title"
                         value={listName}
                         onChange={(e) => setListName(e.target.value)}
                     />
 
-                    <Button className="m-2" type="submit">Update List Name</Button>
+                    <Button className="m-2" variant="success" type="submit">Update List Name</Button>
                 </Form>
-
-                {tasksItems}
-                <Form onSubmit={addTask}>
-                    <Form.Control
-                        type="text"
-                        placeholder="Add Task"
-                        value={taskName}
-                        onChange={(e) => setTaskName(e.target.value)}
-                    />
-                    <div class="center">
-                        <Button className="me-3" type="submit">Add Task</Button>
-                        <Button variant="danger"onClick={handleDelete}>Delete List</Button>
-                    </div>
-                </Form>
+                <Accordion defaultActiveKey="0">
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>Tasks</Accordion.Header>
+                        <Accordion.Body>
+                            {tasksItems}
+                            <Form onSubmit={addTask}>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Add Task"
+                                    value={taskName}
+                                    onChange={(e) => setTaskName(e.target.value)}
+                                />
+                                <div class="center">
+                                    <Button variant="success" className="me-3" type="submit">Add Task</Button>
+                                    <Button variant="danger"onClick={handleDelete}>Delete List</Button>
+                                </div>
+                            </Form>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                </Accordion>
             </Card.Body>
         </Card>
     );

@@ -4,10 +4,12 @@
     align-items: center;
 }
 
+/*
 body {
     background-color: #000000;
     transition: 0.7s;
 }
+*/
 
 .login-boxes-light {
     width: 100%;
@@ -60,7 +62,7 @@ body {
     transition: 0.7s;
 }
 
-.footer {
+.login-footer {
     position: absolute;
     bottom: 30px;
     width: 100%;

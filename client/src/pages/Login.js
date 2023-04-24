@@ -328,7 +328,7 @@ export default function Login() {
                 </div>
             )}
 
-            <div className="footer">{switchBox}</div>
+            <div className="login-footer">{switchBox}</div>
         </>
     );
 }

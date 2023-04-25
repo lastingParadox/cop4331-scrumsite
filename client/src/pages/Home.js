@@ -4,9 +4,9 @@ import HomeImage from "../assets/home.jpg";
 import Productivity from "../components/Productivity";
 import View from "../components/View";
 import Footer from "../components/Footer";
-import AboutUs from "../components/AboutUs.js";
-import Credits from "../components/Credits.js";
-import ServiceView from "../components/ServiceView.js";
+import About from "./About";
+import Contact from "./Contact";
+import Service from "./Service";
 import Login from "./Login.js";
 
 import ScrollToTop from "../components/ScrollToTop.js";
@@ -36,6 +36,7 @@ function Home() {
                             />
                             <Productivity />
                             <View />
+                            <Footer />
                         </>
                     }
                 />
@@ -44,7 +45,7 @@ function Home() {
                     element={
                         <>
                             <div style={{ width: "100%", height: "100px" }} />
-                            <AboutUs />
+                            <About />
                         </>
                     }
                 />
@@ -53,7 +54,7 @@ function Home() {
                     element={
                         <>
                             <div style={{ width: "100%", height: "100px" }} />
-                            <ServiceView />
+                            <Service />
                         </>
                     }
                 />
@@ -62,7 +63,7 @@ function Home() {
                     element={
                         <>
                             <div style={{ width: "100%", height: "100px" }} />
-                            <Credits />
+                            <Contact />
                         </>
                     }
                 />
@@ -72,11 +73,11 @@ function Home() {
                         <>
                             <div style={{ width: "100%", height: "100px" }} />
                             <Login />
+                            <Footer />
                         </>
                     }
                 />
             </Routes>
-            <Footer />
         </>
     );
 }

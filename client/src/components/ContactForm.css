@@ -3,6 +3,10 @@
     color: #2a2a2a;
 }
 
+.form-container h1 {
+    text-align: center;
+}
+
 .form-container form {
     padding-top: 3rem;
     display: flex;

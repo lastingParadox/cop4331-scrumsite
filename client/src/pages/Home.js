@@ -1,12 +1,15 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import HomeImage from "../assets/home.jpg";
+import LoginImage from "../assets/login.jpg";
+import CreditsImage from "../assets/credits.jpg";
 import Productivity from "../components/Productivity";
 import View from "../components/View";
 import Footer from "../components/Footer";
 import About from "./About";
-import Contact from "./Contact";
 import Service from "./Service";
+import Contact from "./Contact";
+import Credits from "../components/Credits";
 import Login from "./Login.js";
 
 import ScrollToTop from "../components/ScrollToTop.js";
@@ -44,7 +47,6 @@ function Home() {
                     path="about"
                     element={
                         <>
-                            <div style={{ width: "100%", height: "100px" }} />
                             <About />
                         </>
                     }
@@ -53,7 +55,6 @@ function Home() {
                     path="service"
                     element={
                         <>
-                            <div style={{ width: "100%", height: "100px" }} />
                             <Service />
                         </>
                     }
@@ -62,8 +63,21 @@ function Home() {
                     path="contact"
                     element={
                         <>
-                            <div style={{ width: "100%", height: "100px" }} />
                             <Contact />
+                        </>
+                    }
+                />
+                <Route
+                    path="credits"
+                    element={
+                        <>
+                            <Hero
+                                className="hero-mid"
+                                heroImage={CreditsImage}
+                                buttonClass="hide"
+                            />
+                            <Credits />
+                            <Footer />
                         </>
                     }
                 />
@@ -71,7 +85,11 @@ function Home() {
                     path="login"
                     element={
                         <>
-                            <div style={{ width: "100%", height: "100px" }} />
+                            <Hero
+                                className="hero-mid"
+                                heroImage={LoginImage}
+                                buttonClass="hide"
+                            />
                             <Login />
                             <Footer />
                         </>

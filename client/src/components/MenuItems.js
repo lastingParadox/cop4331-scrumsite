@@ -24,6 +24,12 @@ export const MenuItems = [
         icon: "fa-solid fa-address-book",
     },
     {
+        title: "Credits",
+        url: "/credits",
+        className: "nav-links",
+        icon: "fa-solid fa-people-group",
+    },
+    {
         title: "Login",
         url: "/login",
         className: "nav-links-mobile button",

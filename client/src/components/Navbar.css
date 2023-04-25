@@ -75,7 +75,7 @@
     display: none;
 }
 
-@media screen and (max-width: 975px) {
+@media screen and (max-width: 1115px) {
     .NavbarItems {
         z-index: 99;
     }

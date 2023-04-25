@@ -254,7 +254,7 @@ export default function Login() {
                 <Switch
                     checked={checked}
                     onChange={switchColor}
-                    onColor="#121212"
+                    onColor="#dddddd"
                     onHandleColor="#a6a6a6"
                     handleDiameter={30}
                     uncheckedIcon={false}

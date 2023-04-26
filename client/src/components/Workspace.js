@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import List from "./List";
 import "./Workspace.css";
 import ListNameCard from "./ListNameCard";
@@ -129,18 +129,20 @@ function Workspace(props) {
 
     return (
         <div className="workspace">
-            <input type="text" value={title} onChange={handleTitleChange} />
-            <Button className="ms-1" variant="success" onClick={handleTitleSubmit}>
-                Submit
-            </Button>
-            {showAddListCard ? (
-                <ListNameCard onSubmit={addList} onCancel={() => setShowAddListCard(false)} />
-            ) : (
-                <Button className="ms-1" onClick={() => setShowAddListCard(true)}>Add List</Button>
-            )}
-            <Button className="ms-1" variant="danger" onClick={handleDeleteWorkspace}>
-                Delete Workspace
-            </Button>
+            <div className="workspaceHeader">
+                <Form.Control type="text" value={title} onChange={handleTitleChange}/>
+                <Button className="ms-1" variant="success" onClick={handleTitleSubmit}>
+                    Submit
+                </Button>
+                {showAddListCard ? (
+                    <ListNameCard onSubmit={addList} onCancel={() => setShowAddListCard(false)} />
+                ) : (
+                    <Button className="ms-1" onClick={() => setShowAddListCard(true)}>Add List</Button>
+                )}
+                <Button className="ms-1" variant="danger" onClick={handleDeleteWorkspace}>
+                    Delete Workspace
+                </Button>
+            </div>
             <div className="workspace-lists">
                 {listItems}
             </div>

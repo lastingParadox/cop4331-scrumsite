@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Modal, Card, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
-import Drop from "./Dropdown";
 import { AsyncTypeahead } from "react-bootstrap-typeahead";
 
 function Task(props) {

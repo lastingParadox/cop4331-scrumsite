@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Task from "./Task";
 import { Card, Button, Form, Accordion} from "react-bootstrap";
 import "./list.css";
-import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
-import AccordionBody from "react-bootstrap/esm/AccordionBody";
+import ListTitle from "./ListTitle";
 
 function List(props) {
     const { id, title, updateList, deleteList, workspaceId } = props;
@@ -12,11 +11,11 @@ function List(props) {
     const [taskName, setTaskName] = useState("");
 
     // Callback function to handle changes to the task name
-    async function handleNameChange(event) {
-        event.preventDefault();
+    async function handleNameChange(title) {
         try {
+            setListName(title);
             // Make a PATCH request to update the list on the server
-            if (!listName || typeof listName !== "string") {
+            if (!title || typeof title !== "string") {
                 throw new Error("Invalid or missing title property in updatedList object");
             }
             const response = await fetch(`api/lists/${id}`, {
@@ -24,7 +23,7 @@ function List(props) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ title: listName }),
+                body: JSON.stringify({ title }),
             });
 
             // If the server returns a success status code, update the local state
@@ -134,33 +133,24 @@ function List(props) {
     return (
         <Card style={{ width: "20rem", border: "3px solid gray" }}>
             <Card.Body>
-                <Card.Title>{listName}</Card.Title>
-                <Form onSubmit={handleNameChange}>
-                    <Form.Control
-                        type="text"
-                        border-color="danger"
-                        placeholder="Enter Title"
-                        value={listName}
-                        onChange={(e) => setListName(e.target.value)}
-                    />
-
-                    <Button className="m-2" variant="success" type="submit">Update List Name</Button>
-                </Form>
+                <ListTitle title={listName} onTitleChange={(title => setListName(title))} titleSave={handleNameChange} handleDelete={handleDelete} />
                 <Accordion defaultActiveKey="0">
                     <Accordion.Item eventKey="0">
                         <Accordion.Header>Tasks</Accordion.Header>
                         <Accordion.Body>
-                            {tasksItems}
+                            <div id="taskList">
+                                {tasksItems}
+                            </div>
                             <Form onSubmit={addTask}>
                                 <Form.Control
+                                    id="addTaskField"
                                     type="text"
                                     placeholder="Add Task"
                                     value={taskName}
                                     onChange={(e) => setTaskName(e.target.value)}
                                 />
-                                <div class="center">
+                                <div className="center">
                                     <Button variant="success" className="me-3" type="submit">Add Task</Button>
-                                    <Button variant="danger"onClick={handleDelete}>Delete List</Button>
                                 </div>
                             </Form>
                         </Accordion.Body>

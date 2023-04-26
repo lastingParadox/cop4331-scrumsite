@@ -3,78 +3,19 @@
     overflow-y: auto;
 }
 
-.workspace input {
-    width: 500px;
-    background-color: white;
-    padding: 10px 15px;
-    border: 2px solid black;
-    border-radius: 5px;
-    margin-left: 10px;
-}
-
-p1 {
-    color: red;
-}
-
-buttonSub {
-    position: relative;
-    background-color: rgb(78, 206, 78);
-    border: 2px solid black;
-    color: black;
-    padding: 10px 20px;
-    text-align: center;
-    border-radius: 3px;
-    cursor: pointer;
-    transition-duration: 0.2s;
-    margin-left: 10px;
-}
-
-buttonSub:hover {
-    background-color: rgb(48, 124, 48);
-    color: white;
-}
-
-buttonAddL {
-    position: relative;
-    background-color: rgb(78, 206, 78);
-    border: 2px solid black;
-    color: black;
-    padding: 10px 20px;
-    text-align: center;
-    border-radius: 3px;
-    cursor: pointer;
-    transition-duration: 0.2s;
-    margin-left: 10px;
-}
-
-buttonAddL:hover {
-    background-color: rgb(48, 124, 48);
-    color: white;
-}
-
-buttonDelW {
-    position: relative;
-    width: 100px;
-    background-color: lightcoral;
-    border: 2px solid black;
-    color: black;
-    padding: 10px 20px;
-    text-align: center;
-    border-radius: 3px;
-    cursor: pointer;
-    transition-duration: 0.2s;
-    margin-left: 10px;
-}
-
-buttonDelW:hover {
-    background-color: darkred;
-    color: white;
-}
-
 .workspace-lists {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin: 10px;
     gap: 10px;
+}
+
+.workspaceHeader {
+    margin: 10px;
+    display: flex;
+}
+
+.workspaceHeader .form-control {
+    max-width: 50%;
 }

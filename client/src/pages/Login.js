@@ -3,7 +3,7 @@ import "./Login.css";
 import Switch from "react-switch";
 import { Navigate, Route, useNavigate } from "react-router-dom";
 
-import useWindowSize from "../components/windowSize/WindowSize";
+import useWindowSize from "../components/WindowSize";
 
 export default function Login() {
     const [password, setPassword] = useState("");

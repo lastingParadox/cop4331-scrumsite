@@ -37,6 +37,7 @@ const ListTitle = ({ title, onTitleChange, titleSave, handleDelete }) => {
                     type="text"
                     value={newTitle}
                     onChange={handleTitleChange}
+                    onBlur={handleDeleteButtonClick}
                     autoFocus
                     />
                 ) : (

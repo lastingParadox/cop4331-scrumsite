@@ -131,7 +131,7 @@ function List(props) {
         )) : null;
 
     return (
-        <Card style={{ width: "20rem", border: "3px solid gray" }}>
+        <Card id="listCard">
             <Card.Body>
                 <ListTitle title={listName} onTitleChange={(title => setListName(title))} titleSave={handleNameChange} handleDelete={handleDelete} />
                 <Accordion defaultActiveKey="0">

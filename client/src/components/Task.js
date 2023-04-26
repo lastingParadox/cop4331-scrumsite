@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Modal, Card, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { AsyncTypeahead } from "react-bootstrap-typeahead";
+import "./task.css"
 
 function Task(props) {
     const { id, title, description, author, dueDate, assignees, updateTask, deleteTask } = props;
@@ -81,13 +82,33 @@ function Task(props) {
             });
     };
 
+    useEffect(() => {
+        fetch(`/api/users`)
+        .then((res) => res.json())
+        .then((res) => {
+            setOptions(res);
+        });
+    }, []);
+
     const filterBy = () => true;
+
+    const dateApproaching = () => {
+        const date = new Date(dueDate);
+        const today = new Date();
+        if (date.getDate() < today.getDate())
+            return <div className="small late">{new Date(dueDate).toLocaleDateString("en-US")}</div>
+        else if (date.getDate() >= today.getDate() && date.getDate() <= (today.getDate() + 2) )
+            return <div className="small soon">{new Date(dueDate).toLocaleDateString("en-US")}</div>
+        else
+            return <div className="small future">{new Date(dueDate).toLocaleDateString("en-US")}</div>
+    }
 
     return (
         <>
-            <Card style={{ width: "15rem", height: "3rem" }} onClick={handleModalOpen}>
-                <Card.Body>
-                    <Card.Title style={{ fontSize: "1rem" }}>{title}</Card.Title>
+            <Card className="taskCard" onClick={handleModalOpen}>
+                <Card.Body className="taskBody">
+                    <Card.Title className="taskTitle">{title}</Card.Title>
+                    { dueDate ? dateApproaching() : null }
                 </Card.Body>
             </Card>
 
@@ -103,7 +124,7 @@ function Task(props) {
                         <strong>Author:</strong> {`${author.firstName} ${author.lastName}`}
                     </p>
                     <p>
-                        <strong>Due Date:</strong> {updatedDueDate ? new Date(updatedDueDate).toString() : null}
+                        <strong>Due Date:</strong> {updatedDueDate ? new Date(updatedDueDate).toLocaleDateString("en-US") : null}
                     </p>
                     <p>
                         <strong>Assignees:</strong> {updatedAssignees}
@@ -152,12 +173,13 @@ function Task(props) {
                             id="async-users"
                             isLoading={isLoading}
                             labelKey={(option) => `${option.firstName} ${option.lastName}`}
+                            defaultInputValue={`${author.firstName} ${author.lastName}`}
                             minLength={1}
                             onSearch={handleSearch}
                             options={options}
                             placeholder="Search for a user..."
                             onChange={(e) => {
-                                setUpdatedAuthor(e[0]._id);
+                                if (e[0] && e[0]._id) setUpdatedAuthor(e[0]._id);
                             }}
                             renderMenuItemChildren={(option) => (
                                 <div>

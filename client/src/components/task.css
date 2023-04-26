@@ -1,0 +1,29 @@
+.taskCard {
+    transition: all 0.25s;
+}
+
+.taskCard:hover {
+    background-color: rgb(212, 212, 212);
+    cursor: pointer;
+}
+
+.taskTitle {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.taskBody {
+    padding: 8px;
+}
+
+.late {
+    color: var(--bs-danger);
+}
+
+.soon {
+    color: var(--bs-warning);
+}
+
+.future {
+    color: var(--bs-success);
+}

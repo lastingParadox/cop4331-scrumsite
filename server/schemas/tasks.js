@@ -33,6 +33,8 @@ taskSchema.pre("save", async function (next) {
         if (!list) {
             throw new Error("List not found");
         }
+        if (list.tasks.find(task => String(task) === String(this._id))) return next();
+        console.log(list);
         list.tasks.push(this._id);
         await list.save();
         next();

@@ -306,7 +306,7 @@ export default function Login() {
             ) : (
                 <div className="login-container">
                     {!signIn ? <>{login}</> : <>{register}</>}
-                    <div className="center">
+                    <div className="small-login-switch">
                         <label className={color === "white" ? "text-light" : "text-dark"}>
                             {signIn ? "Change to Sign in" : "Change to Register"}
                         </label>
@@ -315,11 +315,13 @@ export default function Login() {
                             onChange={() => {
                                 resetAndSwap();
                             }}
-                            onColor="#248CFD"
-                            onHandleColor="#4fa3fc"
+                            onColor="#dddddd"
+                            onHandleColor="#a6a6a6"
                             handleDiameter={30}
                             uncheckedIcon={false}
                             checkedIcon={false}
+                            boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                            activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
                             height={20}
                             width={48}
                             className="react-switch"

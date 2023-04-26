@@ -33,6 +33,60 @@ router.get("/:id/workspaces", getUser, async (req, res) => {
     }
 });
 
+
+//Send an invite
+router.post("/invite", async(req,res) =>{
+    const receiverId = req.body.receiverId;
+    const senderId = req.body.senderId;
+    const workspaceId = req.body.workspaceId;
+
+    if (!senderId || !receiverId)
+    {
+        return res.status(404).send('User not found');
+    }
+
+    const receiver = await User.findById(receiverId);
+    console.log(receiverId);
+
+    console.log(receiver)
+    
+
+    const invitation = {
+        sender: senderId,
+        workspace: workspaceId
+      };
+
+    receiver.notifications.push(invitation);
+
+    await receiver.save();
+    return res.json(receiver);
+});
+
+router.patch("/inviteResponse", async(req,res) =>{
+    const senderId = req.body.senderId;
+    const receiverId = req.body.receiverId;
+    const workspaceId = req.body.workspace;
+    const accepted = req.body.inviteResult;
+
+    const user = await User.findById(receiverId);
+
+    const index = user.notifications.findIndex((notification) => {
+        return notification.sender == senderId && notification.workspace == workspaceId;
+    })
+
+    console.log(index);
+
+
+    user.notifications.splice(index,index);
+    console.log(user.notifications)
+
+    if (accepted) 
+        user.workspaces.push(workspaceId);
+
+    await user.save();
+    return res.json(user);
+})
+
 // Middleware to retrieve a user from the id parameter
 async function getUser(req, res, next) {
     try {

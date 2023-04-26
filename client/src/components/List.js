@@ -42,7 +42,7 @@ function List(props) {
     function addTask(event) {
         event.preventDefault();
         const newTask = {
-            title: taskName,
+            title: taskName? taskName: "New Task",
             list: id,
             workspace: workspaceId,
             author: "643f6115abbf1b5d55acae11",

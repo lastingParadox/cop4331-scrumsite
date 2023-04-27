@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 function Dashboard() {
     const navigate = useNavigate();
     const [token, setToken] = useState(localStorage.getItem('token'));
+    const [userId, setUserId] = useState("");
     const [workspaceList, setWorkspaceList] = useState([]);
     const [workspace, setWorkspace] = useState(null);
 
@@ -58,7 +59,8 @@ function Dashboard() {
             return response.json();
         })
         .then((data) => {
-            data = data.map((element) => {
+            setUserId(data.user._id);
+            data = data.workspaces.map((element) => {
                 return { id: element._id, title: element.title };
             });
             setWorkspaceList(data);
@@ -80,9 +82,10 @@ function Dashboard() {
                 </div>
             </div>
             <div className="dash">
-                {workspaceList.length > 0 ? (
+                {workspaceList.length >= 0 ? (
                     <Sidebar
                         workspaces={workspaceList}
+                        userId={userId}
                         onWorkspaceSelect={onWorkspaceSelect}
                         onWorkspaceCreate={onWorkspaceCreate}
                     />

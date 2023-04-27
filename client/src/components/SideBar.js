@@ -3,7 +3,7 @@ import { Button, Modal } from "react-bootstrap";
 import "./sidebar.css";
 
 function Sidebar(props) {
-    const { workspaces } = props;
+    const { workspaces, userId } = props;
     const [showModal, setShowModal] = useState(false);
     const [newWorkspaceTitle, setNewWorkspaceTitle] = useState("New Workspace");
 
@@ -24,7 +24,7 @@ function Sidebar(props) {
             body: JSON.stringify({
                 title: newWorkspaceTitle,
                 lists: [],
-                members: ["643f6115abbf1b5d55acae11"],
+                members: [userId],
             }),
         });
 

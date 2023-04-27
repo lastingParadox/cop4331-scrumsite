@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/workspaces", authenticateJWT, async (req, res) => {
     try {
         const workspaces = await Workspace.find({ members: req.user._id });
-        return res.json(workspaces);
+        return res.json({ user: req.user, workspaces });
     } catch (err) {
         return res.status(500).json({ message: err.message });
     }
@@ -21,7 +21,7 @@ async function authenticateJWT(req, res, next) {
         const token = authHeader;
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            const user = await User.findById({ id: decoded.userId });
+            const user = await User.findById(decoded.userId);
 
             if (user) {
                 req.user = user;

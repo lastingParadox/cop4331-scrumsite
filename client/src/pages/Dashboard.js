@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
     const navigate = useNavigate();
+    const [token, setToken] = useState(localStorage.getItem('token'));
     const [workspaceList, setWorkspaceList] = useState([]);
     const [workspace, setWorkspace] = useState(null);
 
@@ -40,16 +41,33 @@ function Dashboard() {
     }
 
     useEffect(() => {
-        fetch(`/api/workspaces/`)
-            .then((res) => res.json())
-            .then((data) => {
-                data = data.map((element) => {
-                    return { id: element._id, title: element.title };
-                });
-                setWorkspaceList(data);
-            })
-            .catch((err) => console.error(err));
-    }, []);
+        if (!token) {
+            navigate('/');
+            return;
+        }
+
+        fetch(`/api/auth/users/workspaces`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token,
+            },
+        })
+        .then((response) => {
+            if (response.status === 401) throw new Error('Invalid');
+            return response.json();
+        })
+        .then((data) => {
+            data = data.map((element) => {
+                return { id: element._id, title: element.title };
+            });
+            setWorkspaceList(data);
+        })
+        .catch((error) => {
+            console.log(error.message);
+            return;
+        })
+    }, [navigate, token]);
 
     return (
         <div className="dashpage">

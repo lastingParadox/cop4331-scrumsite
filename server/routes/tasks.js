@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 import Task from "../schemas/tasks.js";
+import List from "../schemas/lists.js";
 
 // Get all tasks
 router.get("/", async (req, res) => {
@@ -130,6 +131,40 @@ router.delete("/:id", getTask, async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
+// Move task from one list to another
+router.put("/:id/move", getTask, async (req, res) => {
+    /*
+     *  PUT: Moves a task from one list to another
+     *  Body: {
+     *          "toList": "744c55f53153a439b6b8712d",
+     *  }
+     *  Required: ID Argument, where ID is the task's object id. (task.id)
+     *  Note: ID IS NOT AN INTEGER. IT'S A STRING.
+     */ 
+
+    const fromList = await List.findById(req.task.list);
+    const toList = await List.findById(req.body.toList);
+
+    if (!fromList || !toList) {
+        return res.status(404).json({ error: "List not found" });
+    }
+
+    // Remove the task from the "from" list
+    fromList.tasks.pull(req.task.id);
+    await fromList.save();
+
+    // Add the task to the "to" list
+    toList.tasks.push(req.task.id);
+    await toList.save();
+
+    // Update the task's list reference
+    req.task.list = toList._id;
+    await req.task.save();
+
+    // Send a response
+    res.json({ success: "Task moved successfully", task: req.task });
+})
 
 // Middleware function to get a single task by ID
 async function getTask(req, res, next) {

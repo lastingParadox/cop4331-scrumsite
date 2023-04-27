@@ -23,24 +23,16 @@ function Task(props) {
     const [options, setOptions] = useState([]);
 
     const handleSelect = (lists) => {
-
-    
-
-        
-
-        setSelectedList(lists);
         const updatedTask = {
+            _id:id,
             title: updatedTitle,
-            list: lists._id,
+            list:lists._id,
             description: updatedDescription,
             author: updatedAuthor,
             dueDate: updatedDueDate,
             assignees: updatedAssignees,
         };
-
-        
-        updateTaskList(updatedTask, id);
-        
+        updateTaskList(lists._id, id,updatedTask);
     };
 
     const handleModalClose = () => {
@@ -115,20 +107,31 @@ function Task(props) {
             return <div className="small future">{new Date(dueDate).toLocaleDateString("en-US")}</div>
     }
 
+    const handleCardClick = (event) => {
+        const clickedElement = event.target;
+        const dropdownWrapper = clickedElement.closest('.dropdownWrapper');
+      
+        if (!dropdownWrapper) {
+          // Perform actions when the card (excluding the dropdown) is clicked
+          handleModalOpen();
+        }
+      };
+
 
     return (
         <>
-            <Card className="taskCard" >
-      <Card.Body className="taskBody">
-        <div className="taskContent">
-          <div className="taskTitle" onClick={handleModalOpen}>{title}</div>
-          <div className="dropdownWrapper">
-            <Drop lists={listNames} onSelect={handleSelect} title="" />
-          </div>
-        </div>
-        {dueDate ? dateApproaching() : null}
-      </Card.Body>
-    </Card>
+            <Card className="taskCard">
+                <Card.Body className="taskBody" onClick={handleCardClick}>
+                    <div className="taskContent">
+                        <div className="taskTitle">{title}</div>
+                        <div className="dropdownWrapper">
+                            <Drop lists={listNames} onSelect={handleSelect} title="" />
+                        </div>
+                    </div>
+                    {dueDate ? dateApproaching() : null}
+                </Card.Body>
+            </Card>
+
 
             <Modal show={showModal} onHide={handleModalClose}>
                 <Modal.Header closeButton>

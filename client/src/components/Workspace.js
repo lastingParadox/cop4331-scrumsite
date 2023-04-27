@@ -83,14 +83,31 @@ function Workspace(props) {
 
     // Callback function to handle changes to a list name
     const handleListUpdate = (updatedList) => {
-        console.log(updatedList)
+       
         const updatedLists = lists.map((list) => {
             if (list._id === updatedList.id) {
                 return { _id: updatedList.id, title: updatedList.title, tasks: updatedList.tasks };
             }
             return list;
         });
-
+        
+        setLists(updatedLists);
+        
+    };
+    const handleListChange = (updatedList,otherUpdatedList,newTask) => {
+        
+        const updatedLists = lists.map((list) => {
+            if (list._id === updatedList.id) {
+                
+                return { _id: updatedList.id, title: updatedList.title, tasks: updatedList.tasks };
+            }
+            if (list._id === otherUpdatedList) {
+                const updatedTasks = [...list.tasks, newTask];
+                
+                return { _id: list._id, title: list.title, tasks: updatedTasks };
+            }
+            return list;
+        });
         setLists(updatedLists);
     };
 
@@ -127,6 +144,7 @@ function Workspace(props) {
                 deleteList={deleteList}
                 workspaceId={id}
                 listNames={lists}
+                updateListChange={handleListChange}
             />
         ))
     ) : (

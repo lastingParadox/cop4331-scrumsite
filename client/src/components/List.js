@@ -5,7 +5,7 @@ import "./list.css";
 import ListTitle from "./ListTitle";
 
 function List(props) {
-    const { id, title, updateList, deleteList, workspaceId,listNames } = props;
+    const { id, title, updateList, deleteList, workspaceId,listNames,updateListChange } = props;
     const [tasks, setTasks] = useState(props.tasks);
     const [listName, setListName] = useState(title);
     const [taskName, setTaskName] = useState("");
@@ -92,26 +92,29 @@ function List(props) {
                 console.error("Error:", error);
             });
     }
-    // Callback function to update a task
-    function updateTaskList(updatedTask, oldTask) {
-        fetch(`/api/tasks/${oldTask}`, {
-            method: "PATCH",
+    
+    function updateTaskList(listId, taskId,updatedTask) {
+        fetch(`/api/tasks/${taskId}/move`, {
+            method: "PUT",
             headers: {
-                "Content-Type": "application/json",
+              "Content-Type": "application/json",
             },
-            body: JSON.stringify(updatedTask),
-        })
+            body: JSON.stringify({
+              toList: listId,
+            }),
+          })
             .then((response) => response.json())
             .then((data) => {
-                const updatedTasks = tasks.filter((task) => task._id !==oldTask);
+                const updatedTasks = tasks.filter((task) => task._id !==taskId);
                 setTasks(updatedTasks);
                 console.log(updatedTasks);
                 const updatedList = { id, title, tasks: updatedTasks };
-                updateList(updatedList);
+                updateListChange(updatedList,listId,updatedTask);
             })
             .catch((error) => {
-                console.error("Error:", error);
+              console.error(error); // Handle any errors
             });
+
     }
 
     useEffect(() => {

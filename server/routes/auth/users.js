@@ -5,7 +5,7 @@ import Workspace from "../../schemas/workspaces.js";
 
 const router = express.Router();
 
-router.get("/users/:id/workspaces", authenticateJWT, async (req, res) => {
+router.get("/:id/workspaces", authenticateJWT, async (req, res) => {
     try {
         const workspaces = await Workspace.find({ members: req.user._id });
         return res.json(workspaces);

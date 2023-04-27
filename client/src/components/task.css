@@ -9,7 +9,7 @@
 
 .taskTitle {
     font-size: 1rem;
-    margin: 0;
+    margin-right: 10px;
 }
 
 .taskBody {
@@ -27,3 +27,24 @@
 .future {
     color: var(--bs-success);
 }
+
+
+.taskBody {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .taskContent {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  
+  
+  .dropdownWrapper {
+    flex-shrink: 0;
+  }
+  

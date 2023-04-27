@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Task from "./Task";
 import { Card, Button, Form, Accordion} from "react-bootstrap";
 import "./list.css";
 import ListTitle from "./ListTitle";
 
 function List(props) {
-    const { id, title, updateList, deleteList, workspaceId } = props;
+    const { id, title, updateList, deleteList, workspaceId,listNames } = props;
     const [tasks, setTasks] = useState(props.tasks);
     const [listName, setListName] = useState(title);
     const [taskName, setTaskName] = useState("");
@@ -92,6 +92,32 @@ function List(props) {
                 console.error("Error:", error);
             });
     }
+    // Callback function to update a task
+    function updateTaskList(updatedTask, oldTask) {
+        fetch(`/api/tasks/${oldTask}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedTask),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                const updatedTasks = tasks.filter((task) => task._id !==oldTask);
+                setTasks(updatedTasks);
+                console.log(updatedTasks);
+                const updatedList = { id, title, tasks: updatedTasks };
+                updateList(updatedList);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    }
+
+    useEffect(() => {
+        
+      }, [tasks]);
+
 
     // Callback function to delete a task
     function deleteTask(taskToDelete) {
@@ -127,6 +153,8 @@ function List(props) {
                 assignees={task.assignees}
                 updateTask={updateTask}
                 deleteTask={deleteTask}
+                listNames={listNames}
+                updateTaskList={updateTaskList}
             />
         )) : null;
 

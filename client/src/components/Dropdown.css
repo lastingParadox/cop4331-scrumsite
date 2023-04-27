@@ -1,0 +1,13 @@
+.custom-dropdown .dropdown-toggle {
+    background-color: transparent !important;
+    border: none !important;
+    color: black !important; /* Set text color to black */
+    box-shadow: none !important;
+  }
+  
+  .custom-dropdown .dropdown-menu {
+    background-color: whitesmoke;
+    
+  }
+  
+  

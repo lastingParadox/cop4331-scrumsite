@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import List from "./List";
 import "./Workspace.css";
 import ListNameCard from "./ListNameCard";
+import { useEffect } from "react";
 
 function Workspace(props) {
     const { updateWorkspaceTitle, deleteWorkspace } = props;
@@ -93,6 +94,10 @@ function Workspace(props) {
         setLists(updatedLists);
     };
 
+    useEffect(() => {
+        
+    }, [lists]);
+
     function handleDeleteWorkspace() {
         // send a DELETE request to the server to delete the workspace with the current workspace id
         fetch(`/api/workspaces/${id}`, { method: "DELETE" })
@@ -121,6 +126,7 @@ function Workspace(props) {
                 updateList={handleListUpdate}
                 deleteList={deleteList}
                 workspaceId={id}
+                listNames={lists}
             />
         ))
     ) : (

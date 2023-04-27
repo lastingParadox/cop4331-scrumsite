@@ -4,9 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import { AsyncTypeahead } from "react-bootstrap-typeahead";
 import "./task.css"
+import Drop from './Dropdown';
+
 
 function Task(props) {
-    const { id, title, description, author, dueDate, assignees, updateTask, deleteTask } = props;
+    const { id, title, description, author, dueDate, assignees, updateTask, deleteTask,listNames,updateTaskList } = props;
     const [showModal, setShowModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -20,17 +22,25 @@ function Task(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [options, setOptions] = useState([]);
 
-    const handleSelect = (list) => {
-        setSelectedList(list);
+    const handleSelect = (lists) => {
+
+    
+
+        
+
+        setSelectedList(lists);
         const updatedTask = {
             title: updatedTitle,
-            list: selectedList._id,
+            list: lists._id,
             description: updatedDescription,
             author: updatedAuthor,
             dueDate: updatedDueDate,
             assignees: updatedAssignees,
         };
-        updateTask(updatedTask, id);
+
+        
+        updateTaskList(updatedTask, id);
+        
     };
 
     const handleModalClose = () => {
@@ -60,8 +70,10 @@ function Task(props) {
             dueDate: updatedDueDate,
             assignees: updatedAssignees,
         };
-
+       
+        
         updateTask(updatedTask, id); // Call the updateTask callback function
+        
 
         handleModalClose();
     };
@@ -103,14 +115,20 @@ function Task(props) {
             return <div className="small future">{new Date(dueDate).toLocaleDateString("en-US")}</div>
     }
 
+
     return (
         <>
-            <Card className="taskCard" onClick={handleModalOpen}>
-                <Card.Body className="taskBody">
-                    <Card.Title className="taskTitle">{title}</Card.Title>
-                    { dueDate ? dateApproaching() : null }
-                </Card.Body>
-            </Card>
+            <Card className="taskCard" >
+      <Card.Body className="taskBody">
+        <div className="taskContent">
+          <div className="taskTitle" onClick={handleModalOpen}>{title}</div>
+          <div className="dropdownWrapper">
+            <Drop lists={listNames} onSelect={handleSelect} title="" />
+          </div>
+        </div>
+        {dueDate ? dateApproaching() : null}
+      </Card.Body>
+    </Card>
 
             <Modal show={showModal} onHide={handleModalClose}>
                 <Modal.Header closeButton>
@@ -242,7 +260,7 @@ function Task(props) {
                     <Modal.Title>Delete Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Are you sure you want to delete thisTask?</p>
+                    <p>Are you sure you want to delete this Task?</p>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleModalClose}>

@@ -13,9 +13,24 @@
 
 .workspaceHeader {
     margin: 10px;
+    overflow: auto;
     display: flex;
 }
 
 .workspaceHeader .form-control {
-    max-width: 50%;
+    max-width: 100%;
+}
+
+.OffCFrame {
+    background-color: black;
+}
+
+.workspace oddCHeader {
+    color: rgb(94, 250, 94);
+}
+
+@media screen and (max-width:600px) {
+    .workspaceHeader{
+        width: 100%;
+    }
 }

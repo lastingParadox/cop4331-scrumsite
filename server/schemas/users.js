@@ -22,6 +22,10 @@ let userSchema = new Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     workspaces: [{ type: Schema.Types.ObjectId, ref: "Workspace", required: true }],
+    notifications: [{
+        sender: { type: Schema.Types.ObjectId, ref: "User" },
+        workspace: { type: Schema.Types.ObjectId, ref: "Workspace" }
+    }]
 });
 
 userSchema.pre("save", async function (next) {

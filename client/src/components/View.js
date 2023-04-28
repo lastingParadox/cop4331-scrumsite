@@ -27,8 +27,8 @@ function View() {
                 />
                 <ViewData
                     image={View3}
-                    heading="Do more with Trello"
-                    text="Trello's intuitive features give any team the ability to quickly set up and customize workflows for just about anything."
+                    heading="Do more with Scrum Site"
+                    text="Scrum Site's intuitive features give any team the ability to quickly set up and customize workflows for just about anything."
                 />
             </div>
         </div>

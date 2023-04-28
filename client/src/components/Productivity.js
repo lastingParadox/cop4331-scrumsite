@@ -19,7 +19,7 @@ const Productivity = () => {
             <ProductivityData
                 className="description"
                 heading="Boards"
-                text='Trello boards keep tasks organized and work moving forward. In a glance, see everything from "things to do" to "aww yeah, we did it!"'
+                text='Scrum Site boards keep tasks organized and work moving forward. In a glance, see everything from "things to do" to "aww yeah, we did it!"'
                 image1={Productivity1}
                 image2={Productivity2}
             />

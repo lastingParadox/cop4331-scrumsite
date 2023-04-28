@@ -9,16 +9,16 @@ import ServiceView3 from "../assets/service-view3.jpg";
 function ServiceView() {
     return (
         <div className="view">
-            <h1>Better than nothing</h1>
+            <h1>Give work a new look with Scrum Site views</h1>
             <p>
-                View your team's projects from every angle and bring a fresh perspective to the task
-                at hand.
+                See your projects from every angle with Board, Timeline, Table, Calendar, Dashboard,
+                Map and Workspace views that will bring a fresh perspective to the task at hand.
             </p>
             <div className="view-card-container">
                 <ViewData
                     image={ServiceView1}
                     heading="Workspaces"
-                    text="Seperate large projects into different workspaces to organize your workflow."
+                    text="See your projects from every angle with Board, Timeline, Table, Calendar, Dashboard, Map and Workspace views that will bring a fresh perspective to the task at hand."
                 />
                 <ViewData
                     image={ServiceView2}

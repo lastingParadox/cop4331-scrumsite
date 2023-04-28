@@ -17,8 +17,10 @@ export default function Login() {
     const [firstNameValid, setFirstNameValid] = useState(true);
     const [lastNameValid, setLastNameValid] = useState(true);
     const [confirmPasswordValid, setConfirmPasswordValid] = useState(true);
+
     const [passwordMatch, setPasswordMatch] = useState(true);
     const [emailMatch,setEmailMatch] = useState(true);
+    const [userExists, setUserExists] = useState("");
 
     const [color, setColor] = useState("white");
     const [checked, setChecked] = useState(false);
@@ -86,6 +88,8 @@ export default function Login() {
         setFirstNameValid(firstName);
         setLastNameValid(lastName);
         setConfirmPasswordValid(confirmPassword === password);
+        setUserExists("");
+        
 
         if (username && firstName && lastName && confirmPassword && password === confirmPassword) {
             fetch("/api/authentication/register", {
@@ -100,6 +104,14 @@ export default function Login() {
                         const json = await response.json();
                         sessionStorage.setItem("token", json.token);
                         navigate("/dashboard");
+                    }
+                    if (response.status === 409)
+                    {
+                        setUserExists("This Email is already in use");
+                    }
+                    else if (response.status === 500)
+                    {
+                        setUserExists("Make sure the email is in the format name@email.com")
                     }
                 })
                 .catch((error) => {
@@ -193,9 +205,9 @@ export default function Login() {
                     maxLength="110"
                     onChange={(e) => setUsername(e.target.value)}
                 ></input>
-                <div className={!usernameValid ? "line" : ""}></div>
-                <div className={`show-error${!usernameValid ? "True" : "False"}`}>
-                    Email must be filled out
+                <div className={!usernameValid  || userExists? "line" : ""}></div>
+                <div className={`show-error${!usernameValid || userExists ? "True" : "False"}`}>
+                    {userExists? userExists:"Email must be filled out"}
                 </div>
                 <label
                     className={color === "white" ? "text-light" : "text-dark"}

@@ -135,6 +135,10 @@ export default function Login() {
     };
 
     useEffect(() => {
+        if (sessionStorage.getItem('token')) {
+            navigate('/dashboard');
+            return;
+        }
         document.body.style.backgroundColor = color;
     }, [color]);
 

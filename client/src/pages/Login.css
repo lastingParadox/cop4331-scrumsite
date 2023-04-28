@@ -215,6 +215,14 @@ body {
     .login-footer {
         padding: 2rem 2rem;
     }
+
+    .login-button {
+        margin: 5px auto;
+    }
+
+    .login-content-input {
+        margin: 0 auto;
+    }
 }
 
 @media screen and (max-width: 450px) {

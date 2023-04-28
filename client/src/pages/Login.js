@@ -146,47 +146,49 @@ export default function Login() {
         <div>
             <form className="login">
                 <h1 className={color === "white" ? "login-light" : "login-dark"}>Login</h1>
-                <label
-                    className={color === "white" ? "text-light" : "text-dark"}
-                    htmlFor="username"
-                >
-                    <b>Username</b>
-                </label>
-                <input
-                    className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
-                    value={username}
-                    type="text"
-                    placeholder="Enter Username"
-                    name="username"
-                    maxLength="110"
-                    onChange={(e) => setUsername(e.target.value)}
-                ></input>
-                <div className={!usernameValid || !emailMatch ? "line" : ""}></div>
-                <div className={`show-error${!usernameValid || !emailMatch ? "True" : "False"}`}>
-                    {emailMatch?"Email must be filled out" : "The Email you entered doesn't exist"}
+                <div className="login-content-input">
+                    <label
+                        className={color === "white" ? "text-light" : "text-dark"}
+                        htmlFor="username"
+                    >
+                        <b>Username</b>
+                    </label>
+                    <input
+                        className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
+                        value={username}
+                        type="text"
+                        placeholder="Enter Username"
+                        name="username"
+                        maxLength="110"
+                        onChange={(e) => setUsername(e.target.value)}
+                    ></input>
+                    <div className={!usernameValid || !emailMatch ? "line" : ""}></div>
+                    <div className={`show-error${!usernameValid || !emailMatch ? "True" : "False"}`}>
+                        {emailMatch?"Email must be filled out" : "The Email you entered doesn't exist"}
+                    </div>
+                    <label
+                        className={color === "white" ? "text-light" : "text-dark"}
+                        htmlFor="password"
+                    >
+                        <b>Password</b>
+                    </label>
+                    <input
+                        className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
+                        value={password}
+                        type="password"
+                        placeholder="Enter Password"
+                        name="password"
+                        maxLength="110"
+                        onChange={(e) => setPassword(e.target.value)}
+                    ></input>
+                    <div className={!passwordValid || !passwordMatch ? "line" : ""}></div>
+                    <div className={`show-error${!passwordValid || !passwordMatch ? "True" : "False"}`}>
+                        {passwordMatch ? "Password must be filled out": "The password you entered doesn't match"}
+                    </div>
+                    <button className="login-button" type="submit" onClick={handleLogin}>
+                        Sign in
+                    </button>
                 </div>
-                <label
-                    className={color === "white" ? "text-light" : "text-dark"}
-                    htmlFor="password"
-                >
-                    <b>Password</b>
-                </label>
-                <input
-                    className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
-                    value={password}
-                    type="password"
-                    placeholder="Enter Password"
-                    name="password"
-                    maxLength="110"
-                    onChange={(e) => setPassword(e.target.value)}
-                ></input>
-                <div className={!passwordValid || !passwordMatch ? "line" : ""}></div>
-                <div className={`show-error${!passwordValid || !passwordMatch ? "True" : "False"}`}>
-                    {passwordMatch ? "Password must be filled out": "The password you entered doesn't match"}
-                </div>
-                <button className="login-button" type="submit" onClick={handleLogin}>
-                    Sign in
-                </button>
             </form>
         </div>
     );
@@ -195,98 +197,100 @@ export default function Login() {
         <div>
             <form className="login">
                 <h1 className={color === "white" ? "login-light" : "login-dark"}>register</h1>
-                <label
-                    className={color === "white" ? "text-light" : "text-dark"}
-                    htmlFor="username"
-                >
-                    <b>Email</b>
-                </label>
-                <input
-                    className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
-                    value={username}
-                    type="text"
-                    placeholder="Enter Email"
-                    maxLength="110"
-                    onChange={(e) => setUsername(e.target.value)}
-                ></input>
-                <div className={!usernameValid  || userExists? "line" : ""}></div>
-                <div className={`show-error${!usernameValid || userExists ? "True" : "False"}`}>
-                    {userExists? userExists:"Email must be filled out"}
+                <div className="login-content-input">
+                    <label
+                        className={color === "white" ? "text-light" : "text-dark"}
+                        htmlFor="username"
+                    >
+                        <b>Email</b>
+                    </label>
+                    <input
+                        className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
+                        value={username}
+                        type="text"
+                        placeholder="Enter Email"
+                        maxLength="110"
+                        onChange={(e) => setUsername(e.target.value)}
+                    ></input>
+                    <div className={!usernameValid  || userExists? "line" : ""}></div>
+                    <div className={`show-error${!usernameValid || userExists ? "True" : "False"}`}>
+                        {userExists? userExists:"Email must be filled out"}
+                    </div>
+                    <label
+                        className={color === "white" ? "text-light" : "text-dark"}
+                        htmlFor="username"
+                    >
+                        <b>First Name</b>
+                    </label>
+                    <input
+                        className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
+                        value={firstName}
+                        type="text"
+                        placeholder="Enter First Name"
+                        maxLength="110"
+                        onChange={(e) => setFirstName(e.target.value)}
+                    ></input>
+                    <div className={!firstNameValid ? "line" : ""}></div>
+                    <div className={`show-error${!firstNameValid ? "True" : "False"}`}>
+                        First Name must be filled out
+                    </div>
+                    <label
+                        className={color === "white" ? "text-light" : "text-dark"}
+                        htmlFor="username"
+                    >
+                        <b>Last Name</b>
+                    </label>
+                    <input
+                        className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
+                        value={lastName}
+                        type="text"
+                        placeholder="Enter Last Name"
+                        maxLength="110"
+                        onChange={(e) => setLastName(e.target.value)}
+                    ></input>
+                    <div className={!lastNameValid ? "line" : ""}></div>
+                    <div className={`show-error${!lastNameValid ? "True" : "False"}`}>
+                        Last Name must be filled out
+                    </div>
+                    <label
+                        className={color === "white" ? "text-light" : "text-dark"}
+                        htmlFor="password"
+                    >
+                        <b>Password</b>
+                    </label>
+                    <input
+                        className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
+                        value={password}
+                        type="password"
+                        placeholder="Enter Password"
+                        maxLength="110"
+                        onChange={(e) => setPassword(e.target.value)}
+                    ></input>
+                    <div className={!passwordValid ? "line" : ""}></div>
+                    <div className={`show-error${!passwordValid ? "True" : "False"}`}>
+                        Password must be filled out
+                    </div>
+                    <label
+                        className={color === "white" ? "text-light" : "text-dark"}
+                        htmlFor="password"
+                    >
+                        <b>Confirm Password</b>
+                    </label>
+                    <input
+                        className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
+                        type="password"
+                        placeholder="Enter Password Again"
+                        maxLength="110"
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    ></input>
+                    <div className={!confirmPasswordValid ? "line" : ""}></div>
+                    <div className={`show-error${!confirmPasswordValid ? "True" : "False"}`}>
+                        Passwords must match
+                    </div>
+                    <button className="login-button" type="submit" onClick={handleRegister}>
+                        Register
+                    </button>
                 </div>
-                <label
-                    className={color === "white" ? "text-light" : "text-dark"}
-                    htmlFor="username"
-                >
-                    <b>First Name</b>
-                </label>
-                <input
-                    className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
-                    value={firstName}
-                    type="text"
-                    placeholder="Enter First Name"
-                    maxLength="110"
-                    onChange={(e) => setFirstName(e.target.value)}
-                ></input>
-                <div className={!firstNameValid ? "line" : ""}></div>
-                <div className={`show-error${!firstNameValid ? "True" : "False"}`}>
-                    First Name must be filled out
-                </div>
-                <label
-                    className={color === "white" ? "text-light" : "text-dark"}
-                    htmlFor="username"
-                >
-                    <b>Last Name</b>
-                </label>
-                <input
-                    className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
-                    value={lastName}
-                    type="text"
-                    placeholder="Enter Last Name"
-                    maxLength="110"
-                    onChange={(e) => setLastName(e.target.value)}
-                ></input>
-                <div className={!lastNameValid ? "line" : ""}></div>
-                <div className={`show-error${!lastNameValid ? "True" : "False"}`}>
-                    Last Name must be filled out
-                </div>
-                <label
-                    className={color === "white" ? "text-light" : "text-dark"}
-                    htmlFor="password"
-                >
-                    <b>Password</b>
-                </label>
-                <input
-                    className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
-                    value={password}
-                    type="password"
-                    placeholder="Enter Password"
-                    maxLength="110"
-                    onChange={(e) => setPassword(e.target.value)}
-                ></input>
-                <div className={!passwordValid ? "line" : ""}></div>
-                <div className={`show-error${!passwordValid ? "True" : "False"}`}>
-                    Password must be filled out
-                </div>
-                <label
-                    className={color === "white" ? "text-light" : "text-dark"}
-                    htmlFor="password"
-                >
-                    <b>Confirm Password</b>
-                </label>
-                <input
-                    className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
-                    type="password"
-                    placeholder="Enter Password Again"
-                    maxLength="110"
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                ></input>
-                <div className={!confirmPasswordValid ? "line" : ""}></div>
-                <div className={`show-error${!confirmPasswordValid ? "True" : "False"}`}>
-                    Passwords must match
-                </div>
-                <button className="login-button" type="submit" onClick={handleRegister}>
-                    Register
-                </button>
             </form>
         </div>
     );
@@ -377,8 +381,6 @@ export default function Login() {
                     </div>
                 </div>
             )}
-
-            <div className="login-footer">{switchBox}</div>
         </>
     );
 }

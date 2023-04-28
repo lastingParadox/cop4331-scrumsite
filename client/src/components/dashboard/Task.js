@@ -23,16 +23,8 @@ function Task(props) {
     const [options, setOptions] = useState([]);
 
     const handleSelect = (lists) => {
-        const updatedTask = {
-            _id:id,
-            title: updatedTitle,
-            list:lists._id,
-            description: updatedDescription,
-            author: updatedAuthor,
-            dueDate: updatedDueDate,
-            assignees: updatedAssignees,
-        };
-        updateTaskList(lists._id, id,updatedTask);
+    
+        updateTaskList(lists._id, id);
     };
 
     const handleModalClose = () => {
@@ -133,12 +125,15 @@ function Task(props) {
             <Card className="taskCard">
                 <Card.Body className="taskBody" onClick={handleCardClick}>
                     <div className="taskContent">
+                        <div>
                         <div className="taskTitle">{title}</div>
+                        {dueDate ? dateApproaching() : null}
+                        </div>
                         <div className="dropdownWrapper">
                             <Drop lists={listNames} onSelect={handleSelect} title="" />
                         </div>
                     </div>
-                    {dueDate ? dateApproaching() : null}
+                    
                 </Card.Body>
             </Card>
 

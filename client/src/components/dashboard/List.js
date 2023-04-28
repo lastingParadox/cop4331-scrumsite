@@ -93,7 +93,7 @@ function List(props) {
             });
     }
     
-    function updateTaskList(listId, taskId,updatedTask) {
+    function updateTaskList(listId, taskId) {
         fetch(`/api/tasks/${taskId}/move`, {
             method: "PUT",
             headers: {
@@ -109,7 +109,7 @@ function List(props) {
                 setTasks(updatedTasks);
                 console.log(updatedTasks);
                 const updatedList = { id, title, tasks: updatedTasks };
-                updateListChange(updatedList,listId,updatedTask);
+                updateListChange(updatedList,listId,data.task);
             })
             .catch((error) => {
               console.error(error); // Handle any errors

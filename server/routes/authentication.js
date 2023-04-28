@@ -41,7 +41,7 @@ router.post("/login", async (req, res) => {
 
     if (!user) return res.status(404).json({ error: "User not found" });
 
-    if (user.comparePassword(password)) {
+    if (await user.comparePassword(password)) {
         const token = jwt.sign({ userId: user.id, firstName: user.firstName, lastName: user.lastName }, process.env.JWT_SECRET, {
             expiresIn: "2h",
         });

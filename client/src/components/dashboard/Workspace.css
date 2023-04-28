@@ -26,10 +26,6 @@
     background-color: black;
 }
 
-.workspace oddCHeader {
-    color: rgb(94, 250, 94);
-}
-
 @media screen and (max-width:600px) {
     .workspaceHeader{
         width: 100%;

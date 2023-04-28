@@ -8,7 +8,7 @@ import Drop from './Dropdown';
 
 
 function Task(props) {
-    const { id, title, description, author, dueDate, assignees, updateTask, deleteTask, listNames, updateTaskList } = props;
+    const { id, workspaceId, title, description, author, dueDate, assignees, updateTask, deleteTask, listNames, updateTaskList } = props;
     const [showModal, setShowModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -80,6 +80,8 @@ function Task(props) {
         fetch(`/api/users?search=${query}`)
             .then((res) => res.json())
             .then((res) => {
+                console.log(res)
+                res = res.filter((user) => user.workspaces.includes(workspaceId))
                 setOptions(res);
                 setIsLoading(false);
             });
@@ -89,6 +91,7 @@ function Task(props) {
         fetch(`/api/users`)
         .then((res) => res.json())
         .then((res) => {
+            res = res.filter((user) => user.workspaces.includes(workspaceId))
             setOptions(res);
         });
     }, []);

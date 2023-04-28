@@ -148,6 +148,7 @@ function List(props) {
             <Task
                 key={Math.random()}
                 id={task._id}
+                workspaceId={workspaceId}
                 title={task.title}
                 description={task.description}
                 author={task.author}

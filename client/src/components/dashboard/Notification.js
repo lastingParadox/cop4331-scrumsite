@@ -15,15 +15,18 @@ function Notification(props) {
   }
 
   return (
-    <Card>
+    <Card id="notificationCard">
       <Card.Body>
         <Card.Title id="notificationTitle">{title}</Card.Title>
-        <Button variant="success" onClick={handleAcceptClick}>
-          Accept
-        </Button>{" "}
-        <Button variant="danger" onClick={handleDeclineClick}>
-          Decline
-        </Button>
+        <div className="center">
+          <Button variant="success" onClick={handleAcceptClick}>
+            Accept
+          </Button>{" "}
+          <Button variant="danger" onClick={handleDeclineClick}>
+            Decline
+          </Button>
+        </div>
+        
       </Card.Body>
     </Card>
   );

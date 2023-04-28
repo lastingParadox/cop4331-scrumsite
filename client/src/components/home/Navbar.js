@@ -11,6 +11,10 @@ class Navbar extends Component {
         this.setState({ clicked: !this.state.clicked });
     };
 
+    resetClick = () => {
+        this.setState({ clicked: false });
+    };
+
     render() {
         return (
             <>
@@ -25,7 +29,7 @@ class Navbar extends Component {
                         {MenuItems.map((item, index) => {
                             return (
                                 <li key={index}>
-                                    <Link className={item.className} to={"/home" + item.url}>
+                                    <Link className={item.className} onClick={this.resetClick} to={"/home" + item.url}>
                                         <i className={item.icon}></i>
                                         {item.title}
                                     </Link>

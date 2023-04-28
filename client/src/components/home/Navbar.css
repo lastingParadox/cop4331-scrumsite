@@ -103,6 +103,8 @@
         left: 0;
         opacity: 1;
         z-index: -1;
+        height: calc(100vh - 30px);
+        overflow-y: auto;
     }
 
     .nav-links {

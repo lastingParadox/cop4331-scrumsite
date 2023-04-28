@@ -63,13 +63,8 @@ router.patch("/inviteResponse", authenticateJWT, async(req,res) =>{
     const workspace = await Workspace.findById(workspaceId);
     if (!workspace) return res.status(404).json({ error: "The requested workspace does not exist." });
 
-    const index = user.notifications.findIndex((notification) => {
-        return notification.workspace == workspaceId;
-    })
-    
-    if (!index) return res.status(404).json({ error: "The requested notification does not exist for you." });
+    user.notifications = user.notifications.filter((notification) => { notification.workspace._id !== workspace._id })
 
-    user.notifications.splice(index,1);
     if (accepted) {
         user.workspaces.push(workspaceId);
         workspace.members.push(user._id);

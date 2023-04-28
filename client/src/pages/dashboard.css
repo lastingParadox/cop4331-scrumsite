@@ -17,6 +17,9 @@
     height: 100px;
     background-color: white;
     position: sticky;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
 }
 
 .logoutBox {
@@ -43,4 +46,20 @@
 .workspaces {
     width: 100%;
     padding: 50%;
+}
+
+#logo {
+    height: 50px;
+    width: 50px;
+}
+
+.logoBox {
+    display: flex;
+    gap: 10px;
+}
+
+#logoText {
+    font-size: 2rem;
+    margin: 0;
+    line-height: 1.5;
 }

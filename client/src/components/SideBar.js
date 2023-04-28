@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal, Offcanvas} from "react-bootstrap";
+import { Button, Modal, Offcanvas } from "react-bootstrap";
 import { BsChevronRight} from "react-icons/bs";
 
 import "./sidebar.css";

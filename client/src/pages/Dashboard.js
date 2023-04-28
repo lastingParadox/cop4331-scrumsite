@@ -4,16 +4,17 @@ import "./dashboard.css";
 import Workspace from "../components/Workspace.js";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.svg"
 
 function Dashboard() {
     const navigate = useNavigate();
-    const [token, setToken] = useState(localStorage.getItem('token'));
+    const [token, setToken] = useState(sessionStorage.getItem('token'));
     const [userId, setUserId] = useState("");
     const [workspaceList, setWorkspaceList] = useState([]);
     const [workspace, setWorkspace] = useState(null);
 
     function logout() {
-        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         navigate("/home");
     }
 
@@ -74,6 +75,11 @@ function Dashboard() {
     return (
         <div className="dashpage">
             <div className="dashnav">
+                <div className="logoBox">
+                    <img id="logo" src={ logo } alt="Scrum Site Logo"/>
+                    <h1 id="logoText">Scrum Site</h1>
+                </div>
+                
                 <div className="logoutBox">
                     <p>Hello, user!</p>
                     <Button className="logout" variant="warning" onClick={logout}>

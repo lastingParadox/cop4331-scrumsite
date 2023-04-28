@@ -3,7 +3,9 @@ import { Button, Form, Row, Col,} from "react-bootstrap";
 import List from "./List";
 import "./Workspace.css";
 import "./sidebar.css";
-import ListNameCard from "./ListNameCard";
+import ListNameCard from "./ListNameCard.js";
+import WorkspaceHeader from "./WorkspaceHeader.js";
+import { BsPlusCircle } from "react-icons/bs";
 import { useEffect } from "react";
 
 function Workspace(props) {
@@ -61,12 +63,11 @@ function Workspace(props) {
     }
 
     // Callback function to handle changes to the workspace name
-    function handleTitleChange(event) {
-        setTitle(event.target.value);
+    function handleTitleChange(title) {
+        setTitle(title);
     }
 
     async function handleTitleSubmit(event) {
-        event.preventDefault();
 
         await fetch(`/api/workspaces/${id}`, {
             method: 'PATCH',
@@ -155,34 +156,14 @@ function Workspace(props) {
 
     return (
         <div className="workspace">
-            <div className="workspaceHeader">
-                <div class="container-fluid">
-                    <Row>
-                        <Col md="auto">
-                            <Form.Control type="text" value={title} onChange={handleTitleChange}/>
-                        </Col>
-                        <Col md="auto">
-                            <Button className="ms-1" variant="success" onClick={handleTitleSubmit}>
-                                Submit
-                            </Button>
-                        </Col>
-                        <Col md="auto">
-                            {showAddListCard ? (
-                                <ListNameCard onSubmit={addList} onCancel={() => setShowAddListCard(false)} />
-                            ) : (
-                                <Button className="ms-1" onClick={() => setShowAddListCard(true)}>Add List</Button>
-                            )}
-                        </Col>
-                        <Col md="auto">
-                            <Button className="ms-1" variant="danger" onClick={handleDeleteWorkspace}>
-                                Delete Workspace
-                            </Button>
-                        </Col>
-                    </Row>
-                </div>
-            </div>
+            <WorkspaceHeader title={title} onTitleChange={handleTitleChange} titleSave={handleTitleSubmit} handleDelete={handleDeleteWorkspace}/>
             <div className="workspace-lists">
                 {listItems}
+                {showAddListCard ? (
+                    <ListNameCard onSubmit={addList} onCancel={() => setShowAddListCard(false)} />
+                ) : (
+                    <Button id="addListButton" className="ms-1" onClick={() => setShowAddListCard(true)}>Add List <BsPlusCircle/></Button>
+                )}
             </div>
         </div>
     );

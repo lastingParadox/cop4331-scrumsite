@@ -1,0 +1,37 @@
+#workspaceTitle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 50%;
+}
+
+#workspaceTitle .card-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+#titleButtons {
+    display: flex;
+    gap: 2px;
+}
+
+.title {
+    padding: 4px 8px;
+}
+
+#listNameField, #addTaskField {
+    margin-left: 0;
+}
+
+#addTaskField {
+    margin-top: 8px;
+}
+
+.form-control {
+    margin-right: 4px;
+}
+
+#titleField {
+    font-size: 1.5rem;
+}

@@ -1,19 +1,20 @@
 .workspace {
     width: 100%;
     overflow-y: auto;
+    padding: 10px 20px;
+    position: relative;
 }
 
 .workspace-lists {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 10px;
+    margin: 10px 0px;
     gap: 10px;
+    align-items: flex-start;
 }
 
 .workspaceHeader {
-    margin: 10px;
-    overflow: auto;
     display: flex;
 }
 
@@ -33,4 +34,17 @@
     .workspaceHeader{
         width: 100%;
     }
+}
+
+#addListButton {
+    align-self: top;
+    width: 22rem;
+    background-color: transparent;
+    border-color: var(--bs-green);
+    border-width: 2px;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
 }

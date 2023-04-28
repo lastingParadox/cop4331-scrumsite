@@ -49,6 +49,7 @@ function Dashboard() {
     }
 
     useEffect(() => {
+        document.title = "Dashboard";
         if (!sessionStorage.getItem('token')) {
             navigate('/');
             return;

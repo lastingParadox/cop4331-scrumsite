@@ -1,6 +1,6 @@
 import "./Credits.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Component } from "react";
+import { useEffect } from "react";
 
 const devList = [
     {
@@ -49,19 +49,21 @@ const Card = (props) => (
     </div>
 );
 
-export default class Credits extends Component {
-    listCredits() {
-        return devList.map((cur, index) => {
-            return <Card key={index} person={cur} />;
-        });
-    }
+export default function Credits() {
 
-    render() {
-        return (
-            <div className="main-container">
-                <div className="credits-title">Credits</div>
-                <div className="credits-container">{this.listCredits()}</div>
-            </div>
-        );
-    }
+    useEffect(() => {
+        document.title = "Scrum Site - Credits";
+    }, []);
+
+    const listCredits = devList.map((cur, index) => {
+        return <Card key={index} person={cur} />;
+    });
+
+    return (
+        <div className="main-container">
+            <div className="credits-title">Credits</div>
+            <div className="credits-container">{listCredits}</div>
+        </div>
+    );
 }
+

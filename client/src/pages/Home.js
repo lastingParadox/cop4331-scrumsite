@@ -14,8 +14,14 @@ import Login from "./Login.js";
 import ScrollToTop from "../components/home/ScrollToTop.js";
 
 import { Route, Routes, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Home() {
+
+    useEffect(() => {
+        document.title = "Scrum Site";
+    }, []);
+
     return (
         <>
             <Navbar />

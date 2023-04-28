@@ -3,8 +3,14 @@ import Navbar from "../components/home/Navbar";
 import ContactImage from "../assets/contact.jpg";
 import Footer from "../components/home/Footer";
 import ContactForm from "../components/home/ContactForm";
+import { useEffect } from "react";
 
 function Contact() {
+
+    useEffect(() => {
+        document.title = "Scrum Site - Contact Us";
+    }, []);
+
     return (
         <>
             <Navbar />

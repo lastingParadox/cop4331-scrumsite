@@ -18,10 +18,14 @@ router.post("/invite", authenticateJWT, async(req,res) =>{
     const receiverId = req.body.receiverId;
     const workspaceId = req.body.workspaceId;
 
-    if (!receiverId) {
+    const receiver = await User.findById(receiverId);
+    if (!receiver) {
         return res.status(404).send('User not found');
     }
-    const receiver = await User.findById(receiverId);
+
+    const workspace = await Workspace.findById(workspaceId);
+    if (!workspace) return res.status(404).json({ error: "The requested workspace does not exist." });
+
     const sender = req.user;
 
     const workspaceExists = sender.workspaces.some((workspace) => {
@@ -47,7 +51,7 @@ router.post("/invite", authenticateJWT, async(req,res) =>{
     receiver.notifications.push(invitation);
 
     await receiver.save();
-    return res.status(200).json(receiver.notifications);
+    return res.status(200).json({ success: `Successfully sent ${receiver.email} a notification to join ${workspace.title}.`, receiver, workspace });
 });
 
 router.patch("/inviteResponse", authenticateJWT, async(req,res) =>{
@@ -56,18 +60,24 @@ router.patch("/inviteResponse", authenticateJWT, async(req,res) =>{
 
     const user = req.user;
 
+    const workspace = await Workspace.findById(workspaceId);
+    if (!workspace) return res.status(404).json({ error: "The requested workspace does not exist." });
+
     const index = user.notifications.findIndex((notification) => {
         return notification.workspace == workspaceId;
     })
     
-    if (!index) res.status(404).json({ error: "The requested notification does not exist for you." });
+    if (!index) return res.status(404).json({ error: "The requested notification does not exist for you." });
 
     user.notifications.splice(index,1);
-    if (accepted) 
+    if (accepted) {
         user.workspaces.push(workspaceId);
+        workspace.members.push(user._id);
+        await workspace.save();
+    }
 
     await user.save();
-    return res.status(200).json(user.notifications);
+    return res.status(200).json({ workspace, user });
 })
 
 

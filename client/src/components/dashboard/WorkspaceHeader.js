@@ -116,7 +116,7 @@ const WorkspaceHeader = ({ title, userId, workspaceId, onTitleChange, titleSave,
                 </Modal.Header>
                 <Modal.Body>
                 <Form.Group>
-                        <Form.Label>Author</Form.Label>
+                        <Form.Label>User</Form.Label>
                         <AsyncTypeahead
                             filterBy={filterBy}
                             id="async-users"

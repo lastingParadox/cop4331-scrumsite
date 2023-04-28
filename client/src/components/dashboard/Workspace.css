@@ -53,3 +53,9 @@
 .workspaceHeader .form-control {
     max-width: 50%;
 }
+
+@media screen and (max-width: 630px) {
+    .workspace-lists {
+        justify-content: center;
+    }
+}

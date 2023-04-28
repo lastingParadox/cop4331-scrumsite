@@ -22,7 +22,7 @@ function ListNameCard(props) {
     };
 
     return (
-        <Card>
+        <Card id="listCard">
             <Card.Body>
                 <Card.Title>Add a new list</Card.Title>
                 <Form onSubmit={handleSubmit}>
@@ -35,12 +35,10 @@ function ListNameCard(props) {
                             onChange={(event) => setListName(event.target.value)}
                         />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Add List
-                    </Button>
-                    <Button variant="secondary" onClick={handleCancel}>
-                        Cancel
-                    </Button>
+                    <div className="addListButtons">
+                        <Button variant="success" type="submit">Add List</Button>
+                        <Button variant="secondary" onClick={handleCancel}>Cancel</Button>
+                    </div>
                 </Form>
             </Card.Body>
         </Card>

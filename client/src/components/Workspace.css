@@ -48,3 +48,12 @@
     gap: 8px;
     justify-content: center;
 }
+
+.workspaceHeader {
+    margin: 10px;
+    display: flex;
+}
+
+.workspaceHeader .form-control {
+    max-width: 50%;
+}

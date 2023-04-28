@@ -8,10 +8,10 @@ import logo from "../assets/logo.svg"
 
 function Dashboard() {
     const navigate = useNavigate();
-    const [token, setToken] = useState(sessionStorage.getItem('token'));
     const [userId, setUserId] = useState("");
     const [userFirstName, setUserFirstName] = useState("user");
     const [workspaceList, setWorkspaceList] = useState([]);
+    const [notifications, setNotifications] = useState([]);
     const [workspace, setWorkspace] = useState(null);
 
     function logout() {
@@ -44,7 +44,7 @@ function Dashboard() {
     }
 
     useEffect(() => {
-        if (!token) {
+        if (!sessionStorage.getItem('token')) {
             navigate('/');
             return;
         }
@@ -53,7 +53,7 @@ function Dashboard() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: token,
+                Authorization: sessionStorage.getItem('token'),
             },
         })
         .then((response) => {
@@ -63,16 +63,17 @@ function Dashboard() {
         .then((data) => {
             setUserId(data.user._id);
             setUserFirstName(data.user.firstName);
-            data = data.workspaces.map((element) => {
+            const workspaces = data.workspaces.map((element) => {
                 return { id: element._id, title: element.title };
             });
-            setWorkspaceList(data);
+            setWorkspaceList(workspaces);
+            if (data.user.notifications) setNotifications(data.user.notifications)
         })
         .catch((error) => {
             console.log(error.message);
             return;
         })
-    }, [navigate, token]);
+    }, []);
 
     return (
         <div className="dashpage">
@@ -93,6 +94,7 @@ function Dashboard() {
                 {workspaceList.length >= 0 ? (
                     <Sidebar
                         workspaces={workspaceList}
+                        notifications={notifications}
                         userId={userId}
                         onWorkspaceSelect={onWorkspaceSelect}
                         onWorkspaceCreate={onWorkspaceCreate}
@@ -105,6 +107,7 @@ function Dashboard() {
                         className="workspace"
                         key={Math.random()}
                         id={workspace._id}
+                        userId={userId}
                         title={workspace.title}
                         lists={workspace.lists}
                         updateWorkspaceTitle={updateWorkspaceTitle}

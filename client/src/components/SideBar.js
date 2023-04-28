@@ -5,7 +5,7 @@ import { BsChevronRight} from "react-icons/bs";
 import "./sidebar.css";
 
 function Sidebar(props) {
-    const { workspaces, userId } = props;
+    const { workspaces, notifications, userId, onWorkspaceCreate, onWorkspaceSelect } = props;
     const [showModal, setShowModal] = useState(false);
     const [newWorkspaceTitle, setNewWorkspaceTitle] = useState("New Workspace");
 
@@ -16,7 +16,7 @@ function Sidebar(props) {
         const response = await fetch(`/api/workspaces/${id}`);
         const workspace = await response.json();
         console.log(workspace);
-        props.onWorkspaceSelect(workspace);
+        onWorkspaceSelect(workspace);
     };
 
     const handleWorkspaceCreate = async () => {
@@ -32,15 +32,22 @@ function Sidebar(props) {
 
         const newWorkspace = await response.json();
         setNewWorkspaceTitle("New Workspace");
-        props.onWorkspaceCreate(newWorkspace);
+        onWorkspaceCreate(newWorkspace);
         handleModalClose();
     };
 
     const workspaceComponents = workspaces.map((workspace) => (
-        <div key={workspace.id} onClick={() => handleWorkspaceClick(workspace.id)}>
+        <div key={Math.random()} onClick={() => handleWorkspaceClick(workspace.id)}>
             <h4>{workspace.title}</h4>
         </div>
     ));
+
+    const notificationComponents = notifications.map((notification) => (
+        <div key={Math.random()}>
+            <h4>{notification.workspace.title}</h4>
+            <p>{notification.sender}</p>
+        </div>
+    ))
 
     const [show, setShow] = useState(false);
 
@@ -48,14 +55,14 @@ function Sidebar(props) {
     const handleShow = () => setShow(true);
 
     return (
-        <div class="wrapper">
+        <div className="wrapper">
             <Button variant="secondary" onClick={handleShow}>
                 <BsChevronRight/>
             </Button>
             
             <Offcanvas className="sidebar"  show={show} onHide={handleClose} {...props}>
                 <Offcanvas.Header closeButton>
-                    <Offcanvas.Title><oddCHeader>Workspaces</oddCHeader></Offcanvas.Title>
+                    <Offcanvas.Title>Workspaces</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     {workspaceComponents}

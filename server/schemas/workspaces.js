@@ -25,8 +25,10 @@ workspaceSchema.pre("save", async function (next) {
             if (!user) {
                 throw new Error("User not found");
             }
-            user.workspaces.push(newWorkspace._id);
-            await user.save();
+            if (!user.workspaces.includes(newWorkspace._id)) {
+                user.workspaces.push(newWorkspace._id);
+                await user.save();
+            }
         });
         next();
     } catch (error) {

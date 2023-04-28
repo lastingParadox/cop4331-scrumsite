@@ -95,16 +95,26 @@ function Task(props) {
 
     const filterBy = () => true;
 
+    const date = new Date(updatedDueDate);
+    date.setHours(date.getHours() + 4)
+
     const dateApproaching = () => {
-        const date = new Date(dueDate);
         const today = new Date();
-        if (date.getDate() < today.getDate())
-            return <div className="small late">{new Date(dueDate).toLocaleDateString("en-US")}</div>
-        else if (date.getDate() >= today.getDate() && date.getDate() <= (today.getDate() + 2) )
-            return <div className="small soon">{new Date(dueDate).toLocaleDateString("en-US")}</div>
+        const twoDays = new Date();
+        twoDays.setDate(today.getDate() + 2)
+
+        console.log(today > date)
+        console.log(date.toDateString() === today.toDateString())
+
+        if (today.getMonth() > date.getMonth() || (today.getMonth() === date.getMonth() && today.getDate() > date.getDate()))
+            return <div className="small late">{date.toLocaleDateString("en-US")}</div>
+        else if ((today.toDateString() === date.toDateString()) || (today <= date && twoDays > date))
+            return <div className="small soon">{date.toLocaleDateString("en-US")}</div>
         else
-            return <div className="small future">{new Date(dueDate).toLocaleDateString("en-US")}</div>
+            return <div className="small future">{date.toLocaleDateString("en-US")}</div>
     }
+
+    const dateValue = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2)
 
     const handleCardClick = (event) => {
         const clickedElement = event.target;
@@ -155,7 +165,7 @@ function Task(props) {
                     : null}
                     {updatedDueDate ?
                         <p>
-                            <strong>Due Date:</strong> {updatedDueDate ? new Date(updatedDueDate).toLocaleDateString("en-US") : null}
+                            <strong>Due Date:</strong> {updatedDueDate ? date.toLocaleDateString('en-us') : null}
                         </p>
                     : null}
                     {updatedAssignees.length > 0 ?
@@ -233,8 +243,8 @@ function Task(props) {
                         <Form.Label>Due Date</Form.Label>
                         <Form.Control
                             type="date"
-                            value={updatedDueDate}
-                            onChange={(e) => setUpdatedDueDate(e.target.value)}
+                            value={dateValue}
+                            onChange={(e) => { console.log(date.toISOString().split('T')[0]); setUpdatedDueDate(e.target.value)}}
                         />
                     </Form.Group>
 

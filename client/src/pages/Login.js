@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Login.css";
 import Switch from "react-switch";
 import { Navigate, Route, useNavigate } from "react-router-dom";
-
+import { Helmet } from 'react-helmet';
 import useWindowSize from "../components/home/WindowSize";
 
 export default function Login() {
@@ -326,6 +326,9 @@ export default function Login() {
 
     return (
         <>
+            <Helmet>
+                <title>{signIn ? "Scrum Site - Register" : "Scrum Site - Login"}</title>
+            </Helmet>
             {size.width > 1120 ? (
                 <>
                     <div className="login-container">

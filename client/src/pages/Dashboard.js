@@ -5,6 +5,7 @@ import Workspace from "../components/dashboard/Workspace.js";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg"
+import { Helmet } from "react-helmet";
 
 function Dashboard() {
     const navigate = useNavigate();
@@ -49,7 +50,6 @@ function Dashboard() {
     }
 
     useEffect(() => {
-        document.title = "Dashboard";
         if (!sessionStorage.getItem('token')) {
             navigate('/');
             return;
@@ -82,51 +82,56 @@ function Dashboard() {
     }, []);
 
     return (
-        <div className="dashpage">
-            <div className="dashnav">
-                <div className="logoBox">
-                    <img id="logo" src={ logo } alt="Scrum Site Logo"/>
-                    <h1 id="logoText">Scrum Site</h1>
+        <>
+            <Helmet>
+                <title>Scrum Site - Dashboard</title>
+            </Helmet>
+            <div className="dashpage">
+                <div className="dashnav">
+                    <div className="logoBox">
+                        <img id="logo" src={ logo } alt="Scrum Site Logo"/>
+                        <h1 id="logoText">Scrum Site</h1>
+                    </div>
+                    
+                    <div className="logoutBox">
+                        <p>Hello, {userFirstName}!</p>
+                        <Button className="logout" variant="warning" onClick={logout}>
+                            Logout
+                        </Button>
+                    </div>
                 </div>
-                
-                <div className="logoutBox">
-                    <p>Hello, {userFirstName}!</p>
-                    <Button className="logout" variant="warning" onClick={logout}>
-                        Logout
-                    </Button>
+                <div className="dash">
+                    <div className="worklist">
+                    {workspaceList.length >= 0 ? (
+                        <Sidebar
+                            workspaces={workspaceList}
+                            setNotifications={setNotificationsSideBar}
+                            notifications={notifications}
+                            userId={userId}
+                            onWorkspaceSelect={onWorkspaceSelect}
+                            onWorkspaceCreate={onWorkspaceCreate}
+                        />
+                    ) : (
+                        <p>Loading...</p>
+                    )}
+                    {workspace ? (
+                        <Workspace
+                            className="workspace"
+                            key={Math.random()}
+                            id={workspace._id}
+                            userId={userId}
+                            title={workspace.title}
+                            lists={workspace.lists}
+                            updateWorkspaceTitle={updateWorkspaceTitle}
+                            deleteWorkspace={removeWorkspace}
+                        />
+                    ) : (
+                        <p className="workspace">Loading...</p>
+                    )}
+                    </div>
                 </div>
             </div>
-            <div className="dash">
-                <div className="worklist">
-                {workspaceList.length >= 0 ? (
-                    <Sidebar
-                        workspaces={workspaceList}
-                        setNotifications={setNotificationsSideBar}
-                        notifications={notifications}
-                        userId={userId}
-                        onWorkspaceSelect={onWorkspaceSelect}
-                        onWorkspaceCreate={onWorkspaceCreate}
-                    />
-                ) : (
-                    <p>Loading...</p>
-                )}
-                {workspace ? (
-                    <Workspace
-                        className="workspace"
-                        key={Math.random()}
-                        id={workspace._id}
-                        userId={userId}
-                        title={workspace.title}
-                        lists={workspace.lists}
-                        updateWorkspaceTitle={updateWorkspaceTitle}
-                        deleteWorkspace={removeWorkspace}
-                    />
-                ) : (
-                    <p className="workspace">Loading...</p>
-                )}
-                </div>
-            </div>
-        </div>
+        </>
     );
 }
 

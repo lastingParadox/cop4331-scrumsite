@@ -10,20 +10,20 @@ import Service from "./Service";
 import Contact from "./Contact";
 import Credits from "../components/home/Credits";
 import Login from "./Login.js";
+import { Helmet } from "react-helmet"
 
 import ScrollToTop from "../components/home/ScrollToTop.js";
 
 import { Route, Routes, Navigate } from "react-router-dom";
-import { useEffect } from "react";
 
 function Home() {
 
-    useEffect(() => {
-        document.title = "Scrum Site";
-    }, []);
-
     return (
         <>
+            <Helmet>
+                <title>Scrum Site</title>
+            </Helmet>
+
             <Navbar />
             <ScrollToTop />
             <Routes>

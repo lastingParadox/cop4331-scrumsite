@@ -58,7 +58,7 @@ router.patch("/inviteResponse", authenticateJWT, async(req,res) =>{
     const workspaceId = req.body.workspace;
     const accepted = req.body.inviteResult;
 
-    const user = req.user;
+    const user = await User.findById(req.user._id);
 
     const workspace = await Workspace.findById(workspaceId);
     if (!workspace) return res.status(404).json({ error: "The requested workspace does not exist." });

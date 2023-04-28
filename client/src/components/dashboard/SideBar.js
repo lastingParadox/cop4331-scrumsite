@@ -5,7 +5,7 @@ import Notification from './Notification.js'
 import "./sidebar.css";
 
 function Sidebar(props) {
-    const { workspaces, notifications, userId, onWorkspaceCreate, onWorkspaceSelect } = props;
+    const { workspaces, notifications, setNotifications, userId, onWorkspaceCreate, onWorkspaceSelect } = props;
     const [showModal, setShowModal] = useState(false);
     const [newWorkspaceTitle, setNewWorkspaceTitle] = useState("New Workspace");
 
@@ -42,13 +42,26 @@ function Sidebar(props) {
         </div>
     ));
 
-    const notificationComponents = notifications.map((notification) => (
+    const acceptNotification = (workspace) => {
+        console.log(workspace)
+        const updatedNotifications = notifications.filter((notification) => notification.workspace._id !== workspace._id);
+        console.log(updatedNotifications);
+        setNotifications(updatedNotifications);
+        onWorkspaceCreate(workspace);
+    }
 
+    const declineNotification = (workspace) => {
+        const updatedNotifications = notifications.filter((notification) => notification.workspace._id !== workspace._id);
+        setNotifications(updatedNotifications);
+    }
+
+    const notificationComponents = notifications.map((notification) => (
         <Notification
+            key={Math.random()}
             id={notification.workspace._id}
             title={notification.workspace.title}
-            accept={() => console.log("accept")}
-            decline={() => console.log("decline")}
+            accept={acceptNotification}
+            decline={declineNotification}
         />
     ))
 

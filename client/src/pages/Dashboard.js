@@ -39,8 +39,13 @@ function Dashboard() {
     }
 
     function onWorkspaceCreate(newWorkspace) {
+        console.log(newWorkspace)
         const dataWorkspace = { id: newWorkspace._id, title: newWorkspace.title };
         setWorkspaceList([...workspaceList, dataWorkspace]);
+    }
+
+    function setNotificationsSideBar(updatedNotifications) {
+        setNotifications(updatedNotifications);
     }
 
     useEffect(() => {
@@ -95,6 +100,7 @@ function Dashboard() {
                 {workspaceList.length >= 0 ? (
                     <Sidebar
                         workspaces={workspaceList}
+                        setNotifications={setNotificationsSideBar}
                         notifications={notifications}
                         userId={userId}
                         onWorkspaceSelect={onWorkspaceSelect}

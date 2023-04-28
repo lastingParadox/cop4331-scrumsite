@@ -113,10 +113,6 @@ function Workspace(props) {
         setLists(updatedLists);
     };
 
-    useEffect(() => {
-        
-    }, [lists]);
-
     function handleDeleteWorkspace() {
         // send a DELETE request to the server to delete the workspace with the current workspace id
         fetch(`/api/workspaces/${id}`, { method: "DELETE" })
@@ -152,8 +148,6 @@ function Workspace(props) {
     ) : (
         <p>No lists yet.</p>
     );
-
-
 
     return (
         <div className="workspace">

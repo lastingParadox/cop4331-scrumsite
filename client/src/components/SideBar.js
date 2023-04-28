@@ -48,21 +48,14 @@ function Sidebar(props) {
     const handleShow = () => setShow(true);
 
     return (
-        <div class="wrapper">
-            <Button variant="secondary" onClick={handleShow}>
-                <BsChevronRight/>
-            </Button>
-            
-            <Offcanvas className="sidebar"  show={show} onHide={handleClose} {...props}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title><oddCHeader>Workspaces</oddCHeader></Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    {workspaceComponents}
-                    <button onClick={handleModalOpen}>Create Workspace</button>
-                </Offcanvas.Body>
-            </Offcanvas>
-
+        <div className="sidebar">
+            <center>
+                <h3>Workspaces</h3>
+            </center>
+            {workspaceComponents}
+            <center>
+                <button onClick={handleModalOpen}>Create Workspace</button>
+            </center>
             <Modal show={showModal} onHide={handleModalClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Create Workspace</Modal.Title>

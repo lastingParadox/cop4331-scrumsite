@@ -13,6 +13,11 @@
     overflow-y: scroll;
 }
 
+.worklist {
+    height: 100%;
+    display:flex;
+}
+
 .dashnav {
     height: 100px;
     background-color: white;
@@ -62,4 +67,11 @@
     font-size: 2rem;
     margin: 0;
     line-height: 1.5;
+}
+
+@media screen and (max-width: 630px) {
+    .worklist {
+    width: 100%; 
+    display:block /* The width is 100%, when the viewport is 800px or smaller */
+    }
 }

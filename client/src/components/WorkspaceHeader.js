@@ -43,12 +43,14 @@ const ListTitle = ({ title, onTitleChange, titleSave, handleDelete }) => {
                 <h2>{title}</h2>
             )}
             <div id="titleButtons">
-                <Button className="title" variant="success" onClick={handleSaveButtonClick}>
-                    {editMode ? "Submit" : "Edit Name" }
-                </Button>
-                <Button className="title" variant="danger" onClick={handleDeleteButtonClick}>
-                    {editMode ? "Cancel" : "Delete Workspace" }
-                </Button>
+                <div className="buttonsBelow">
+                    <Button className="title" variant="success" onClick={handleSaveButtonClick}>
+                        {editMode ? "Submit" : "Edit Name" }
+                    </Button>
+                    <Button className="title" variant="danger" onClick={handleDeleteButtonClick}>
+                        {editMode ? "Cancel" : "Delete Workspace" }
+                    </Button>
+                </div>
             </div>
         </div>
     );

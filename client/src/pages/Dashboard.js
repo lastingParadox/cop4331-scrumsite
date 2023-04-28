@@ -90,13 +90,16 @@ function Dashboard() {
                 </div>
             </div>
             <div className="dash">
+                <div className="worklist">
                 {workspaceList.length >= 0 ? (
-                    <Sidebar
-                        workspaces={workspaceList}
-                        userId={userId}
-                        onWorkspaceSelect={onWorkspaceSelect}
-                        onWorkspaceCreate={onWorkspaceCreate}
-                    />
+                    <div>
+                        <Sidebar
+                            workspaces={workspaceList}
+                            userId={userId}
+                            onWorkspaceSelect={onWorkspaceSelect}
+                            onWorkspaceCreate={onWorkspaceCreate}
+                        />
+                    </div>
                 ) : (
                     <p>Loading...</p>
                 )}
@@ -113,6 +116,7 @@ function Dashboard() {
                 ) : (
                     <p className="workspace">Loading...</p>
                 )}
+                </div>
             </div>
         </div>
     );

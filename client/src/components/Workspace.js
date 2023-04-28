@@ -8,6 +8,7 @@ import WorkspaceHeader from "./WorkspaceHeader.js";
 import { BsPlusCircle } from "react-icons/bs";
 import { useEffect } from "react";
 
+
 function Workspace(props) {
     const { updateWorkspaceTitle, deleteWorkspace } = props;
     const id = props.id;
@@ -152,6 +153,7 @@ function Workspace(props) {
     ) : (
         <p>No lists yet.</p>
     );
+
 
 
     return (

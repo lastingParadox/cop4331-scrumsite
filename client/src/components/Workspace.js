@@ -9,8 +9,7 @@ import { BsPlusCircle } from "react-icons/bs";
 import { useEffect } from "react";
 
 function Workspace(props) {
-    const { updateWorkspaceTitle, deleteWorkspace } = props;
-    const id = props.id;
+    const { userId, id, updateWorkspaceTitle, deleteWorkspace } = props;
     const [title, setTitle] = useState(props.title);
     const [lists, setLists] = useState(props.lists ?? []);
     const [showAddListCard, setShowAddListCard] = useState(false); // add state for showing/hiding the card
@@ -63,23 +62,23 @@ function Workspace(props) {
     }
 
     // Callback function to handle changes to the workspace name
-    function handleTitleChange(title) {
-        setTitle(title);
+    function handleTitleChange(newTitle) {
+        setTitle(newTitle);
     }
 
-    async function handleTitleSubmit(event) {
-
+    async function handleTitleSubmit(newTitle) {
+        console.log(newTitle)
         await fetch(`/api/workspaces/${id}`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ title }),
+            body: JSON.stringify({ title: newTitle }),
         });
 
-        setTitle(title);
+        setTitle(newTitle);
 
-        const workspace = { id, title, lists };
+        const workspace = { id, title: newTitle, lists };
         updateWorkspaceTitle(workspace);
     }
 
@@ -156,7 +155,14 @@ function Workspace(props) {
 
     return (
         <div className="workspace">
-            <WorkspaceHeader title={title} onTitleChange={handleTitleChange} titleSave={handleTitleSubmit} handleDelete={handleDeleteWorkspace}/>
+            <WorkspaceHeader
+                title={title}
+                userId={userId}
+                workspaceId={id}
+                onTitleChange={handleTitleChange}
+                titleSave={handleTitleSubmit}
+                handleDelete={handleDeleteWorkspace}
+            />
             <div className="workspace-lists">
                 {listItems}
                 {showAddListCard ? (

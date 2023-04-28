@@ -17,12 +17,15 @@
 
 .credits-card {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: #ffff;
     border-radius: 13px;
-    padding: 15px 5px 15px 15px;
+    padding: 1rem;
     width: 100%;
-    min-width: 200px;
-    max-width: 400px;
+    max-width: 300px;
     box-shadow: 0 5px 15px 0 rgb(0, 0, 0, 0.25);
 }
 
@@ -59,12 +62,20 @@
     width: 100%;
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 550px) {
     .main-container {
         padding: 12rem 2rem 12rem 0;
     }
 
     .credits-container {
         padding: 0 2rem;
+    }
+
+    .credits-title {
+        font-size: 3rem;
+    }
+
+    .credits-email {
+        font-size: 11px;
     }
 }

@@ -68,10 +68,10 @@ router.patch("/inviteResponse", authenticateJWT, async(req,res) =>{
     if (accepted) {
         user.workspaces.push(workspaceId);
         workspace.members.push(user._id);
-        await workspace.save();
     }
 
     await user.save();
+    await workspace.save();
     return res.status(200).json({ workspace, user });
 })
 

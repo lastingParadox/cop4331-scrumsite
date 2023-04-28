@@ -5,7 +5,7 @@ import "./list.css";
 import ListTitle from "./ListTitle";
 
 function List(props) {
-    const { id, title, updateList, deleteList, workspaceId, listNames, updateListChange } = props;
+    const { id, userId, title, updateList, deleteList, workspaceId, listNames, updateListChange } = props;
     const [tasks, setTasks] = useState(props.tasks);
     const [listName, setListName] = useState(title);
     const [taskName, setTaskName] = useState("");
@@ -45,7 +45,7 @@ function List(props) {
             title: taskName? taskName: "New Task",
             list: id,
             workspace: workspaceId,
-            author: "643f6115abbf1b5d55acae11",
+            author: userId,
         };
 
         fetch("/api/tasks", {

@@ -112,11 +112,14 @@ function Task(props) {
         const dropdownWrapper = clickedElement.closest('.dropdownWrapper');
       
         if (!dropdownWrapper) {
-          // Perform actions when the card (excluding the dropdown) is clicked
-          handleModalOpen();
+            // Perform actions when the card (excluding the dropdown) is clicked
+            handleModalOpen();
         }
-      };
+    };
 
+    const assigneesList = updatedAssignees.map((assignee) => {
+        return <li>{assignee.firstName} {assignee.lastName}</li>
+    })
 
     return (
         <>
@@ -139,7 +142,7 @@ function Task(props) {
                 </Modal.Header>
                 <Modal.Body>
                     <p>
-                        <strong>Description:</strong> {updatedDescription}
+                        <strong>Description:</strong>
                     </p>
                     <p>
                         <strong>Author:</strong> {`${author.firstName} ${author.lastName}`}
@@ -148,8 +151,9 @@ function Task(props) {
                         <strong>Due Date:</strong> {updatedDueDate ? new Date(updatedDueDate).toLocaleDateString("en-US") : null}
                     </p>
                     <p>
-                        <strong>Assignees:</strong> {updatedAssignees}
+                        <strong>Assignees:</strong>
                     </p>
+                        {updatedAssignees.length > 0 ? <ul>{assigneesList}</ul> : null}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleModalClose}>

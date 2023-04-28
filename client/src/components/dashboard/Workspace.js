@@ -136,6 +136,7 @@ function Workspace(props) {
             <List
                 key={Math.random()}
                 id={list._id}
+                userId={userId}
                 title={list.title}
                 tasks={list.tasks}
                 updateList={handleListUpdate}

@@ -17,15 +17,8 @@ export default function Login() {
     const [firstNameValid, setFirstNameValid] = useState(true);
     const [lastNameValid, setLastNameValid] = useState(true);
     const [confirmPasswordValid, setConfirmPasswordValid] = useState(true);
-
-    const loginValidArray = [usernameValid, passwordValid];
-    const registerValidArray = [
-        usernameValid,
-        passwordValid,
-        firstNameValid,
-        lastNameValid,
-        confirmPasswordValid,
-    ];
+    const [passwordMatch, setPasswordMatch] = useState(true);
+    const [emailMatch,setEmailMatch] = useState(true);
 
     const [color, setColor] = useState("white");
     const [checked, setChecked] = useState(false);
@@ -57,10 +50,25 @@ export default function Login() {
             })
                 .then(async (response) => {
                     if (response.ok) {
+                        setEmailMatch(true);
+                        setPasswordMatch(true);
                         const json = await response.json();
                         sessionStorage.setItem("token", json.token);
                         navigate("/dashboard");
-                    } else {
+                    }
+                    if (response.status === 404)
+                    {
+                        setEmailMatch(false);
+                        console.log("User not found");
+                    }
+                    else if (response.status === 401)
+                    {
+                        setEmailMatch(true);
+                        setPasswordMatch(false);
+                    }
+                    else {
+                        setEmailMatch(true);
+                        setPasswordMatch(true);
                         return response.json();
                     }
                 })
@@ -137,9 +145,9 @@ export default function Login() {
                     maxLength="110"
                     onChange={(e) => setUsername(e.target.value)}
                 ></input>
-                <div className={!usernameValid ? "line" : ""}></div>
-                <div className={`show-error${!usernameValid ? "True" : "False"}`}>
-                    Email must be filled out
+                <div className={!usernameValid || !emailMatch ? "line" : ""}></div>
+                <div className={`show-error${!usernameValid || !emailMatch ? "True" : "False"}`}>
+                    {emailMatch?"Email must be filled out" : "The Email you entered doesn't exist"}
                 </div>
                 <label
                     className={color === "white" ? "text-light" : "text-dark"}
@@ -156,9 +164,9 @@ export default function Login() {
                     maxLength="110"
                     onChange={(e) => setPassword(e.target.value)}
                 ></input>
-                <div className={!passwordValid ? "line" : ""}></div>
-                <div className={`show-error${!passwordValid ? "True" : "False"}`}>
-                    Password must be filled out
+                <div className={!passwordValid || !passwordMatch ? "line" : ""}></div>
+                <div className={`show-error${!passwordValid || !passwordMatch ? "True" : "False"}`}>
+                    {passwordMatch ? "Password must be filled out": "The password you entered doesn't match"}
                 </div>
                 <button className="login-button" type="submit" onClick={handleLogin}>
                     Sign in

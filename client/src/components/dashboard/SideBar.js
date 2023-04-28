@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, Offcanvas } from "react-bootstrap";
-import { BsChevronRight} from "react-icons/bs";
+import Notification from './Notification.js'
 
 import "./sidebar.css";
 
@@ -43,33 +43,25 @@ function Sidebar(props) {
     ));
 
     const notificationComponents = notifications.map((notification) => (
-        <div key={Math.random()}>
-            <h4>{notification.workspace.title}</h4>
-            <p>{notification.sender}</p>
-        </div>
+
+        <Notification
+            id={notification.workspace._id}
+            title={notification.workspace.title}
+            accept={() => console.log("accept")}
+            decline={() => console.log("decline")}
+        />
     ))
 
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     return (
-        <div className="wrapper">
-            <Button variant="secondary" onClick={handleShow}>
-                <BsChevronRight/>
-            </Button>
-            
-            <Offcanvas className="sidebar"  show={show} onHide={handleClose} {...props}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Workspaces</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    {workspaceComponents}
-                    <button onClick={handleModalOpen}>Create Workspace</button>
-                </Offcanvas.Body>
-            </Offcanvas>
-
+        <div className="sidebar">
+            <center>
+                <h3>Workspaces</h3>
+            </center>
+            {workspaceComponents}
+            {notificationComponents}
+            <center>
+                <button onClick={handleModalOpen}>Create Workspace</button>
+            </center>
             <Modal show={showModal} onHide={handleModalClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Create Workspace</Modal.Title>

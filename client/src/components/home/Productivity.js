@@ -2,10 +2,10 @@ import "./Productivity.css";
 
 import ProductivityData from "./ProductivityData";
 
-import Productivity1 from "../assets/productivity1.jpg";
-import Productivity2 from "../assets/productivity2.jpg";
-import Productivity3 from "../assets/productivity3.jpg";
-import Productivity4 from "../assets/productivity4.jpg";
+import Productivity1 from "../../assets/productivity1.jpg";
+import Productivity2 from "../../assets/productivity2.jpg";
+import Productivity3 from "../../assets/productivity3.jpg";
+import Productivity4 from "../../assets/productivity4.jpg";
 
 const Productivity = () => {
     return (
@@ -19,7 +19,7 @@ const Productivity = () => {
             <ProductivityData
                 className="description"
                 heading="Boards"
-                text='Trello boards keep tasks organized and work moving forward. In a glance, see everything from "things to do" to "aww yeah, we did it!"'
+                text='Scrum Site boards keep tasks organized and work moving forward. In a glance, see everything from "things to do" to "aww yeah, we did it!"'
                 image1={Productivity1}
                 image2={Productivity2}
             />

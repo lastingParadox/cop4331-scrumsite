@@ -1,8 +1,8 @@
-import Hero from "../components/Hero";
-import Navbar from "../components/Navbar";
+import Hero from "../components/home/Hero";
+import Navbar from "../components/home/Navbar";
 import AboutImage from "../assets/about.jpg";
-import Footer from "../components/Footer";
-import AboutUs from "../components/AboutUs";
+import Footer from "../components/home/Footer";
+import AboutUs from "../components/home/AboutUs";
 
 function About() {
     return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../components/SideBar.js";
+import Sidebar from "../components/dashboard/SideBar.js";
 import "./dashboard.css";
-import Workspace from "../components/Workspace.js";
+import Workspace from "../components/dashboard/Workspace.js";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg"
@@ -91,6 +91,7 @@ function Dashboard() {
                 </div>
             </div>
             <div className="dash">
+                <div className="worklist">
                 {workspaceList.length >= 0 ? (
                     <Sidebar
                         workspaces={workspaceList}
@@ -116,6 +117,7 @@ function Dashboard() {
                 ) : (
                     <p className="workspace">Loading...</p>
                 )}
+                </div>
             </div>
         </div>
     );

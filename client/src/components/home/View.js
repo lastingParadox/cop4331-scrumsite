@@ -2,9 +2,9 @@ import "./View.css";
 
 import ViewData from "./ViewData";
 
-import View1 from "../assets/view1.jpg";
-import View2 from "../assets/view2.jpg";
-import View3 from "../assets/view3.jpg";
+import View1 from "../../assets/view1.jpg";
+import View2 from "../../assets/view2.jpg";
+import View3 from "../../assets/view3.jpg";
 
 function View() {
     return (
@@ -27,8 +27,8 @@ function View() {
                 />
                 <ViewData
                     image={View3}
-                    heading="Do more with Trello"
-                    text="Trello's intuitive features give any team the ability to quickly set up and customize workflows for just about anything."
+                    heading="Do more with Scrum Site"
+                    text="Scrum Site's intuitive features give any team the ability to quickly set up and customize workflows for just about anything."
                 />
             </div>
         </div>

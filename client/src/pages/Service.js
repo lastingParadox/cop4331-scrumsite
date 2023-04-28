@@ -1,8 +1,8 @@
-import Hero from "../components/Hero";
-import Navbar from "../components/Navbar";
+import Hero from "../components/home/Hero";
+import Navbar from "../components/home/Navbar";
 import ServiceImage from "../assets/service.jpg";
-import Footer from "../components/Footer";
-import ServiceView from "../components/ServiceView";
+import Footer from "../components/home/Footer";
+import ServiceView from "../components/home/ServiceView";
 
 function Service() {
     return (

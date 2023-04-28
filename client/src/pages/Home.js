@@ -1,18 +1,17 @@
-import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
+import Navbar from "../components/home/Navbar";
+import Hero from "../components/home/Hero";
 import HomeImage from "../assets/home.jpg";
-import LoginImage from "../assets/login.jpg";
 import CreditsImage from "../assets/credits.jpg";
-import Productivity from "../components/Productivity";
-import View from "../components/View";
-import Footer from "../components/Footer";
+import Productivity from "../components/home/Productivity";
+import View from "../components/home/View";
+import Footer from "../components/home/Footer";
 import About from "./About";
 import Service from "./Service";
 import Contact from "./Contact";
-import Credits from "../components/Credits";
+import Credits from "../components/home/Credits";
 import Login from "./Login.js";
 
-import ScrollToTop from "../components/ScrollToTop.js";
+import ScrollToTop from "../components/home/ScrollToTop.js";
 
 import { Route, Routes, Navigate } from "react-router-dom";
 
@@ -71,11 +70,6 @@ function Home() {
                     path="credits"
                     element={
                         <>
-                            <Hero
-                                className="hero-mid"
-                                heroImage={CreditsImage}
-                                buttonClass="hide"
-                            />
                             <Credits />
                             <Footer />
                         </>
@@ -85,11 +79,6 @@ function Home() {
                     path="login"
                     element={
                         <>
-                            <Hero
-                                className="hero-mid"
-                                heroImage={LoginImage}
-                                buttonClass="hide"
-                            />
                             <Login />
                             <Footer />
                         </>

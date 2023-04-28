@@ -1,9 +1,9 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
 import Switch from "react-switch";
 import { Navigate, Route, useNavigate } from "react-router-dom";
 
-import useWindowSize from "../components/WindowSize";
+import useWindowSize from "../components/home/WindowSize";
 
 export default function Login() {
     const [password, setPassword] = useState("");
@@ -281,7 +281,7 @@ export default function Login() {
 
     return (
         <>
-            {size.width > 1040 ? (
+            {size.width > 1120 ? (
                 <>
                     <div className="login-container">
                         <div
@@ -301,7 +301,6 @@ export default function Login() {
                         {login}
                         {register}
                     </div>
-                    <div style={{ width: "100%", height: "100px" }} />
                 </>
             ) : (
                 <div className="login-container">

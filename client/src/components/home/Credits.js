@@ -55,7 +55,7 @@ export default class Credits extends Component {
 
     render() {
         return (
-            <div>
+            <div className="main-container">
                 <div class="credits-title">Credits</div>
                 <div class="credits-container">{this.listCredits()}</div>
             </div>

@@ -13,7 +13,6 @@
 
     font-size: 4rem;
     font-weight: bold;
-    text-decoration: underline;
 }
 
 .credits-card {
@@ -28,7 +27,24 @@
 }
 
 .credits-name {
-    font-size: 25px;
+    font-size: 26px;
+}
+
+.credits-email {
+    font-size: 14px;
+}
+
+.credits-github {
+    font-size: 14px;
+}
+
+.credits-divider {
+    color: black;
+    background-color: black;
+    height: 2px;
+    width: 65%;
+    margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 .credits-container {

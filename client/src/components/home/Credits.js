@@ -45,7 +45,14 @@ const Card = (props) => (
         <div className="credits-name">{props.person.name}</div>
         <hr className="credits-divider"></hr>
         <div className="credits-email">{props.person.email}</div>
-        <a className="credits-github" href={props.person.github}>Github</a>
+        <a
+            className="credits-github"
+            href={props.person.github}
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Github
+        </a>
     </div>
 );
 
@@ -66,4 +73,3 @@ export default function Credits() {
         </div>
     );
 }
-

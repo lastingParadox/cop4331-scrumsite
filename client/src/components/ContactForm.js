@@ -5,11 +5,11 @@ function ContactForm() {
         <div className="form-container">
             <h1>Send a message to us!</h1>
             <form>
-                <input placeholder="Name"></input>
-                <input placeholder="Email"></input>
-                <input placeholder="Subject"></input>
-                <textarea placeholder="Message" rows={4}></textarea>
-                <button>Send Message</button>
+                <input type="text" placeholder="Name" required></input>
+                <input type="email" placeholder="Email" required></input>
+                <input type="text" placeholder="Subject" required></input>
+                <textarea placeholder="Message" rows={4} required></textarea>
+                <button type="submit">Send Message</button>
             </form>
         </div>
     );

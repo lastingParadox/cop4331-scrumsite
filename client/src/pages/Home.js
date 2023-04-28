@@ -1,7 +1,6 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import HomeImage from "../assets/home.jpg";
-import LoginImage from "../assets/login.jpg";
 import CreditsImage from "../assets/credits.jpg";
 import Productivity from "../components/Productivity";
 import View from "../components/View";
@@ -71,11 +70,6 @@ function Home() {
                     path="credits"
                     element={
                         <>
-                            <Hero
-                                className="hero-mid"
-                                heroImage={CreditsImage}
-                                buttonClass="hide"
-                            />
                             <Credits />
                             <Footer />
                         </>
@@ -85,11 +79,6 @@ function Home() {
                     path="login"
                     element={
                         <>
-                            <Hero
-                                className="hero-mid"
-                                heroImage={LoginImage}
-                                buttonClass="hide"
-                            />
                             <Login />
                             <Footer />
                         </>

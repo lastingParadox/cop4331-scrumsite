@@ -1,9 +1,28 @@
+.main-container {
+    padding: 12rem 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.credits-title {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+
+    font-size: 4rem;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 .credits-card {
     position: relative;
     background-color: #ffff;
     border-radius: 13px;
     padding: 15px 5px 15px 15px;
-    width: 400px;
+    width: 100%;
+    min-width: 200px;
     max-width: 400px;
     box-shadow: 0 5px 15px 0 rgb(0, 0, 0, 0.25);
 }
@@ -14,25 +33,22 @@
 
 .credits-container {
     position: relative;
-    margin: 25px auto;
+    margin: 0 auto;
     flex-wrap: wrap;
     text-align: center;
     align-items: center;
     justify-content: center;
     display: flex;
-    width: 75%;
+    flex-direction: column;
+    width: 100%;
 }
 
-.credits-title {
-    position: relative;
-    margin: 25px auto;
-    flex-wrap: wrap;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+@media screen and (max-width: 670px) {
+    .main-container {
+        padding: 12rem 2rem 12rem 0;
+    }
 
-    font-size: 4rem;
-    font-weight: bold;
-    text-decoration: underline;
+    .credits-container {
+        padding: 0 2rem;
+    }
 }

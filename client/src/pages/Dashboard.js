@@ -10,6 +10,7 @@ function Dashboard() {
     const navigate = useNavigate();
     const [token, setToken] = useState(sessionStorage.getItem('token'));
     const [userId, setUserId] = useState("");
+    const [userFirstName, setUserFirstName] = useState("user");
     const [workspaceList, setWorkspaceList] = useState([]);
     const [workspace, setWorkspace] = useState(null);
 
@@ -61,6 +62,7 @@ function Dashboard() {
         })
         .then((data) => {
             setUserId(data.user._id);
+            setUserFirstName(data.user.firstName);
             data = data.workspaces.map((element) => {
                 return { id: element._id, title: element.title };
             });
@@ -81,7 +83,7 @@ function Dashboard() {
                 </div>
                 
                 <div className="logoutBox">
-                    <p>Hello, user!</p>
+                    <p>Hello, {userFirstName}!</p>
                     <Button className="logout" variant="warning" onClick={logout}>
                         Logout
                     </Button>

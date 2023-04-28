@@ -50,7 +50,7 @@ const WorkspaceHeader = ({ title, userId, workspaceId, onTitleChange, titleSave,
         fetch(`/api/users?search=${query}`)
             .then((res) => res.json())
             .then((res) => {
-                res = res.filter((user) => user._id !== userId && !user.workspaces.includes(workspaceId))
+                res = res.filter((user) => user._id !== userId && !user.workspaces.includes(workspaceId) && !user.notifications.includes(workspaceId))
                 setOptions(res);
                 setIsLoading(false);
             });

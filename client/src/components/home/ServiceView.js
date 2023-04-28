@@ -18,7 +18,7 @@ function ServiceView() {
                 <ViewData
                     image={ServiceView1}
                     heading="Workspaces"
-                    text="Create workspaces to seperate and organize your projects that will bring a fresh perspective to the task at hand."
+                    text="Create workspaces to separate and organize your projects that will bring a fresh perspective to the task at hand."
                 />
                 <ViewData
                     image={ServiceView2}

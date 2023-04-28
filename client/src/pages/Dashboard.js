@@ -111,9 +111,7 @@ function Dashboard() {
                             onWorkspaceSelect={onWorkspaceSelect}
                             onWorkspaceCreate={onWorkspaceCreate}
                         />
-                    ) : (
-                        <p>Loading...</p>
-                    )}
+                    ) : null }
                     {workspace ? (
                         <Workspace
                             className="workspace"
@@ -125,9 +123,7 @@ function Dashboard() {
                             updateWorkspaceTitle={updateWorkspaceTitle}
                             deleteWorkspace={removeWorkspace}
                         />
-                    ) : (
-                        <p className="workspace">Loading...</p>
-                    )}
+                    ) : <p className="workspace">{null}</p>}
                     </div>
                 </div>
             </div>

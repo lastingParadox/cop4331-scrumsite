@@ -31,7 +31,8 @@ function Notification(props) {
 
     async function handleClick(isAccepted) {
         const workspace = await respond(isAccepted);
-        accept(workspace);
+        if (isAccepted) accept(workspace);
+        else decline(workspace);
     }
 
 

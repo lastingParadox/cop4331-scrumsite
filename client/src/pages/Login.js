@@ -61,7 +61,6 @@ export default function Login() {
                     if (response.status === 404)
                     {
                         setEmailMatch(false);
-                        console.log("User not found");
                     }
                     else if (response.status === 401)
                     {
@@ -131,7 +130,6 @@ export default function Login() {
     const switchColor = (nextChecked) => {
         setChecked(nextChecked);
         toggleColor();
-        console.log(JSON.stringify(loginData));
     };
 
     useEffect(() => {

@@ -75,8 +75,6 @@ const WorkspaceHeader = ({ title, userId, workspaceId, onTitleChange, titleSave,
             return response.json();
         })
         .then((data) => {
-            console.log(`Successfully sent invite!`)
-            console.log(data)
             handleModalClose();
         })
         .catch((error) => {

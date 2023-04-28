@@ -40,7 +40,6 @@ function Dashboard() {
     }
 
     function onWorkspaceCreate(newWorkspace) {
-        console.log(newWorkspace)
         const dataWorkspace = { id: newWorkspace._id, title: newWorkspace.title };
         setWorkspaceList([...workspaceList, dataWorkspace]);
     }

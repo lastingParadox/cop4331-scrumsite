@@ -68,7 +68,6 @@ function Workspace(props) {
     }
 
     async function handleTitleSubmit(newTitle) {
-        console.log(newTitle)
         await fetch(`/api/workspaces/${id}`, {
             method: 'PATCH',
             headers: {

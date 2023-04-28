@@ -103,9 +103,6 @@ function Task(props) {
         const twoDays = new Date();
         twoDays.setDate(today.getDate() + 2)
 
-        console.log(today > date)
-        console.log(date.toDateString() === today.toDateString())
-
         if (today.getMonth() > date.getMonth() || (today.getMonth() === date.getMonth() && today.getDate() > date.getDate()))
             return <div className="small late">{date.toLocaleDateString("en-US")}</div>
         else if ((today.toDateString() === date.toDateString()) || (today <= date && twoDays > date))
@@ -244,7 +241,7 @@ function Task(props) {
                         <Form.Control
                             type="date"
                             value={dateValue}
-                            onChange={(e) => { console.log(date.toISOString().split('T')[0]); setUpdatedDueDate(e.target.value)}}
+                            onChange={(e) => setUpdatedDueDate(e.target.value)}
                         />
                     </Form.Group>
 

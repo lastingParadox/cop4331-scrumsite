@@ -15,7 +15,6 @@ function Sidebar(props) {
     const handleWorkspaceClick = async (id) => {
         const response = await fetch(`/api/workspaces/${id}`);
         const workspace = await response.json();
-        console.log(workspace);
         onWorkspaceSelect(workspace);
     };
 
@@ -43,9 +42,7 @@ function Sidebar(props) {
     ));
 
     const acceptNotification = (workspace) => {
-        console.log(workspace)
         const updatedNotifications = notifications.filter((notification) => notification.workspace._id !== workspace._id);
-        console.log(updatedNotifications);
         setNotifications(updatedNotifications);
         onWorkspaceCreate(workspace);
     }

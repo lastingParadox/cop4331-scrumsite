@@ -107,7 +107,6 @@ function List(props) {
             .then((data) => {
                 const updatedTasks = tasks.filter((task) => task._id !==taskId);
                 setTasks(updatedTasks);
-                console.log(updatedTasks);
                 const updatedList = { id, title, tasks: updatedTasks };
                 updateListChange(updatedList,listId,data.task);
             })

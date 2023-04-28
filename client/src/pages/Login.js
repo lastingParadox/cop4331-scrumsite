@@ -122,7 +122,10 @@ export default function Login() {
         <div>
             <form className="login">
                 <h1 className={color === "white" ? "login-light" : "login-dark"}>Login</h1>
-                <label className={color === "white" ? "text-light" : "text-dark"} for="username">
+                <label
+                    className={color === "white" ? "text-light" : "text-dark"}
+                    htmlFor="username"
+                >
                     <b>Username</b>
                 </label>
                 <input
@@ -131,14 +134,17 @@ export default function Login() {
                     type="text"
                     placeholder="Enter Username"
                     name="username"
-                    maxlength="110"
+                    maxLength="110"
                     onChange={(e) => setUsername(e.target.value)}
                 ></input>
                 <div className={!usernameValid ? "line" : ""}></div>
                 <div className={`show-error${!usernameValid ? "True" : "False"}`}>
                     Email must be filled out
                 </div>
-                <label className={color === "white" ? "text-light" : "text-dark"} for="password">
+                <label
+                    className={color === "white" ? "text-light" : "text-dark"}
+                    htmlFor="password"
+                >
                     <b>Password</b>
                 </label>
                 <input
@@ -147,7 +153,7 @@ export default function Login() {
                     type="password"
                     placeholder="Enter Password"
                     name="password"
-                    maxlength="110"
+                    maxLength="110"
                     onChange={(e) => setPassword(e.target.value)}
                 ></input>
                 <div className={!passwordValid ? "line" : ""}></div>
@@ -165,7 +171,10 @@ export default function Login() {
         <div>
             <form className="login">
                 <h1 className={color === "white" ? "login-light" : "login-dark"}>register</h1>
-                <label className={color === "white" ? "text-light" : "text-dark"} for="username">
+                <label
+                    className={color === "white" ? "text-light" : "text-dark"}
+                    htmlFor="username"
+                >
                     <b>Email</b>
                 </label>
                 <input
@@ -173,14 +182,17 @@ export default function Login() {
                     value={username}
                     type="text"
                     placeholder="Enter Email"
-                    maxlength="110"
+                    maxLength="110"
                     onChange={(e) => setUsername(e.target.value)}
                 ></input>
                 <div className={!usernameValid ? "line" : ""}></div>
                 <div className={`show-error${!usernameValid ? "True" : "False"}`}>
                     Email must be filled out
                 </div>
-                <label className={color === "white" ? "text-light" : "text-dark"} for="username">
+                <label
+                    className={color === "white" ? "text-light" : "text-dark"}
+                    htmlFor="username"
+                >
                     <b>First Name</b>
                 </label>
                 <input
@@ -188,14 +200,17 @@ export default function Login() {
                     value={firstName}
                     type="text"
                     placeholder="Enter First Name"
-                    maxlength="110"
+                    maxLength="110"
                     onChange={(e) => setFirstName(e.target.value)}
                 ></input>
                 <div className={!firstNameValid ? "line" : ""}></div>
                 <div className={`show-error${!firstNameValid ? "True" : "False"}`}>
                     First Name must be filled out
                 </div>
-                <label className={color === "white" ? "text-light" : "text-dark"} for="username">
+                <label
+                    className={color === "white" ? "text-light" : "text-dark"}
+                    htmlFor="username"
+                >
                     <b>Last Name</b>
                 </label>
                 <input
@@ -203,14 +218,17 @@ export default function Login() {
                     value={lastName}
                     type="text"
                     placeholder="Enter Last Name"
-                    maxlength="110"
+                    maxLength="110"
                     onChange={(e) => setLastName(e.target.value)}
                 ></input>
                 <div className={!lastNameValid ? "line" : ""}></div>
                 <div className={`show-error${!lastNameValid ? "True" : "False"}`}>
                     Last Name must be filled out
                 </div>
-                <label className={color === "white" ? "text-light" : "text-dark"} for="password">
+                <label
+                    className={color === "white" ? "text-light" : "text-dark"}
+                    htmlFor="password"
+                >
                     <b>Password</b>
                 </label>
                 <input
@@ -218,21 +236,24 @@ export default function Login() {
                     value={password}
                     type="password"
                     placeholder="Enter Password"
-                    maxlength="110"
+                    maxLength="110"
                     onChange={(e) => setPassword(e.target.value)}
                 ></input>
                 <div className={!passwordValid ? "line" : ""}></div>
                 <div className={`show-error${!passwordValid ? "True" : "False"}`}>
                     Password must be filled out
                 </div>
-                <label className={color === "white" ? "text-light" : "text-dark"} for="password">
+                <label
+                    className={color === "white" ? "text-light" : "text-dark"}
+                    htmlFor="password"
+                >
                     <b>Confirm Password</b>
                 </label>
                 <input
                     className={color === "white" ? "login-boxes-light" : "login-boxes-dark"}
                     type="password"
                     placeholder="Enter Password Again"
-                    maxlength="110"
+                    maxLength="110"
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 ></input>
                 <div className={!confirmPasswordValid ? "line" : ""}></div>

@@ -41,23 +41,23 @@ const devList = [
 ];
 
 const Card = (props) => (
-    <div class="credits-card mx-3 my-1">
-        <div class="credits-name">{props.name}</div>
+    <div className="credits-card mx-3 my-1">
+        <div className="credits-name">{props.name}</div>
     </div>
 );
 
 export default class Credits extends Component {
     listCredits() {
-        return devList.map((cur) => {
-            return <Card name={cur.name} />;
+        return devList.map((cur, index) => {
+            return <Card key={index} name={cur.name} />;
         });
     }
 
     render() {
         return (
             <div className="main-container">
-                <div class="credits-title">Credits</div>
-                <div class="credits-container">{this.listCredits()}</div>
+                <div className="credits-title">Credits</div>
+                <div className="credits-container">{this.listCredits()}</div>
             </div>
         );
     }

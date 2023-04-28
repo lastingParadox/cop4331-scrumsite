@@ -22,7 +22,6 @@ function Notification(props) {
         try {
             if (response.status === 401) throw new Error('Invalid');
             const json = await response.json();
-            console.log(json)
             return json.workspace;
         } catch (error) {
             console.log(error.message);
@@ -30,24 +29,19 @@ function Notification(props) {
         }
     }
 
-    const handleAcceptClick = () => {
-        const workspace = respond(true);
+    async function handleClick(isAccepted) {
+        const workspace = await respond(isAccepted);
         accept(workspace);
     }
 
-
-    function handleDeclineClick() {
-        const workspace = respond(false);
-        decline(workspace);
-    }
 
     return (
         <Card id="notificationCard">
         <Card.Body>
             <Card.Title id="notificationTitle">{title}</Card.Title>
             <div className="center">
-                <Button variant="success" onClick={handleAcceptClick}>Accept</Button>
-                <Button variant="danger" onClick={handleDeclineClick}>Decline</Button>
+                <Button variant="success" onClick={() => handleClick(true)}>Accept</Button>
+                <Button variant="danger" onClick={() => handleClick(false)}>Decline</Button>
             </div>
         </Card.Body>
         </Card>

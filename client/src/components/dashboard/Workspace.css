@@ -35,14 +35,19 @@
 #addListButton {
     align-self: top;
     width: 22rem;
-    background-color: transparent;
-    border-color: var(--bs-green);
-    border-width: 2px;
-    color: black;
     display: flex;
     align-items: center;
     gap: 8px;
     justify-content: center;
+    background-color: rgb(78, 206, 78);
+    border-width: 2px;
+    border-color: rgb(48, 124, 48);
+    transition-duration: 0.2s;
+}
+
+#addListButton:hover {
+    background-color: rgb(48, 124, 48);
+    color: white;
 }
 
 .workspaceHeader {

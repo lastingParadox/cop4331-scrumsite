@@ -12,11 +12,11 @@ function Task(props) {
     const [showModal, setShowModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [updatedDescription, setUpdatedDescription] = useState(description);
+    const [updatedDescription, setUpdatedDescription] = useState(description || "");
     const [updatedAuthor, setUpdatedAuthor] = useState(author._id);
     const [updatedTitle, setUpdatedTitle] = useState(title);
-    const [updatedDueDate, setUpdatedDueDate] = useState(dueDate);
-    const [updatedAssignees, setUpdatedAssignees] = useState(assignees);
+    const [updatedDueDate, setUpdatedDueDate] = useState(dueDate || "");
+    const [updatedAssignees, setUpdatedAssignees] = useState(assignees || []);
     const [selectedList, setSelectedList] = useState("");
 
     const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +52,15 @@ function Task(props) {
 
     const handleEditModalOpen = () => setShowEditModal(true);
 
-    const handleDeleteModalOpen = () => setShowDeleteModal(true);
+    const handleDeleteModalOpen = () => {
+        setShowModal(false);
+        setShowDeleteModal(true);
+    }
+
+    const handleDeleteModalClose = () => {
+        setShowDeleteModal(false);
+        setShowModal(true);
+    }
 
     const handleEditSubmit = () => {
         const updatedTask = {
@@ -62,8 +70,7 @@ function Task(props) {
             dueDate: updatedDueDate,
             assignees: updatedAssignees,
         };
-       
-        
+
         updateTask(updatedTask, id); // Call the updateTask callback function
         
 
@@ -118,7 +125,7 @@ function Task(props) {
     };
 
     const assigneesList = updatedAssignees.map((assignee) => {
-        return <li>{assignee.firstName} {assignee.lastName}</li>
+        return <li key={Math.random()}>{assignee.firstName} {assignee.lastName}</li>
     })
 
     return (
@@ -141,19 +148,29 @@ function Task(props) {
                     <Modal.Title>{updatedTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>
-                        <strong>Description:</strong>
-                    </p>
-                    <p>
-                        <strong>Author:</strong> {`${author.firstName} ${author.lastName}`}
-                    </p>
-                    <p>
-                        <strong>Due Date:</strong> {updatedDueDate ? new Date(updatedDueDate).toLocaleDateString("en-US") : null}
-                    </p>
-                    <p>
-                        <strong>Assignees:</strong>
-                    </p>
-                        {updatedAssignees.length > 0 ? <ul>{assigneesList}</ul> : null}
+                    {updatedDescription ?
+                        <p>
+                            <strong>Description:</strong> {updatedDescription}
+                        </p>
+                    : null}
+                    {updatedAuthor ?
+                        <p>
+                            <strong>Author:</strong> {`${author.firstName} ${author.lastName}`}
+                        </p>
+                    : null}
+                    {updatedDueDate ?
+                        <p>
+                            <strong>Due Date:</strong> {updatedDueDate ? new Date(updatedDueDate).toLocaleDateString("en-US") : null}
+                        </p>
+                    : null}
+                    {updatedAssignees.length > 0 ?
+                        <>
+                            <p id="assigneeTitle">
+                                <strong>Assignees:</strong>
+                            </p>
+                            {updatedAssignees.length > 0 ? <ul>{assigneesList}</ul> : null}
+                        </>
+                    : null}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleModalClose}>
@@ -162,7 +179,7 @@ function Task(props) {
                     <Button variant="primary" onClick={handleEditModalOpen}>
                         Edit
                     </Button>
-                    <Button variant="secondary" onClick={handleDeleteModalOpen}>
+                    <Button variant="danger" onClick={handleDeleteModalOpen}>
                         Delete
                     </Button>
                 </Modal.Footer>
@@ -270,7 +287,7 @@ function Task(props) {
                     <p>Are you sure you want to delete this Task?</p>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalClose}>
+                    <Button variant="secondary" onClick={handleDeleteModalClose}>
                         Cancel
                     </Button>
                     <Button variant="danger" onClick={handleDeleteSubmit}>

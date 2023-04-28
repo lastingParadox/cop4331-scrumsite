@@ -165,7 +165,7 @@ function Workspace(props) {
                 {showAddListCard ? (
                     <ListNameCard onSubmit={addList} onCancel={() => setShowAddListCard(false)} />
                 ) : (
-                    <Button id="addListButton" className="ms-1" onClick={() => setShowAddListCard(true)}>Add List <BsPlusCircle/></Button>
+                    <Button id="addListButton" variant="info" className="ms-1" onClick={() => setShowAddListCard(true)}>Add List <BsPlusCircle/></Button>
                 )}
             </div>
         </div>

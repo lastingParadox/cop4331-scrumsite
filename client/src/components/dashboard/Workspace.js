@@ -145,7 +145,7 @@ function Workspace(props) {
                 updateList={handleListUpdate}
                 deleteList={deleteList}
                 workspaceId={id}
-                listNames={lists}
+                listNames={lists.filter((listItem) => listItem._id !== list._id)}
                 updateListChange={handleListChange}
             />
         ))

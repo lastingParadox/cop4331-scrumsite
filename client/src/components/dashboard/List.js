@@ -5,7 +5,7 @@ import "./list.css";
 import ListTitle from "./ListTitle";
 
 function List(props) {
-    const { id, title, updateList, deleteList, workspaceId,listNames,updateListChange } = props;
+    const { id, title, updateList, deleteList, workspaceId, listNames, updateListChange } = props;
     const [tasks, setTasks] = useState(props.tasks);
     const [listName, setListName] = useState(title);
     const [taskName, setTaskName] = useState("");

@@ -8,7 +8,7 @@ import Drop from './Dropdown';
 
 
 function Task(props) {
-    const { id, title, description, author, dueDate, assignees, updateTask, deleteTask,listNames,updateTaskList } = props;
+    const { id, title, description, author, dueDate, assignees, updateTask, deleteTask, listNames, updateTaskList } = props;
     const [showModal, setShowModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);

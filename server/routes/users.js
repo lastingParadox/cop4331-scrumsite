@@ -59,7 +59,7 @@ router.post("/invite", async(req,res) =>{
     const workspaceExists = sender.workspaces.some((workspace) => {
         console.log(workspace._id);
         console.log("This is the one not in the array but passed as json " + workspaceId);
-        return  workspace._id == workspaceId;
+        return workspace._id == workspaceId;
     })
 
     if (!workspaceExists)
@@ -76,8 +76,7 @@ router.post("/invite", async(req,res) =>{
         return  notification.workspace == workspaceId;
     })
 
-    if (hasNotification)
-    {
+    if (hasNotification) {
         return res.status(405).send('This user already has an invitation to this workspace');
     }
     receiver.notifications.push(invitation);
@@ -98,7 +97,6 @@ router.post("/invite", async(req,res) =>{
      */
 
 router.patch("/inviteResponse", async(req,res) =>{
-    const senderId = req.body.senderId;
     const receiverId = req.body.receiverId;
     const workspaceId = req.body.workspace;
     const accepted = req.body.inviteResult;

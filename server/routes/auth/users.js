@@ -14,6 +14,63 @@ router.get("/workspaces", authenticateJWT, async (req, res) => {
     }
 });
 
+router.post("/invite", authenticateJWT, async(req,res) =>{
+    const receiverId = req.body.receiverId;
+    const workspaceId = req.body.workspaceId;
+
+    if (!receiverId) {
+        return res.status(404).send('User not found');
+    }
+    const receiver = await User.findById(receiverId);
+    const sender = req.user;
+
+    const workspaceExists = sender.workspaces.some((workspace) => {
+        return workspace._id == workspaceId;
+    })
+
+    if (!workspaceExists) {
+        return res.status(406).send('The sender is not in this workspace');
+    }
+
+    const invitation = {
+        sender: sender._id,
+        workspace: workspaceId
+    };
+
+    const hasNotification = receiver.notifications.some((notification) => {
+        return notification.workspace == workspaceId;
+    })
+
+    if (hasNotification) {
+        return res.status(405).send('This user already has an invitation to this workspace');
+    }
+    receiver.notifications.push(invitation);
+
+    await receiver.save();
+    return res.status(200).json(receiver.notifications);
+});
+
+router.patch("/inviteResponse", authenticateJWT, async(req,res) =>{
+    const workspaceId = req.body.workspace;
+    const accepted = req.body.inviteResult;
+
+    const user = req.user;
+
+    const index = user.notifications.findIndex((notification) => {
+        return notification.workspace == workspaceId;
+    })
+    
+    if (!index) res.status(404).json({ error: "The requested notification does not exist for you." });
+
+    user.notifications.splice(index,1);
+    if (accepted) 
+        user.workspaces.push(workspaceId);
+
+    await user.save();
+    return res.status(200).json(user.notifications);
+})
+
+
 async function authenticateJWT(req, res, next) {
     const authHeader = req.headers.authorization;
 

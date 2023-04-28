@@ -78,7 +78,7 @@ async function authenticateJWT(req, res, next) {
         const token = authHeader;
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            const user = await User.findById(decoded.userId);
+            const user = await User.findById(decoded.userId).populate('notifications.workspace');
 
             if (user) {
                 req.user = user;

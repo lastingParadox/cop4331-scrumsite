@@ -27,7 +27,7 @@
     padding-top: 2rem;
     text-align: start;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 

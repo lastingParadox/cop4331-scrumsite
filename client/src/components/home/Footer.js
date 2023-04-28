@@ -36,38 +36,6 @@ const Footer = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        Changelog
-                    </a>
-                    <a
-                        href="https://github.com/lastingParadox/cop4331-scrumsite"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Status
-                    </a>
-                    <a
-                        href="https://github.com/lastingParadox/cop4331-scrumsite"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        License
-                    </a>
-                    <a
-                        href="https://github.com/lastingParadox/cop4331-scrumsite"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        All Versions
-                    </a>
-                </div>
-
-                <div>
-                    <h4>Community</h4>
-                    <a
-                        href="https://github.com/lastingParadox/cop4331-scrumsite"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
                         GitHub
                     </a>
                     <a
@@ -77,37 +45,12 @@ const Footer = () => {
                     >
                         Issues
                     </a>
-                    <a
-                        href="https://github.com/lastingParadox/cop4331-scrumsite/projects?query=is%3Aopen"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Project
-                    </a>
-                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                        Twitter
-                    </a>
                 </div>
 
                 <div>
                     <h4>Help</h4>
                     <a
-                        href="https://github.com/lastingParadox/cop4331-scrumsite"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Support
-                    </a>
-                    <a
-                        href="https://github.com/lastingParadox/cop4331-scrumsite"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Troubleshooting
-                    </a>
-                    <a
-                        href="https://github.com/lastingParadox/cop4331-scrumsite"
-                        target="_blank"
+                        href="contact"
                         rel="noopener noreferrer"
                     >
                         Contact Us
@@ -117,25 +60,16 @@ const Footer = () => {
                 <div>
                     <h4>Others</h4>
                     <a
-                        href="https://github.com/lastingParadox/cop4331-scrumsite"
-                        target="_blank"
+                        href="about"
                         rel="noopener noreferrer"
                     >
-                        Terms of Service
+                        About
                     </a>
                     <a
-                        href="https://github.com/lastingParadox/cop4331-scrumsite"
-                        target="_blank"
+                        href="credits"
                         rel="noopener noreferrer"
                     >
-                        Privacy Policy
-                    </a>
-                    <a
-                        href="https://github.com/lastingParadox/cop4331-scrumsite"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        License
+                        Credits
                     </a>
                 </div>
             </div>

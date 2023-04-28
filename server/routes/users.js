@@ -57,8 +57,6 @@ router.post("/invite", async(req,res) =>{
     const sender = await User.findById(senderId);
 
     const workspaceExists = sender.workspaces.some((workspace) => {
-        console.log(workspace._id);
-        console.log("This is the one not in the array but passed as json " + workspaceId);
         return workspace._id == workspaceId;
     })
 
